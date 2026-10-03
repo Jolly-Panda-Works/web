@@ -1,0 +1,59 @@
+name: Update USD rate
+
+# Hosting is on Vercel, which redeploys automatically on every push to main.
+# This workflow only refreshes data/rate.json and commits it — that commit is
+# what triggers the Vercel deployment with the new Rial prices.
+#
+# The rate is fetched ONCE a day (08:00 Tehran). If that call fails, the second
+# run 12 hours later (20:00 Tehran, same day) tries again; if the first one
+# succeeded, the second run skips the API entirely.
+# "Run workflow" (manual) always calls the API.
+on:
+  schedule:
+    - cron: "30 4 * * *"    # 04:30 UTC = 08:00 Tehran  (daily fetch)
+    - cron: "30 16 * * *"   # 16:30 UTC = 20:00 Tehran  (retry, only if still not updated today)
+  workflow_dispatch:
+
+permissions:
+  contents: write           # commit the refreshed data/rate.json
+
+concurrency:
+  group: update-rate
+  cancel-in-progress: false
+
+jobs:
+  rate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Needs the NAVASAN_API_KEY repository secret. If the API fails the
+      # previous rate is kept (never an empty one).
+      - name: Fetch USD → IRR rate (Navasan)
+        env:
+          NAVASAN_API_KEY: ${{ secrets.NAVASAN_API_KEY }}
+          NAVASAN_ITEM: ${{ vars.NAVASAN_ITEM }}   # optional, default usd_sell
+          NAVASAN_UNIT: ${{ vars.NAVASAN_UNIT }}   # optional, default rial
+          SKIP_IF_UPDATED_TODAY: ${{ github.event_name != 'workflow_dispatch' }}
+        run: node scripts/fetch-rate.mjs
+
+      - name: Check data
+        run: node scripts/check.mjs
+
+      # NOTE: no "[skip ci]" in this message — Vercel would honour it and skip the deployment.
+      - name: Commit refreshed rate (Vercel deploys it)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/rate.json
+          if git diff --cached --quiet; then
+            echo "Rate unchanged — nothing to commit."
+          else
+            git commit -m "chore(rate): update USD to IRR rate"
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi
