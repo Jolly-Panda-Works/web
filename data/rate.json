@@ -1,7 +1,12 @@
 {
   "base": "USD",
   "currency": "IRR",
-  "rateRial": null,
-  "fetchedAt": null,
-  "note": "Seed file. The 'Update USD rate & deploy' GitHub Action replaces this with the live rate (see scripts/fetch-rate.mjs)."
+  "rateRial": 268800,
+  "item": "usd_sell",
+  "sourceUnit": "rial",
+  "sourceValue": "268800",
+  "sourceTimestamp": 1791048556,
+  "sourceDateJalali": "1405-07-11 20:59:16",
+  "fetchedAt": "2026-10-03T18:22:19.600Z",
+  "source": "navasan.tech"
 }
