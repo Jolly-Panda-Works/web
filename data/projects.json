@@ -1,0 +1,127 @@
+[
+  {
+    "id": "jollypanda-studio",
+    "type": "corporate",
+    "year": "2026",
+    "domain": "jollypanda.ir",
+    "url": "https://jollypanda.ir",
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "Vanilla JS",
+      "Bilingual EN/FA",
+      "RTL",
+      "SEO"
+    ],
+    "image": null,
+    "title": {
+      "en": "Jolly Panda Studio",
+      "fa": "استودیو جولی پاندا"
+    },
+    "shortDescription": {
+      "en": "The studio's own website — lightweight, fully responsive and bilingual (English LTR and Persian RTL), with JSON-driven content.",
+      "fa": "وب‌سایت خود استودیو — سبک، کاملاً واکنش‌گرا و دوزبانه (انگلیسی چپ‌به‌راست و فارسی راست‌به‌چپ) با محتوای مبتنی بر JSON."
+    },
+    "fullDescription": {
+      "en": "The official website of Jolly Panda Studio, built with plain HTML, CSS and JavaScript — no frameworks. Every page exists in English and Persian with its own URL, language tags and hreflang links, and the content (navigation, services, team, footer) is edited in JSON files instead of in the page code.\n\nSearch-friendly from the start: semantic HTML5, unique titles and descriptions per page, canonical URLs, Open Graph and Twitter cards, a web app manifest and JSON-LD structured data.",
+      "fa": "وب‌سایت رسمی استودیو جولی پاندا که با HTML و CSS و JavaScript ساده و بدون فریم‌ورک ساخته شده است. هر صفحه به دو زبان انگلیسی و فارسی و با آدرس، برچسب زبان و لینک‌های hreflang مخصوص خودش وجود دارد و محتوا (منو، خدمات، تیم، فوتر) به‌جای کد صفحه، در فایل‌های JSON ویرایش می‌شود.\n\nاز ابتدا سئو‌محور: HTML5 معنادار، عنوان و توضیح یکتا برای هر صفحه، آدرس canonical، کارت‌های Open Graph و توییتر، وب‌اپ مانیفست و داده ساختاریافته JSON-LD."
+    },
+    "highlights": {
+      "en": [
+        "English (LTR) and Persian (RTL) with separate crawlable URLs",
+        "JSON-driven content — edit text without touching code",
+        "Semantic HTML, Open Graph and JSON-LD structured data",
+        "Accessibility-friendly and performance-focused"
+      ],
+      "fa": [
+        "انگلیسی (چپ‌به‌راست) و فارسی (راست‌به‌چپ) با آدرس‌های جدا و قابل خزش",
+        "محتوای مبتنی بر JSON — ویرایش متن بدون دست‌زدن به کد",
+        "HTML معنادار، Open Graph و داده ساختاریافته JSON-LD",
+        "سازگار با دسترس‌پذیری و متمرکز بر کارایی"
+      ]
+    }
+  },
+  {
+    "id": "dopamall",
+    "type": "store",
+    "year": "2026",
+    "domain": "dopamall.ir",
+    "url": "https://www.dopamall.ir",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "SQLite",
+      "Tailwind CSS"
+    ],
+    "image": null,
+    "title": {
+      "en": "Dopamall",
+      "fa": "دوپامال"
+    },
+    "shortDescription": {
+      "en": "A gamified fake e-commerce experience — browse, \"buy\", and save real money instead of spending it, earning XP, streaks and leaderboard rank along the way.",
+      "fa": "یک تجربه فروشگاهی بازی‌گونه و غیرواقعی — بگردید، «بخرید» و به‌جای خرج کردن، پول واقعی پس‌انداز کنید و در این مسیر XP، استریک و رتبه در جدول امتیازات کسب کنید."
+    },
+    "fullDescription": {
+      "en": "Dopamall looks and feels like a real Iranian online store — full catalog, cart, multi-step checkout, simulated payment — but no real money ever changes hands. Every fake purchase converts the listed price into saved money, XP, levels, daily streaks, and achievements, turning the anti-habit of impulse shopping into a rewarding game.\n\nThe storefront and gamification layer run client-side for a snappy feel, while authentication, the product catalog, and leaderboard rankings are served from a real backend (Next.js route handlers + Prisma/SQLite), including a full admin panel for managing products.",
+      "fa": "دوپامال ظاهر و حس یک فروشگاه آنلاین واقعی ایرانی را دارد — کاتالوگ کامل، سبد خرید، تسویه‌حساب چندمرحله‌ای، پرداخت شبیه‌سازی‌شده — اما هیچ پول واقعی‌ای جابه‌جا نمی‌شود. هر خرید ساختگی، قیمت را به پول پس‌انداز‌شده، XP، سطح، استریک روزانه و دستاورد تبدیل می‌کند و عادت خرید تکانشی را به یک بازی پاداش‌دهنده تبدیل می‌کند.\n\nفروشگاه و لایه بازی‌گونه سمت کلاینت اجرا می‌شوند تا حس سریعی داشته باشند، در حالی که احراز هویت، کاتالوگ محصولات و رتبه‌بندی جدول امتیازات از یک بک‌اند واقعی (Next.js route handlers به همراه Prisma/SQLite) سرو می‌شوند و یک پنل مدیریت کامل برای مدیریت محصولات نیز وجود دارد."
+    },
+    "highlights": {
+      "en": [
+        "Real server-backed leaderboard & auth",
+        "Full fake checkout & payment flow",
+        "XP, streaks, levels and achievements",
+        "Admin panel for live catalog management"
+      ],
+      "fa": [
+        "جدول امتیازات و احراز هویت واقعی سمت سرور",
+        "مسیر کامل تسویه‌حساب و پرداخت ساختگی",
+        "XP، استریک، سطح و دستاورد",
+        "پنل مدیریت برای مدیریت زنده کاتالوگ"
+      ]
+    }
+  },
+  {
+    "id": "useff-portfolio",
+    "type": "portfolio",
+    "year": "2026",
+    "domain": "useffarahmand.com",
+    "url": "https://www.useffarahmand.com",
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "Vanilla JS",
+      "Bilingual EN/FA",
+      "RTL",
+      "Jalali calendar"
+    ],
+    "image": null,
+    "title": {
+      "en": "Usef Farahmand — Portfolio",
+      "fa": "یوسف فرهمند — پورتفولیو"
+    },
+    "shortDescription": {
+      "en": "A personal portfolio website in English and Persian, with a full language engine, right-to-left styling and Jalali date support.",
+      "fa": "وب‌سایت پورتفولیوی شخصی به دو زبان انگلیسی و فارسی، با موتور کامل چندزبانه، استایل راست‌به‌چپ و پشتیبانی از تاریخ شمسی."
+    },
+    "fullDescription": {
+      "en": "A personal portfolio website that works fully in both English and Persian. A built-in translation engine switches every section, including the ones rendered dynamically, and the layout flips cleanly between left-to-right and right-to-left.\n\nDates can be shown in the Jalali (Persian) calendar when the site is in Persian.",
+      "fa": "یک وب‌سایت پورتفولیوی شخصی که به‌طور کامل به دو زبان انگلیسی و فارسی کار می‌کند. یک موتور ترجمه داخلی همه بخش‌ها، حتی بخش‌هایی که پویا ساخته می‌شوند را عوض می‌کند و چیدمان به‌تمیزی بین چپ‌به‌راست و راست‌به‌چپ جابه‌جا می‌شود.\n\nدر حالت فارسی، تاریخ‌ها می‌توانند با تقویم شمسی نمایش داده شوند."
+    },
+    "highlights": {
+      "en": [
+        "Full English/Persian language engine",
+        "Clean RTL and LTR layouts",
+        "Jalali calendar conversion",
+        "Dynamic sections translated too"
+      ],
+      "fa": [
+        "موتور کامل چندزبانه فارسی/انگلیسی",
+        "چیدمان راست‌به‌چپ و چپ‌به‌راست تمیز",
+        "تبدیل تاریخ به تقویم شمسی",
+        "ترجمه بخش‌های پویا"
+      ]
+    }
+  }
+]

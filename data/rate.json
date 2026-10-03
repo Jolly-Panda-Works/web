@@ -1,0 +1,7 @@
+{
+  "base": "USD",
+  "currency": "IRR",
+  "rateRial": null,
+  "fetchedAt": null,
+  "note": "Seed file. The 'Update USD rate & deploy' GitHub Action replaces this with the live rate (see scripts/fetch-rate.mjs)."
+}

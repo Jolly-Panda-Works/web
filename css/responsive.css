@@ -1,0 +1,446 @@
+/* ==========================================================================
+   Jolly Panda Studio — Responsive Rules
+   Mobile-first project; base styles in style.css already work on small
+   screens. This file layers on adjustments for larger breakpoints and
+   the few components (nav, hero, grids) that need structural changes.
+   Breakpoints: 480 / 768 / 1024 / 1280
+   ========================================================================== */
+
+/* ---------- Mobile navigation (default: below 768px) ---------- */
+.nav-toggle {
+  display: flex;
+}
+
+.nav__links {
+  /* absolute, not fixed: .site-header has backdrop-filter, which makes it
+     the containing block for fixed descendants per the CSS spec, so a
+     "fixed" menu here was actually positioned relative to the ~72px-tall
+     header (top: nav-height + bottom: 0 of THAT box = ~zero height), and
+     its content rendered outside that box with no background behind it.
+     Positioning it absolute against the header (which is itself
+     position: fixed, so it's a valid containing block) fixes this. */
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  height: calc(100vh - var(--nav-height));
+  height: calc(100dvh - var(--nav-height));
+  overflow-y: auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 0;
+  background: var(--color-paper);
+  padding: var(--space-lg) var(--container-pad);
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out),
+    visibility var(--duration-base);
+  z-index: var(--z-menu);
+}
+
+.nav__links.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.nav__link {
+  font-size: 1.25rem;
+  padding-block: var(--space-sm);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.nav__link::after {
+  display: none;
+}
+
+.nav__actions {
+  display: none;
+}
+
+.nav__links .nav__mobile-cta {
+  display: block;
+  margin-top: var(--space-lg);
+}
+
+/* Hero, about, services etc. stack on mobile by default via the base
+   single-column rules declared inline below (min-width overrides follow) */
+.hero__grid {
+  grid-template-columns: 1fr;
+}
+
+.hero__stage {
+  order: -1;
+  height: 280px;
+}
+
+.hero__actions .btn {
+  width: 100%;
+}
+
+.about-preview__grid {
+  grid-template-columns: 1fr;
+}
+
+.spotlight__grid {
+  grid-template-columns: 1fr;
+}
+
+.spotlight__visual {
+  margin-bottom: var(--space-xl);
+}
+
+.services__grid {
+  grid-template-columns: 1fr;
+}
+
+.bento {
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+}
+
+.bento-card,
+.bento-card--wide {
+  grid-column: span 1;
+}
+
+.bento-card--wide {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bento-card--wide .bento-card__text {
+  max-width: 100%;
+}
+
+.site-footer__top {
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+.site-footer__brand {
+  align-items: center;
+  text-align: center;
+}
+
+.site-footer__tagline {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.site-footer__social {
+  justify-content: center;
+}
+
+.site-footer__nav {
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  text-align: center;
+}
+
+.site-footer__group {
+  text-align: center;
+}
+
+.site-footer__list {
+  align-items: center;
+}
+
+.site-footer__bottom {
+  text-align: center;
+}
+
+.site-footer__copyright {
+  text-align: center;
+}
+
+.pillar-grid {
+  grid-template-columns: 1fr;
+}
+
+.values-grid {
+  grid-template-columns: 1fr;
+}
+
+.process-track {
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+}
+
+.process-track::before {
+  display: none;
+}
+
+.goals-grid {
+  grid-template-columns: 1fr;
+}
+
+.service-detail__features {
+  grid-template-columns: 1fr;
+}
+
+.service-detail__cta {
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+}
+
+.service-detail__cta .btn {
+  width: 100%;
+}
+
+.project-detail__grid {
+  grid-template-columns: 1fr;
+}
+
+/* ---------- 480px and up ---------- */
+@media (min-width: 480px) {
+  .hero__actions .btn {
+    width: auto;
+  }
+}
+
+/* ---------- 768px and up: restore horizontal nav & two-column grids ---------- */
+@media (min-width: 768px) {
+  .nav-toggle {
+    display: none;
+  }
+
+  .nav__links {
+    position: static;
+    height: auto;
+    overflow: visible;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-lg);
+    background: none;
+    padding: 0;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    width: auto;
+  }
+
+  .nav__link {
+    font-size: var(--fs-small);
+    padding-block: var(--space-2xs);
+    border-bottom: none;
+  }
+
+  .nav__link::after {
+    display: block;
+  }
+
+  .nav__actions {
+    display: flex;
+  }
+
+  .nav__links .nav__mobile-cta {
+    display: none;
+  }
+
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .projects-toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .projects-search {
+    margin-inline: 0;
+  }
+
+  .site-footer__top {
+    grid-template-columns: 1.1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  .site-footer__brand {
+    align-items: start;
+    text-align: start;
+  }
+
+  .site-footer__tagline {
+    margin-inline: 0;
+    text-align: start;
+  }
+
+  .site-footer__social {
+    justify-content: start;
+  }
+
+  .site-footer__nav {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    text-align: start;
+  }
+
+  .site-footer__group {
+    text-align: start;
+  }
+
+  .site-footer__list {
+    align-items: start;
+  }
+
+  .site-footer__bottom {
+    text-align: start;
+  }
+
+  .site-footer__copyright {
+    text-align: start;
+  }
+
+  .pillar-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .goals-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .service-detail__features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .service-highlights {
+    flex-direction: row;
+    max-width: none;
+  }
+
+  .highlight-chip {
+    flex: 1 1 0;
+  }
+
+  .service-detail__cta {
+    flex-direction: row;
+    align-items: center;
+    text-align: start;
+  }
+
+  .service-detail__cta .btn {
+    width: auto;
+  }
+
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bento-card {
+    grid-column: span 1;
+  }
+
+  .bento-card--wide {
+    grid-column: span 2;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .bento-card--wide .bento-card__text {
+    max-width: 60%;
+  }
+}
+
+/* ---------- 1024px and up: full desktop layout ---------- */
+@media (min-width: 1024px) {
+  .site-footer__top {
+    gap: var(--space-lg);
+  }
+
+  .site-footer__nav {
+    gap: var(--space-lg);
+  }
+
+  .hero__grid {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+
+  .hero__stage {
+    order: 0;
+    height: clamp(320px, 38vw, 520px);
+  }
+
+  .about-preview__grid {
+    grid-template-columns: 0.85fr 1.15fr;
+  }
+
+  .spotlight__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .spotlight__visual {
+    margin-bottom: 0;
+  }
+
+  .services__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .projects__grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .project-detail__grid {
+    grid-template-columns: 1.6fr 1fr;
+    align-items: start;
+  }
+
+  .service-detail__features {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .bento {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .bento-card {
+    grid-column: span 2;
+  }
+
+  .bento-card--wide {
+    grid-column: span 4;
+  }
+
+  .process-track {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .process-track::before {
+    display: block;
+  }
+}
+
+/* ---------- 1280px and up: large screens, cap generous whitespace ---------- */
+@media (min-width: 1280px) {
+  :root {
+    --container-pad: 3rem;
+  }
+}
+
+/* ---------- Fine pointer only: keep hover lifts off touch devices ---------- */
+@media (hover: none) {
+  .service-card:hover,
+  .bento-card:hover,
+  .value-row:hover,
+  .tech-chip:hover,
+  .project-card:hover,
+  .filter-chip:hover {
+    transform: none;
+  }
+}

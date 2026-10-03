@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html data-root="{{root}}" dir="{{dir}}" lang="{{lang}}">
+<head>
+{{> head}}
+</head>
+<body data-file="{{file}}" data-page="{{page}}" dir="{{dir}}">
+{{> header}}
+<main id="main">
+
+<!-- ============ PAGE HERO (mascot 02) ============ -->
+<section class="page-hero page-hero--packages">
+<div class="container packages-hero__grid">
+<div class="packages-hero__text">
+<span class="eyebrow page-hero__eyebrow" data-i18n="packages.hero.eyebrow">Packages</span>
+<h1 data-i18n="packages.hero.title" data-reveal="">Pick the plan that fits your website</h1>
+<p data-i18n="packages.hero.intro" data-reveal="">Intro</p>
+<p class="rate-note" data-rate-note="" data-reveal=""></p>
+</div>
+<div class="packages-hero__visual" data-reveal="">
+<span aria-hidden="true" class="how__blob"></span>
+<img class="packages-hero__mascot" data-i18n-attr="alt:packages.hero.imageAlt" alt="" fetchpriority="high" height="733" loading="eager" src="{{root}}assets/mascot/mascot-laptop.webp" width="1100"/>
+</div>
+</div>
+</section>
+
+<!-- ============ PRICE COMPARISON (deck slide 2) ============ -->
+<section class="section section--tight" id="compare">
+<div class="container">
+<div class="section-heading section-heading--center" data-reveal="">
+<span class="eyebrow" data-i18n="packages.compare.eyebrow">Compare</span>
+<h2 data-i18n="packages.compare.title">Price comparison</h2>
+<p data-i18n="packages.compare.subtitle">Subtitle</p>
+</div>
+<div class="table-wrap" data-reveal="">
+<table class="price-table" id="priceTable"></table>
+</div>
+</div>
+</section>
+
+<!-- ============ PLAN DETAILS PER WEBSITE TYPE (deck slides 3–8) ============ -->
+<section class="section section--alt" id="packages">
+<div class="container">
+<div class="section-heading section-heading--center" data-reveal="">
+<span class="eyebrow" data-i18n="packages.details.eyebrow">Details</span>
+<h2 data-i18n="packages.details.title">Choose your website type</h2>
+<p data-i18n="packages.details.subtitle">Subtitle</p>
+</div>
+<div class="type-tabs" data-i18n-attr="aria-label:packages.details.tabsLabel" id="typeTabs" role="tablist"></div>
+<div class="type-head" id="typeHead" aria-live="polite"></div>
+<div class="plan-grid" id="planGrid"></div>
+
+<!-- Notes (deck slide 9) -->
+<aside class="notes-box" data-reveal="">
+<h3 data-i18n="packages.notes.title">Ready to get started?</h3>
+<ul class="notes-box__list">
+<li>{{icon:check}}<span data-i18n="packages.notes.n1">n</span></li>
+<li>{{icon:check}}<span data-i18n="packages.notes.n2">n</span></li>
+<li>{{icon:check}}<span data-i18n="packages.notes.n3">n</span></li>
+<li>{{icon:check}}<span data-i18n="packages.notes.n4">n</span></li>
+</ul>
+</aside>
+</div>
+</section>
+
+<!-- ============ REQUEST FORM ============ -->
+<section class="section" id="request">
+<div class="container">
+<div class="section-heading section-heading--center" data-reveal="">
+<span class="eyebrow" data-i18n="form.eyebrow">Send your request</span>
+<h2 data-i18n="form.title">Tell us about your project</h2>
+<p data-i18n="form.subtitle">Subtitle</p>
+</div>
+
+<div class="request" data-reveal="">
+<aside class="summary-card" aria-live="polite" id="summaryCard">
+<h3 class="summary-card__title" data-i18n="form.summary.title">Your selection</h3>
+<p class="summary-card__none" data-i18n="form.summary.none" id="summaryNone">No package selected yet.</p>
+<dl class="summary-card__list" hidden="" id="summaryList">
+<div><dt data-i18n="form.summary.type">Website type</dt><dd id="sumType"></dd></div>
+<div><dt data-i18n="form.summary.plan">Plan</dt><dd id="sumPlan"></dd></div>
+<div><dt data-i18n="form.summary.price">Starting price</dt><dd id="sumPrice"></dd></div>
+</dl>
+<a class="summary-card__change" data-i18n="form.summary.change" href="#packages">Change selection</a>
+</aside>
+
+<form class="request-form" id="requestForm" novalidate="">
+<!-- honeypot: real visitors never see or fill this -->
+<div aria-hidden="true" class="hp"><label>Leave empty <input autocomplete="off" id="hp" name="website" tabindex="-1" type="text"/></label></div>
+
+<div class="field">
+<label for="f-name" data-i18n="form.name">Full name</label>
+<input autocomplete="name" id="f-name" maxlength="120" name="name" required="" type="text"/>
+<p class="field__error" hidden="" id="err-name"></p>
+</div>
+<div class="field">
+<label for="f-email" data-i18n="form.email">Email</label>
+<input autocomplete="email" dir="ltr" id="f-email" inputmode="email" maxlength="160" name="email" required="" type="email"/>
+<p class="field__error" hidden="" id="err-email"></p>
+</div>
+<div class="field-row">
+<div class="field">
+<label for="f-phone" data-i18n="form.phone">Phone or Telegram (optional)</label>
+<input autocomplete="tel" dir="ltr" id="f-phone" maxlength="60" name="phone" type="text"/>
+</div>
+<div class="field">
+<label for="f-business" data-i18n="form.business">Business or brand name (optional)</label>
+<input autocomplete="organization" id="f-business" maxlength="120" name="business" type="text"/>
+</div>
+</div>
+<div class="field">
+<label for="f-domain" data-i18n="form.domain.label">Do you already have a domain and hosting?</label>
+<select id="f-domain" name="domain">
+<option data-i18n="form.domain.unsure" value="unsure">Not sure</option>
+<option data-i18n="form.domain.yes" value="yes">Yes, I have both</option>
+<option data-i18n="form.domain.no" value="no">No, I need help with them</option>
+</select>
+</div>
+<div class="field">
+<label for="f-message" data-i18n="form.message">About your project</label>
+<textarea data-i18n-attr="placeholder:form.messagePlaceholder" id="f-message" maxlength="3000" name="message" placeholder="" required="" rows="5"></textarea>
+<p class="field__error" hidden="" id="err-message"></p>
+</div>
+<div class="field field--check">
+<label class="check"><input id="f-consent" name="consent" type="checkbox"/><span data-i18n="form.consent">Consent</span></label>
+<p class="field__error" hidden="" id="err-consent"></p>
+</div>
+<p class="form-status form-status--error" hidden="" id="formError" role="alert"></p>
+<button class="btn btn-primary btn--lg request-form__submit" id="submitBtn" type="submit"><span data-i18n="form.submit">Send request</span></button>
+</form>
+
+<div class="form-success" hidden="" id="formSuccess" role="status" tabindex="-1">
+<span class="form-success__icon">{{icon:check}}</span>
+<h3 data-i18n="form.ok.title">Request sent!</h3>
+<p id="successText"></p>
+<button class="btn btn-secondary" data-i18n="form.ok.another" id="anotherBtn" type="button">Send another request</button>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- floating bar shown once a package is selected -->
+<div class="selection-bar" hidden="" id="selectionBar" role="region" aria-live="polite">
+<div class="selection-bar__text"><span data-i18n="packages.bar.selected">Selected:</span> <strong id="barText"></strong></div>
+<a class="btn btn-primary" href="#request"><span data-i18n="packages.bar.continue">Continue to the form</span></a>
+</div>
+
+{{> footer}}
+{{> scripts}}
+<script defer="" src="{{root}}js/pricing.js"></script>
+<script defer="" src="{{root}}js/packages.js"></script>
+<script defer="" src="{{root}}js/form.js"></script>
+</body>
+</html>

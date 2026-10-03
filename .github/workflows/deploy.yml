@@ -1,0 +1,82 @@
+name: Update USD rate & deploy
+
+# The USD rate is fetched ONCE a day (08:00 Tehran). If that call fails, the
+# second run 12 hours later (20:00 Tehran, same day) tries again; if the first
+# one succeeded, the second run skips the API entirely.
+# Also runs on every push to main (deploy only — no extra API call when the
+# rate is already from today) and on demand ("Run workflow" forces a fetch).
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "30 4 * * *"    # 04:30 UTC = 08:00 Tehran  (daily fetch)
+    - cron: "30 16 * * *"   # 16:30 UTC = 20:00 Tehran  (retry, only if still not updated today)
+  workflow_dispatch:
+
+permissions:
+  contents: write     # commit the refreshed data/rate.json
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # 1) USD -> Rial. Needs the NAVASAN_API_KEY repository secret.
+      #    If the API fails the previous rate is kept (never an empty one).
+      #    Manual runs always call the API; scheduled/push runs skip it when the
+      #    rate was already refreshed today.
+      - name: Fetch USD → IRR rate (Navasan)
+        env:
+          NAVASAN_API_KEY: ${{ secrets.NAVASAN_API_KEY }}
+          NAVASAN_ITEM: ${{ vars.NAVASAN_ITEM }}   # optional, default usd_sell
+          NAVASAN_UNIT: ${{ vars.NAVASAN_UNIT }}   # optional, default rial
+          SKIP_IF_UPDATED_TODAY: ${{ github.event_name != 'workflow_dispatch' }}
+        run: node scripts/fetch-rate.mjs
+
+      # 2) Validate data, then render the English + Persian pages
+      - name: Check data
+        run: node scripts/check.mjs
+      - name: Build pages
+        run: node scripts/build-pages.mjs
+
+      # 3) Remember the latest good rate in the repository
+      - name: Commit refreshed rate
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/rate.json
+          if git diff --cached --quiet; then
+            echo "Rate unchanged — nothing to commit."
+          else
+            git commit -m "chore(rate): update USD to IRR rate [skip ci]"
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push || echo "::warning::Could not push the rate commit (the deploy below still uses the fresh rate)."
+          fi
+
+      # 4) Publish
+      - name: Assemble site
+        run: node scripts/assemble-site.mjs
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

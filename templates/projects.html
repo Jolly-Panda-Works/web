@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html data-root="{{root}}" dir="{{dir}}" lang="{{lang}}">
+<head>
+{{> head}}
+</head>
+<body data-file="{{file}}" data-page="{{page}}" dir="{{dir}}">
+{{> header}}
+<main id="main">
+
+<section class="page-hero">
+<div class="container">
+<span class="eyebrow page-hero__eyebrow" data-i18n="projects.hero.eyebrow">Our work</span>
+<h1 data-i18n="projects.hero.title" data-reveal="">Websites we've built</h1>
+<p data-i18n="projects.hero.intro" data-reveal="">Intro</p>
+</div>
+</section>
+
+<section class="section section--tight">
+<div class="container">
+<div class="projects-toolbar" data-reveal="">
+<div class="projects-search">
+<span aria-hidden="true" class="projects-search__icon">
+<svg fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"></circle><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-linecap="round" stroke-width="2"></path></svg>
+</span>
+<label class="visually-hidden" data-i18n="projects.searchLabel" for="projectsSearch">Search projects</label>
+<input autocomplete="off" class="projects-search__input" data-i18n-attr="placeholder:projects.searchPlaceholder" id="projectsSearch" placeholder="" type="search"/>
+</div>
+<div class="projects-filters" data-i18n-attr="aria-label:projects.filtersLabel" id="projectsFilters" role="group"></div>
+</div>
+<p aria-live="polite" class="projects-results" id="projectsResults"></p>
+<div class="projects__grid" id="projectsGrid">
+<div class="projects__loading" data-i18n="projects.loading">Loading projects…</div>
+</div>
+</div>
+</section>
+
+<section class="section section--alt" id="cta">
+<div class="container">
+<div class="cta" data-reveal="">
+<span class="cta__eyebrow" data-i18n="projects.cta.eyebrow">Want one like these?</span>
+<h2 data-i18n="projects.cta.title">Let's build yours.</h2>
+<p data-i18n="projects.cta.subtitle">Subtitle</p>
+<div class="cta__actions">
+<a class="btn btn-primary btn--lg" href="packages.html#packages"><span data-i18n="projects.cta.primary">Choose a package</span>{{dir_icon}}</a>
+<a class="btn btn-secondary" href="index.html"><span data-i18n="projects.cta.secondary">Back to Home</span></a>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+
+<!-- project details modal -->
+<div class="modal" hidden="" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<div class="modal__backdrop" data-close=""></div>
+<div class="modal__panel" tabindex="-1">
+<button class="modal__close" data-close="" data-i18n-attr="aria-label:projects.close" aria-label="" type="button">{{icon:x}}</button>
+<div class="modal__media" id="modalMedia"></div>
+<div class="modal__body">
+<span class="modal__type" id="modalType"></span>
+<h2 id="modalTitle"></h2>
+<div class="modal__text" id="modalText"></div>
+<h3 class="modal__sub" data-i18n="projects.highlights" id="modalHlTitle">Highlights</h3>
+<ul class="modal__list" id="modalHighlights"></ul>
+<h3 class="modal__sub" data-i18n="projects.tech">Technologies</h3>
+<ul class="modal__tags" id="modalTags"></ul>
+<a class="btn btn-primary" hidden="" id="modalVisit" rel="noopener noreferrer" target="_blank"><span data-i18n="projects.visit">Visit website</span></a>
+</div>
+</div>
+</div>
+
+{{> footer}}
+{{> scripts}}
+<script defer="" src="{{root}}js/projects.js"></script>
+</body>
+</html>

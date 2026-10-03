@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jolly-panda-works.github.io/web/sitemap.xml

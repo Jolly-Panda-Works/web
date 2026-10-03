@@ -1,0 +1,316 @@
+{
+  "meta": {
+    "dir": "ltr",
+    "code": "en"
+  },
+  "brand": {
+    "name": "Jolly Panda Web"
+  },
+  "nav": {
+    "skip": "Skip to content",
+    "home": "Home",
+    "packages": "Packages",
+    "projects": "Portfolio",
+    "cta": "Choose a package",
+    "toggle": "Toggle menu",
+    "langSwitch": "Language switch"
+  },
+  "pages": {
+    "home": {
+      "title": "Jolly Panda Web — Website design & development by Jolly Panda Studio",
+      "description": "Do you really need a website? Find out why, what happens without one, and pick a Jolly Panda plan for a blog, portfolio, corporate, educational, news or online-store website.",
+      "keywords": "website design, web development, blog website, portfolio website, corporate website, online store, website price, Jolly Panda, طراحی سایت, ساخت وبسایت, قیمت طراحی سایت, سایت فروشگاهی, سایت شرکتی"
+    },
+    "packages": {
+      "title": "Website packages & prices — Jolly Panda Web",
+      "description": "Compare Economy, Special and Custom plans for six website types, pick one and send your request. Prices in US dollars.",
+      "keywords": "website packages, website prices, web design pricing, Economy plan, Special plan, Custom plan, قیمت طراحی سایت, پکیج طراحی سایت"
+    },
+    "projects": {
+      "title": "Portfolio — websites we have built — Jolly Panda Web",
+      "description": "Browse and search websites built by Jolly Panda. Filter by website type: blog, portfolio, corporate, educational, news or online store.",
+      "keywords": "web design portfolio, website examples, نمونه کار طراحی سایت, نمونه کار وبسایت"
+    }
+  },
+  "og": {
+    "alt": "Jolly Panda Web — websites that work for you"
+  },
+  "pricing": {
+    "from": "from",
+    "startingPrice": "Starting price",
+    "updated": "Prices last updated",
+    "tehranTime": "Tehran time",
+    "usd": "US dollars",
+    "dollarWord": "USD",
+    "rialWord": "Rial",
+    "equivalent": "about {usd} USD",
+    "noteEn": "All prices are in US dollars and are the starting point of each plan.",
+    "noteRate": "Prices are converted to Rial at today's rate: 1 USD = {rate} Rial.",
+    "noteNoRate": "The exchange rate is not available right now, so prices are shown in US dollars.",
+    "noDate": "not available yet"
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Websites by Jolly Panda",
+      "line1": "Do you really need",
+      "line2": "a website?",
+      "subtitle": "Let's think it through together.",
+      "intro": "Why a website? Why us? And what happens if you skip it? Scroll down — we'll answer the questions every business owner asks, then help you pick a plan.",
+      "ctaPrimary": "Choose a package",
+      "ctaSecondary": "See our work",
+      "bubble1": "Why a website?",
+      "bubble2": "Why Jolly Panda?",
+      "bubble3": "What if I skip it?",
+      "imageAlt": "Jolly Panda mascot thinking about an idea that turns into a website",
+      "scroll": "Scroll"
+    },
+    "q1": {
+      "eyebrow": "Question 1",
+      "title": "Why does my business need a website?",
+      "subtitle": "Because that's where people look first — and where you get to tell your own story.",
+      "i1": {
+        "title": "Open 24/7",
+        "desc": "Your website answers questions, shows your work and collects inquiries while you sleep."
+      },
+      "i2": {
+        "title": "People search before they call",
+        "desc": "Customers look you up online first. A website is what they find."
+      },
+      "i3": {
+        "title": "It builds trust",
+        "desc": "Your own address and a clean design tell visitors you're a real, established business."
+      },
+      "i4": {
+        "title": "You own it",
+        "desc": "Social pages can change their rules or reach overnight. Your website stays yours."
+      },
+      "i5": {
+        "title": "It brings new customers",
+        "desc": "Be found on search engines by people who are already looking for what you offer."
+      },
+      "i6": {
+        "title": "You can measure it",
+        "desc": "See who visits, what they read and where they get stuck — then improve."
+      }
+    },
+    "q2": {
+      "eyebrow": "Question 2",
+      "title": "What happens if I don't have one?",
+      "subtitle": "Nothing dramatic — you just quietly lose opportunities every day.",
+      "without": {
+        "title": "Without a website",
+        "i1": "Customers who search for you find nothing — or find your competitor.",
+        "i2": "You look less established than the businesses that do have one.",
+        "i3": "You depend on platforms whose rules and reach can change anytime.",
+        "i4": "Every price, address and question has to be answered by hand.",
+        "i5": "You can't tell what's working, so you can't improve it."
+      },
+      "with": {
+        "title": "With a website",
+        "i1": "People find you on search engines, at any hour of the day.",
+        "i2": "You look professional from the very first click.",
+        "i3": "You own your audience and your story.",
+        "i4": "Answers, prices and contact details are always one click away.",
+        "i5": "You see real numbers and make better decisions."
+      }
+    },
+    "q3": {
+      "eyebrow": "Question 3",
+      "title": "Why build it with Jolly Panda?",
+      "subtitle": "Six things you get when you work with us.",
+      "i1": {
+        "title": "Design and code, one team",
+        "desc": "The people who design your site are the people who build it — no hand-offs, no lost details."
+      },
+      "i2": {
+        "title": "Clear prices from the start",
+        "desc": "Starting prices for every plan are published in US dollars. The final price is set together in a consultation."
+      },
+      "i3": {
+        "title": "Mobile-ready and secure",
+        "desc": "Every plan includes responsive design for phones and tablets, plus an SSL certificate."
+      },
+      "i4": {
+        "title": "Support after launch",
+        "desc": "From 1 month of support on Economy to 6 months of priority support on Custom."
+      },
+      "i5": {
+        "title": "Persian and English, RTL and LTR",
+        "desc": "We build bilingual, right-to-left-ready sites every day — this very website is one."
+      },
+      "i6": {
+        "title": "Built for speed and search",
+        "desc": "Light, fast pages with clean structure, so visitors stay and search engines understand you."
+      }
+    },
+    "q4": {
+      "eyebrow": "Question 4",
+      "title": "How is a website made?",
+      "intro": "No jargon, no mystery. Four steps from a first chat to a live website.",
+      "imageAlt": "Jolly Panda mascot showing a website on a laptop, tablet and phone",
+      "s1": {
+        "title": "Consultation",
+        "desc": "You tell us about your business and goals. Together we settle on the plan and the final price."
+      },
+      "s2": {
+        "title": "Design",
+        "desc": "A customized template or a fully custom interface — depending on your plan."
+      },
+      "s3": {
+        "title": "Build",
+        "desc": "We build the pages and features, optimize speed and SEO, and test on phone, tablet and desktop."
+      },
+      "s4": {
+        "title": "Launch & support",
+        "desc": "Your site goes live, and we stay available for the support period included in your plan."
+      },
+      "included": "Every plan includes responsive design (mobile and tablet) and an SSL certificate.",
+      "separate": "Domain and hosting costs are charged separately from the plans."
+    },
+    "q5": {
+      "eyebrow": "Question 5",
+      "title": "How much does it cost?",
+      "subtitle": "Three plans, six website types. Here is where each plan starts:",
+      "economy": "A ready-made template, customized for you",
+      "special": "Custom UI design and technical SEO",
+      "custom": "Fully custom design with animation",
+      "see": "See this plan",
+      "footnote": "Prices are starting points. The final price is set in a consultation with the Jolly Panda team."
+    },
+    "cta": {
+      "eyebrow": "Ready when you are",
+      "title": "Let's pick your package.",
+      "subtitle": "Choose a website type and a plan, tell us a little about your project and send the request. We'll reply by email.",
+      "primary": "Choose a package & send your request",
+      "secondary": "See our work first"
+    }
+  },
+  "packages": {
+    "hero": {
+      "eyebrow": "Packages",
+      "title": "Pick the plan that fits your website",
+      "intro": "Six website types, three plans each. Select one, then send your request at the bottom of this page.",
+      "imageAlt": "Jolly Panda mascot working on a laptop next to a plant and a coffee mug"
+    },
+    "compare": {
+      "eyebrow": "Compare",
+      "title": "Price comparison",
+      "subtitle": "Starting price of each plan, by website type. Click a price to select it.",
+      "typeHeader": "Website type",
+      "caption": "Starting price of each plan by website type"
+    },
+    "details": {
+      "eyebrow": "Details",
+      "title": "Choose your website type",
+      "subtitle": "See exactly what each plan includes.",
+      "tabsLabel": "Website type"
+    },
+    "select": "Select this plan",
+    "selected": "Selected",
+    "cellSelect": "Select {type} — {plan}",
+    "notes": {
+      "title": "Ready to get started?",
+      "n1": "The final price is set in a consultation with the Jolly Panda team.",
+      "n2": "Prices are in US dollars and are the starting point of each plan.",
+      "n3": "Domain and hosting costs are charged separately from the plans.",
+      "n4": "All plans include responsive design (mobile and tablet) and an SSL certificate."
+    },
+    "bar": {
+      "selected": "Selected:",
+      "continue": "Continue to the form"
+    }
+  },
+  "form": {
+    "eyebrow": "Send your request",
+    "title": "Tell us about your project",
+    "subtitle": "You'll get a confirmation email as soon as you send it, and we'll reply after reviewing your request.",
+    "summary": {
+      "title": "Your selection",
+      "none": "No package selected yet — choose one above.",
+      "change": "Change selection",
+      "type": "Website type",
+      "plan": "Plan",
+      "price": "Starting price"
+    },
+    "name": "Full name",
+    "email": "Email",
+    "phone": "Phone or Telegram (optional)",
+    "business": "Business or brand name (optional)",
+    "domain": {
+      "label": "Do you already have a domain and hosting?",
+      "yes": "Yes, I have both",
+      "no": "No, I need help with them",
+      "unsure": "Not sure"
+    },
+    "message": "About your project",
+    "messagePlaceholder": "What do you do? What should the website help you achieve? Any websites you like?",
+    "consent": "I agree that Jolly Panda may use these details to reply to my request.",
+    "submit": "Send request",
+    "sending": "Sending…",
+    "err": {
+      "required": "Please fill in this field.",
+      "email": "Please enter a valid email address.",
+      "consent": "Please accept to continue.",
+      "noPackage": "Please select a package first.",
+      "send": "We couldn't send your request. Please try again, or email us directly at {email}."
+    },
+    "ok": {
+      "title": "Request sent!",
+      "text": "We've received your request. A confirmation email with a pre-contract (in English) is on its way to {email}.",
+      "textNoConfirm": "We've received your request and will reply to {email}. (The automatic confirmation email could not be sent.)",
+      "fallback": "Your email app should open with the request ready to send. If nothing happens, email us at {email}.",
+      "another": "Send another request",
+      "preContract": "It includes a pre-contract (in English) for you to review."
+    },
+    "domainLabels": {
+      "yes": "Has domain and hosting",
+      "no": "Needs help with domain and hosting",
+      "unsure": "Not sure about domain and hosting"
+    },
+    "mail": {
+      "faNote": "Pre-contract sent in English."
+    }
+  },
+  "projects": {
+    "hero": {
+      "eyebrow": "Our work",
+      "title": "Websites we've built",
+      "intro": "Search, or filter by website type, to find a project like yours."
+    },
+    "searchLabel": "Search projects",
+    "searchPlaceholder": "Search by name, description or technology…",
+    "filtersLabel": "Filter projects by website type",
+    "all": "All",
+    "countOne": "1 project",
+    "countOther": "{count} projects",
+    "empty": "No projects match your search yet.",
+    "emptyHint": "Try a different keyword or filter.",
+    "loading": "Loading projects…",
+    "error": "We couldn't load the projects right now.",
+    "viewDetails": "View details",
+    "visit": "Visit website",
+    "close": "Close",
+    "highlights": "Highlights",
+    "tech": "Technologies",
+    "cta": {
+      "eyebrow": "Want one like these?",
+      "title": "Let's build yours.",
+      "subtitle": "Pick a plan, send a few details, and we'll take it from there.",
+      "primary": "Choose a package",
+      "secondary": "Back to Home"
+    },
+    "other": "Other"
+  },
+  "footer": {
+    "tagline": "Websites designed and built with care by Jolly Panda Studio.",
+    "nav": {
+      "title": "Navigate"
+    },
+    "main": {
+      "title": "Jolly Panda Studio",
+      "text": "This is the website-services side of Jolly Panda Studio. Games, software and everything else live on our main site.",
+      "cta": "Back to jollypanda.ir"
+    },
+    "copyright": "© 2026 Jolly Panda Studio. All rights reserved."
+  }
+}

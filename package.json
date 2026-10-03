@@ -1,0 +1,15 @@
+{
+  "name": "jollypanda-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Jolly Panda Web — website-design services site (GitHub Pages)",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "build": "node scripts/build-pages.mjs",
+    "rate": "node scripts/fetch-rate.mjs",
+    "check": "node scripts/check.mjs",
+    "assemble": "node scripts/assemble-site.mjs",
+    "serve": "node scripts/serve.mjs"
+  }
+}

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html data-root="{{root}}" dir="{{dir}}" lang="{{lang}}">
+<head>
+{{> head}}
+</head>
+<body data-file="{{file}}" data-page="{{page}}" dir="{{dir}}">
+{{> header}}
+<main id="main">
+
+<!-- ============ HERO — the first question ============ -->
+<section class="hero hero--home" id="home">
+<div class="container hero__grid">
+<div class="hero__content" data-reveal="">
+<span class="eyebrow hero__badge">
+<svg aria-hidden="true" fill="none" height="14" viewBox="0 0 24 24" width="14"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z" fill="currentColor"></path></svg>
+<span data-i18n="home.hero.eyebrow">Websites by Jolly Panda</span>
+</span>
+<h1 class="hero__title">
+<span data-i18n="home.hero.line1">Do you really need</span>
+<span class="highlight">
+<span data-i18n="home.hero.line2">a website?</span>
+<svg aria-hidden="true" preserveAspectRatio="none" viewBox="0 0 200 20"><path d="M2 14 Q 100 22 198 12" fill="none" stroke="var(--color-yellow)" stroke-linecap="round" stroke-width="8"></path></svg>
+</span>
+</h1>
+<p class="hero__subtitle" data-i18n="home.hero.subtitle">Let's think it through together.</p>
+<p class="hero__intro" data-i18n="home.hero.intro">Intro</p>
+<div class="hero__actions">
+<a class="btn btn-primary" href="packages.html#packages"><span data-i18n="home.hero.ctaPrimary">Choose a package</span></a>
+<a class="btn btn-secondary" href="projects.html"><span data-i18n="home.hero.ctaSecondary">See our work</span></a>
+</div>
+</div>
+<div class="hero__stage hero__stage--mascot">
+<span aria-hidden="true" class="hero-blob"></span>
+<img class="hero__mascot-img" data-i18n-attr="alt:home.hero.imageAlt" alt="" fetchpriority="high" height="733" loading="eager" src="{{root}}assets/mascot/mascot-idea.webp" width="1100"/>
+<span aria-hidden="true" class="speech speech--1"><span data-i18n="home.hero.bubble1">Why a website?</span></span>
+<span aria-hidden="true" class="speech speech--2"><span data-i18n="home.hero.bubble2">Why Jolly Panda?</span></span>
+<span aria-hidden="true" class="speech speech--3"><span data-i18n="home.hero.bubble3">What if I skip it?</span></span>
+</div>
+</div>
+<a class="hero__scroll-cue" href="#why">
+<span data-i18n="home.hero.scroll">Scroll</span>
+<svg class="icon" fill="none" viewBox="0 0 24 24"><path d="M12 5v14m0 0l-6-6m6 6l6-6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</a>
+</section>
+
+<!-- ============ QUESTION 1 — why a website ============ -->
+<section class="section section--alt" id="why">
+<div class="container">
+<div class="section-heading section-heading--center" data-reveal="">
+<span class="eyebrow" data-i18n="home.q1.eyebrow">Question 1</span>
+<h2 data-i18n="home.q1.title">Why does my business need a website?</h2>
+<p data-i18n="home.q1.subtitle">Subtitle</p>
+</div>
+<div class="qa-grid" data-reveal-group="">
+<article class="qa-card"><div class="qa-card__icon">{{icon:clock}}</div><h3 data-i18n="home.q1.i1.title">t</h3><p data-i18n="home.q1.i1.desc">d</p></article>
+<article class="qa-card"><div class="qa-card__icon">{{icon:search}}</div><h3 data-i18n="home.q1.i2.title">t</h3><p data-i18n="home.q1.i2.desc">d</p></article>
+<article class="qa-card"><div class="qa-card__icon">{{icon:shield}}</div><h3 data-i18n="home.q1.i3.title">t</h3><p data-i18n="home.q1.i3.desc">d</p></article>
+<article class="qa-card"><div class="qa-card__icon">{{icon:key}}</div><h3 data-i18n="home.q1.i4.title">t</h3><p data-i18n="home.q1.i4.desc">d</p></article>
+<article class="qa-card"><div class="qa-card__icon">{{icon:trend}}</div><h3 data-i18n="home.q1.i5.title">t</h3><p data-i18n="home.q1.i5.desc">d</p></article>
+<article class="qa-card"><div class="qa-card__icon">{{icon:chart}}</div><h3 data-i18n="home.q1.i6.title">t</h3><p data-i18n="home.q1.i6.desc">d</p></article>
+</div>
+</div>
+</section>
+
+<!-- ============ QUESTION 2 — what if I don't have one ============ -->
+<section class="section" id="without">
+<div class="container">
+<div class="section-heading section-heading--center" data-reveal="">
+<span class="eyebrow" data-i18n="home.q2.eyebrow">Question 2</span>
+<h2 data-i18n="home.q2.title">What happens if I don't have one?</h2>
+<p data-i18n="home.q2.subtitle">Subtitle</p>
+</div>
+<div class="versus" data-reveal-group="">
+<div class="versus__col versus__col--without">
+<h3 class="versus__title"><span class="versus__badge">{{icon:x}}</span><span data-i18n="home.q2.without.title">Without a website</span></h3>
+<ul class="versus__list">
+<li>{{icon:x}}<span data-i18n="home.q2.without.i1">x</span></li>
+<li>{{icon:x}}<span data-i18n="home.q2.without.i2">x</span></li>
+<li>{{icon:x}}<span data-i18n="home.q2.without.i3">x</span></li>
+<li>{{icon:x}}<span data-i18n="home.q2.without.i4">x</span></li>
+<li>{{icon:x}}<span data-i18n="home.q2.without.i5">x</span></li>
+</ul>
+</div>
+<div class="versus__col versus__col--with">
+<h3 class="versus__title"><span class="versus__badge">{{icon:check}}</span><span data-i18n="home.q2.with.title">With a website</span></h3>
+<ul class="versus__list">
+<li>{{icon:check}}<span data-i18n="home.q2.with.i1">x</span></li>
+<li>{{icon:check}}<span data-i18n="home.q2.with.i2">x</span></li>
+<li>{{icon:check}}<span data-i18n="home.q2.with.i3">x</span></li>
+<li>{{icon:check}}<span data-i18n="home.q2.with.i4">x</span></li>
+<li>{{icon:check}}<span data-i18n="home.q2.with.i5">x</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ QUESTION 3 — why Jolly Panda ============ -->
+<section class="section section--alt" id="why-us">
+<div class="container">
+<div class="section-heading section-heading--center" data-reveal="">
+<span class="eyebrow" data-i18n="home.q3.eyebrow">Question 3</span>
+<h2 data-i18n="home.q3.title">Why build it with Jolly Panda?</h2>
+<p data-i18n="home.q3.subtitle">Subtitle</p>
+</div>
+<div class="qa-grid" data-reveal-group="">
+<article class="qa-card"><div class="qa-card__icon">{{icon:layout}}</div><h3 data-i18n="home.q3.i1.title">t</h3><p data-i18n="home.q3.i1.desc">d</p></article>
+<article class="qa-card"><div class="qa-card__icon">{{icon:tag}}</div><h3 data-i18n="home.q3.i2.title">t</h3><p data-i18n="home.q3.i2.desc">d</p></article>
+<article class="qa-card"><div class="qa-card__icon">{{icon:phone}}</div><h3 data-i18n="home.q3.i3.title">t</h3><p data-i18n="home.q3.i3.desc">d</p></article>
+<article class="qa-card"><div class="qa-card__icon">{{icon:lifebuoy}}</div><h3 data-i18n="home.q3.i4.title">t</h3><p data-i18n="home.q3.i4.desc">d</p></article>
+<article class="qa-card"><div class="qa-card__icon">{{icon:language}}</div><h3 data-i18n="home.q3.i5.title">t</h3><p data-i18n="home.q3.i5.desc">d</p></article>
+<article class="qa-card"><div class="qa-card__icon">{{icon:bolt}}</div><h3 data-i18n="home.q3.i6.title">t</h3><p data-i18n="home.q3.i6.desc">d</p></article>
+</div>
+</div>
+</section>
+
+<!-- ============ QUESTION 4 — how a website is made (mascot 03) ============ -->
+<section class="section" id="how">
+<div class="container how__grid">
+<div class="how__visual" data-reveal="">
+<span aria-hidden="true" class="how__blob"></span>
+<img class="how__mascot" data-i18n-attr="alt:home.q4.imageAlt" alt="" decoding="async" height="733" loading="lazy" src="{{root}}assets/mascot/mascot-devices.webp" width="1100"/>
+</div>
+<div class="how__body" data-reveal="">
+<span class="eyebrow" data-i18n="home.q4.eyebrow">Question 4</span>
+<h2 class="how__title" data-i18n="home.q4.title">How is a website made?</h2>
+<p class="how__intro" data-i18n="home.q4.intro">Intro</p>
+<ol class="steps">
+<li class="step"><span class="step__num" aria-hidden="true">1</span><div><h3 data-i18n="home.q4.s1.title">t</h3><p data-i18n="home.q4.s1.desc">d</p></div></li>
+<li class="step"><span class="step__num" aria-hidden="true">2</span><div><h3 data-i18n="home.q4.s2.title">t</h3><p data-i18n="home.q4.s2.desc">d</p></div></li>
+<li class="step"><span class="step__num" aria-hidden="true">3</span><div><h3 data-i18n="home.q4.s3.title">t</h3><p data-i18n="home.q4.s3.desc">d</p></div></li>
+<li class="step"><span class="step__num" aria-hidden="true">4</span><div><h3 data-i18n="home.q4.s4.title">t</h3><p data-i18n="home.q4.s4.desc">d</p></div></li>
+</ol>
+<ul class="chips">
+<li class="chip chip--ok">{{icon:check}}<span data-i18n="home.q4.included">Included</span></li>
+<li class="chip chip--info">{{icon:info}}<span data-i18n="home.q4.separate">Separate</span></li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- ============ QUESTION 5 — cost teaser (filled by js/home.js) ============ -->
+<section class="section section--alt" id="cost">
+<div class="container">
+<div class="section-heading section-heading--center" data-reveal="">
+<span class="eyebrow" data-i18n="home.q5.eyebrow">Question 5</span>
+<h2 data-i18n="home.q5.title">How much does it cost?</h2>
+<p data-i18n="home.q5.subtitle">Subtitle</p>
+</div>
+<div class="teaser" data-teaser="" data-reveal-group=""></div>
+<p class="rate-note rate-note--center" data-rate-note=""></p>
+<p class="teaser__footnote" data-i18n="home.q5.footnote">Footnote</p>
+</div>
+</section>
+
+<!-- ============ FINAL CTA — guide button to packages & form ============ -->
+<section class="section" id="cta">
+<div class="container">
+<div class="cta" data-reveal="">
+<span class="cta__eyebrow" data-i18n="home.cta.eyebrow">Ready when you are</span>
+<h2 data-i18n="home.cta.title">Let's pick your package.</h2>
+<p data-i18n="home.cta.subtitle">Subtitle</p>
+<div class="cta__actions">
+<a class="btn btn-primary btn--lg" href="packages.html#packages"><span data-i18n="home.cta.primary">Choose a package &amp; send your request</span>{{dir_icon}}</a>
+<a class="btn btn-secondary" href="projects.html"><span data-i18n="home.cta.secondary">See our work first</span></a>
+</div>
+</div>
+</div>
+</section>
+
+</main>
+{{> footer}}
+{{> scripts}}
+<script defer="" src="{{root}}js/pricing.js"></script>
+<script defer="" src="{{root}}js/home.js"></script>
+</body>
+</html>

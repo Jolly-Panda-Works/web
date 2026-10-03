@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+<base href="{{site_url}}/"/>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>404 — Page not found · صفحه پیدا نشد</title>
+<meta content="noindex" name="robots"/>
+<meta content="#fdfaf5" name="theme-color"/>
+<link href="assets/logo/favicon.ico" rel="icon" sizes="any"/>
+<link href="assets/logo/favicon-32.png" rel="icon" sizes="32x32" type="image/png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;family=Vazirmatn:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="css/variables.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/site.css" rel="stylesheet"/>
+<style>
+  .nf { min-height: 100vh; display: grid; place-items: center; padding: var(--space-lg) var(--container-pad); text-align: center; }
+  .nf__code { font-size: clamp(5rem, 22vw, 11rem); font-weight: 900; line-height: 1; color: var(--color-orange); letter-spacing: -0.04em; }
+  .nf__row { display: grid; gap: var(--space-xs); margin-top: var(--space-md); }
+  .nf__fa { font-family: var(--font-fa); direction: rtl; }
+  .nf__actions { display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center; margin-top: var(--space-lg); }
+  .nf img { width: 72px; margin-inline: auto; margin-bottom: var(--space-sm); }
+</style>
+</head>
+<body>
+<main class="nf">
+<div>
+<img alt="" height="72" src="assets/logo/logo-nav-96.png" width="72"/>
+<div class="nf__code">404</div>
+<div class="nf__row">
+<h1>This page wandered off.</h1>
+<p>The page you are looking for does not exist or has moved.</p>
+<p class="nf__fa"><strong>این صفحه پیدا نشد.</strong> آدرسی که دنبالش هستید وجود ندارد یا جابه‌جا شده است.</p>
+</div>
+<div class="nf__actions">
+<a class="btn btn-primary" href="index.html">Home</a>
+<a class="btn btn-secondary nf__fa" href="fa/index.html">صفحه اصلی (فارسی)</a>
+</div>
+</div>
+</main>
+</body>
+</html>

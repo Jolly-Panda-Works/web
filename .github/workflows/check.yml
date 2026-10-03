@@ -1,0 +1,21 @@
+name: Check
+
+# Validates pull requests (data + build) without deploying anything.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/check.mjs
+      - run: node scripts/build-pages.mjs
+      - name: Generated pages must be committed
+        run: git diff --exit-code -- index.html packages.html projects.html fa 404.html js/config.js manifest.json robots.txt || (echo "::error::Run 'node scripts/build-pages.mjs' and commit the result." && exit 1)

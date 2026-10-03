@@ -1,0 +1,682 @@
+{
+  "listUpdated": "2026-10-03T00:00:00+03:30",
+  "currency": "USD",
+  "highlightPlan": "special",
+  "plans": [
+    {
+      "id": "economy",
+      "name": {
+        "fa": "پلن اکونومی",
+        "en": "Economy plan"
+      },
+      "short": {
+        "fa": "اکونومی",
+        "en": "Economy"
+      }
+    },
+    {
+      "id": "special",
+      "name": {
+        "fa": "پلن ویژه",
+        "en": "Special plan"
+      },
+      "short": {
+        "fa": "ویژه",
+        "en": "Special"
+      },
+      "badge": {
+        "fa": "پیشنهاد ویژه",
+        "en": "Special offer"
+      }
+    },
+    {
+      "id": "custom",
+      "name": {
+        "fa": "پلن اختصاصی",
+        "en": "Custom plan"
+      },
+      "short": {
+        "fa": "اختصاصی",
+        "en": "Custom"
+      }
+    }
+  ],
+  "features": [
+    {
+      "id": "structure",
+      "label": {
+        "fa": "ساختار و صفحات",
+        "en": "Structure & pages"
+      }
+    },
+    {
+      "id": "design",
+      "label": {
+        "fa": "طراحی",
+        "en": "Design"
+      }
+    },
+    {
+      "id": "features",
+      "label": {
+        "fa": "امکانات کلیدی",
+        "en": "Key features"
+      }
+    },
+    {
+      "id": "seo",
+      "label": {
+        "fa": "سئو و سرعت",
+        "en": "SEO & speed"
+      }
+    },
+    {
+      "id": "support",
+      "label": {
+        "fa": "پشتیبانی",
+        "en": "Support"
+      }
+    },
+    {
+      "id": "delivery",
+      "label": {
+        "fa": "زمان تحویل",
+        "en": "Delivery time"
+      }
+    }
+  ],
+  "types": [
+    {
+      "id": "blog",
+      "name": {
+        "fa": "بلاگ",
+        "en": "Blog"
+      },
+      "title": {
+        "fa": "طراحی وبسایت بلاگ",
+        "en": "Blog website design"
+      },
+      "tagline": {
+        "fa": "برای نویسنده‌ها و برندهایی که می‌خواهند با محتوا دیده شوند",
+        "en": "For writers and brands who want to be seen through their content"
+      },
+      "rows": {
+        "custom": {
+          "structure": {
+            "fa": "نامحدود، بر اساس پروژه",
+            "en": "Unlimited, based on the project"
+          },
+          "design": {
+            "fa": "طراحی کاملاً اختصاصی + انیمیشن",
+            "en": "Fully custom design + animation"
+          },
+          "features": {
+            "fa": "چندنویسنده، اشتراک و محتوای ویژه",
+            "en": "Multiple authors, subscriptions and premium content"
+          },
+          "seo": {
+            "fa": "سئوی کامل + نقشه سایت و اسکیما",
+            "en": "Full SEO + sitemap and schema"
+          },
+          "support": {
+            "fa": "۶ ماه پشتیبانی اولویت‌دار",
+            "en": "6 months of priority support"
+          },
+          "delivery": {
+            "fa": "۲۰ تا ۳۰ روز کاری",
+            "en": "20–30 business days"
+          },
+          "price": 1400
+        },
+        "special": {
+          "structure": {
+            "fa": "تا ۱۰ صفحه + دسته‌بندی و برچسب",
+            "en": "Up to 10 pages + categories and tags"
+          },
+          "design": {
+            "fa": "طراحی اختصاصی رابط کاربری",
+            "en": "Custom UI design"
+          },
+          "features": {
+            "fa": "عضویت، نظرات پیشرفته و خبرنامه",
+            "en": "Membership, advanced comments and newsletter"
+          },
+          "seo": {
+            "fa": "سئوی فنی + بهینه‌سازی سرعت",
+            "en": "Technical SEO + speed optimization"
+          },
+          "support": {
+            "fa": "۳ ماه پشتیبانی",
+            "en": "3 months of support"
+          },
+          "delivery": {
+            "fa": "۱۰ تا ۱۵ روز کاری",
+            "en": "10–15 business days"
+          },
+          "price": 600
+        },
+        "economy": {
+          "structure": {
+            "fa": "تا ۵ صفحه (خانه، مقالات، درباره، تماس)",
+            "en": "Up to 5 pages (Home, Articles, About, Contact)"
+          },
+          "design": {
+            "fa": "قالب آماده با شخصی‌سازی",
+            "en": "Ready-made template with customization"
+          },
+          "features": {
+            "fa": "نظرات و جستجوی ساده",
+            "en": "Comments and simple search"
+          },
+          "seo": {
+            "fa": "سئوی پایه",
+            "en": "Basic SEO"
+          },
+          "support": {
+            "fa": "۱ ماه پشتیبانی",
+            "en": "1 month of support"
+          },
+          "delivery": {
+            "fa": "۷ تا ۱۰ روز کاری",
+            "en": "7–10 business days"
+          },
+          "price": 250
+        }
+      }
+    },
+    {
+      "id": "portfolio",
+      "name": {
+        "fa": "پورتفولیو",
+        "en": "Portfolio"
+      },
+      "title": {
+        "fa": "طراحی وبسایت پورتفولیو",
+        "en": "Portfolio website design"
+      },
+      "tagline": {
+        "fa": "نمونه‌کارهایتان را حرفه‌ای و جذاب به نمایش بگذارید",
+        "en": "Showcase your work in a professional, attractive way"
+      },
+      "rows": {
+        "custom": {
+          "structure": {
+            "fa": "نامحدود، بر اساس پروژه",
+            "en": "Unlimited, based on the project"
+          },
+          "design": {
+            "fa": "طراحی کاملاً اختصاصی + انیمیشن",
+            "en": "Fully custom design + animation"
+          },
+          "features": {
+            "fa": "انیمیشن تعاملی، ویدئو و چندزبانه",
+            "en": "Interactive animation, video and multilingual"
+          },
+          "seo": {
+            "fa": "سئوی کامل + نقشه سایت و اسکیما",
+            "en": "Full SEO + sitemap and schema"
+          },
+          "support": {
+            "fa": "۶ ماه پشتیبانی اولویت‌دار",
+            "en": "6 months of priority support"
+          },
+          "delivery": {
+            "fa": "۲۰ تا ۳۰ روز کاری",
+            "en": "20–30 business days"
+          },
+          "price": 1600
+        },
+        "special": {
+          "structure": {
+            "fa": "تا ۸ صفحه + صفحه جزئیات هر پروژه",
+            "en": "Up to 8 pages + a detail page for each project"
+          },
+          "design": {
+            "fa": "طراحی اختصاصی رابط کاربری",
+            "en": "Custom UI design"
+          },
+          "features": {
+            "fa": "گالری فیلتردار، رزومه و بلاگ",
+            "en": "Filterable gallery, résumé and blog"
+          },
+          "seo": {
+            "fa": "سئوی فنی + بهینه‌سازی سرعت",
+            "en": "Technical SEO + speed optimization"
+          },
+          "support": {
+            "fa": "۳ ماه پشتیبانی",
+            "en": "3 months of support"
+          },
+          "delivery": {
+            "fa": "۱۰ تا ۱۵ روز کاری",
+            "en": "10–15 business days"
+          },
+          "price": 700
+        },
+        "economy": {
+          "structure": {
+            "fa": "تا ۵ صفحه (خانه، نمونه‌کار، درباره، تماس)",
+            "en": "Up to 5 pages (Home, Portfolio, About, Contact)"
+          },
+          "design": {
+            "fa": "قالب آماده با شخصی‌سازی",
+            "en": "Ready-made template with customization"
+          },
+          "features": {
+            "fa": "گالری نمونه‌کار و فرم تماس",
+            "en": "Portfolio gallery and contact form"
+          },
+          "seo": {
+            "fa": "سئوی پایه",
+            "en": "Basic SEO"
+          },
+          "support": {
+            "fa": "۱ ماه پشتیبانی",
+            "en": "1 month of support"
+          },
+          "delivery": {
+            "fa": "۷ تا ۱۰ روز کاری",
+            "en": "7–10 business days"
+          },
+          "price": 300
+        }
+      }
+    },
+    {
+      "id": "corporate",
+      "name": {
+        "fa": "شرکتی",
+        "en": "Corporate"
+      },
+      "title": {
+        "fa": "طراحی وبسایت شرکتی",
+        "en": "Corporate website design"
+      },
+      "tagline": {
+        "fa": "معرفی کسب‌وکار و جلب اعتماد مشتریان",
+        "en": "Introduce your business and earn your customers' trust"
+      },
+      "rows": {
+        "custom": {
+          "structure": {
+            "fa": "نامحدود، بر اساس پروژه",
+            "en": "Unlimited, based on the project"
+          },
+          "design": {
+            "fa": "طراحی کاملاً اختصاصی + انیمیشن",
+            "en": "Fully custom design + animation"
+          },
+          "features": {
+            "fa": "چندزبانه، پنل مشتری و اتصال به CRM",
+            "en": "Multilingual, customer panel and CRM integration"
+          },
+          "seo": {
+            "fa": "سئوی کامل + نقشه سایت و اسکیما",
+            "en": "Full SEO + sitemap and schema"
+          },
+          "support": {
+            "fa": "۶ ماه پشتیبانی اولویت‌دار",
+            "en": "6 months of priority support"
+          },
+          "delivery": {
+            "fa": "۲۵ تا ۴۵ روز کاری",
+            "en": "25–45 business days"
+          },
+          "price": 2400
+        },
+        "special": {
+          "structure": {
+            "fa": "تا ۱۲ صفحه + صفحه هر خدمت",
+            "en": "Up to 12 pages + a page for each service"
+          },
+          "design": {
+            "fa": "طراحی اختصاصی رابط کاربری",
+            "en": "Custom UI design"
+          },
+          "features": {
+            "fa": "بلاگ، نمونه‌کار و فرم درخواست",
+            "en": "Blog, portfolio and request form"
+          },
+          "seo": {
+            "fa": "سئوی فنی + بهینه‌سازی سرعت",
+            "en": "Technical SEO + speed optimization"
+          },
+          "support": {
+            "fa": "۳ ماه پشتیبانی",
+            "en": "3 months of support"
+          },
+          "delivery": {
+            "fa": "۱۲ تا ۲۰ روز کاری",
+            "en": "12–20 business days"
+          },
+          "price": 1000
+        },
+        "economy": {
+          "structure": {
+            "fa": "تا ۶ صفحه (خانه، خدمات، درباره، تماس)",
+            "en": "Up to 6 pages (Home, Services, About, Contact)"
+          },
+          "design": {
+            "fa": "قالب آماده با شخصی‌سازی",
+            "en": "Ready-made template with customization"
+          },
+          "features": {
+            "fa": "فرم تماس و نقشه",
+            "en": "Contact form and map"
+          },
+          "seo": {
+            "fa": "سئوی پایه",
+            "en": "Basic SEO"
+          },
+          "support": {
+            "fa": "۱ ماه پشتیبانی",
+            "en": "1 month of support"
+          },
+          "delivery": {
+            "fa": "۷ تا ۱۲ روز کاری",
+            "en": "7–12 business days"
+          },
+          "price": 450
+        }
+      }
+    },
+    {
+      "id": "education",
+      "name": {
+        "fa": "آموزشگاهی",
+        "en": "Educational"
+      },
+      "title": {
+        "fa": "طراحی وبسایت آموزشگاهی",
+        "en": "Educational website design"
+      },
+      "tagline": {
+        "fa": "معرفی دوره‌ها، ثبت‌نام آنلاین و مدیریت هنرجویان",
+        "en": "Present your courses, enroll students online and manage them"
+      },
+      "rows": {
+        "custom": {
+          "structure": {
+            "fa": "نامحدود، بر اساس پروژه",
+            "en": "Unlimited, based on the project"
+          },
+          "design": {
+            "fa": "طراحی کاملاً اختصاصی + انیمیشن",
+            "en": "Fully custom design + animation"
+          },
+          "features": {
+            "fa": "آزمون آنلاین، ویدئوی دوره و کلاس زنده",
+            "en": "Online exams, course video and live classes"
+          },
+          "seo": {
+            "fa": "سئوی کامل + نقشه سایت و اسکیما",
+            "en": "Full SEO + sitemap and schema"
+          },
+          "support": {
+            "fa": "۶ ماه پشتیبانی اولویت‌دار",
+            "en": "6 months of priority support"
+          },
+          "delivery": {
+            "fa": "۳۰ تا ۶۰ روز کاری",
+            "en": "30–60 business days"
+          },
+          "price": 3800
+        },
+        "special": {
+          "structure": {
+            "fa": "دوره‌ها، تقویم کلاس و ثبت‌نام آنلاین",
+            "en": "Courses, class calendar and online enrollment"
+          },
+          "design": {
+            "fa": "طراحی اختصاصی رابط کاربری",
+            "en": "Custom UI design"
+          },
+          "features": {
+            "fa": "پنل هنرجو، گواهی‌نامه و پیامک",
+            "en": "Student panel, certificates and SMS"
+          },
+          "seo": {
+            "fa": "سئوی فنی + بهینه‌سازی سرعت",
+            "en": "Technical SEO + speed optimization"
+          },
+          "support": {
+            "fa": "۳ ماه پشتیبانی",
+            "en": "3 months of support"
+          },
+          "delivery": {
+            "fa": "۱۵ تا ۲۵ روز کاری",
+            "en": "15–25 business days"
+          },
+          "price": 1600
+        },
+        "economy": {
+          "structure": {
+            "fa": "معرفی دوره‌ها و اساتید (تا ۸ صفحه)",
+            "en": "Courses and instructors (up to 8 pages)"
+          },
+          "design": {
+            "fa": "قالب آماده با شخصی‌سازی",
+            "en": "Ready-made template with customization"
+          },
+          "features": {
+            "fa": "ثبت‌نام آنلاین و درگاه پرداخت",
+            "en": "Online enrollment and payment gateway"
+          },
+          "seo": {
+            "fa": "سئوی پایه",
+            "en": "Basic SEO"
+          },
+          "support": {
+            "fa": "۱ ماه پشتیبانی",
+            "en": "1 month of support"
+          },
+          "delivery": {
+            "fa": "۱۰ تا ۱۵ روز کاری",
+            "en": "10–15 business days"
+          },
+          "price": 700
+        }
+      }
+    },
+    {
+      "id": "news",
+      "name": {
+        "fa": "خبری",
+        "en": "News"
+      },
+      "title": {
+        "fa": "طراحی وبسایت خبری",
+        "en": "News website design"
+      },
+      "tagline": {
+        "fa": "سایت خبری سریع و سئو‌محور برای انتشار مداوم محتوا",
+        "en": "A fast, SEO-focused news site for continuous publishing"
+      },
+      "rows": {
+        "custom": {
+          "structure": {
+            "fa": "نامحدود، بر اساس پروژه",
+            "en": "Unlimited, based on the project"
+          },
+          "design": {
+            "fa": "طراحی کاملاً اختصاصی + انیمیشن",
+            "en": "Fully custom design + animation"
+          },
+          "features": {
+            "fa": "چندنویسنده، گردش‌کار انتشار و اعلان",
+            "en": "Multiple authors, publishing workflow and notifications"
+          },
+          "seo": {
+            "fa": "سئوی کامل + نقشه سایت و اسکیما",
+            "en": "Full SEO + sitemap and schema"
+          },
+          "support": {
+            "fa": "۶ ماه پشتیبانی اولویت‌دار",
+            "en": "6 months of priority support"
+          },
+          "delivery": {
+            "fa": "۳۰ تا ۶۰ روز کاری",
+            "en": "30–60 business days"
+          },
+          "price": 4200
+        },
+        "special": {
+          "structure": {
+            "fa": "همه موارد پایه + اخبار فوری و ویژه‌نامه",
+            "en": "Everything in the base plan + breaking news and special editions"
+          },
+          "design": {
+            "fa": "طراحی اختصاصی رابط کاربری",
+            "en": "Custom UI design"
+          },
+          "features": {
+            "fa": "پنل خبرنگاران و مدیریت تبلیغات",
+            "en": "Reporter panel and ad management"
+          },
+          "seo": {
+            "fa": "سئوی فنی + بهینه‌سازی سرعت",
+            "en": "Technical SEO + speed optimization"
+          },
+          "support": {
+            "fa": "۳ ماه پشتیبانی",
+            "en": "3 months of support"
+          },
+          "delivery": {
+            "fa": "۱۵ تا ۳۰ روز کاری",
+            "en": "15–30 business days"
+          },
+          "price": 1800
+        },
+        "economy": {
+          "structure": {
+            "fa": "صفحه اصلی، دسته‌بندی و آرشیو اخبار",
+            "en": "Home page, categories and news archive"
+          },
+          "design": {
+            "fa": "قالب آماده با شخصی‌سازی",
+            "en": "Ready-made template with customization"
+          },
+          "features": {
+            "fa": "دسته‌بندی، جستجو و نظرات",
+            "en": "Categories, search and comments"
+          },
+          "seo": {
+            "fa": "سئوی پایه",
+            "en": "Basic SEO"
+          },
+          "support": {
+            "fa": "۱ ماه پشتیبانی",
+            "en": "1 month of support"
+          },
+          "delivery": {
+            "fa": "۱۰ تا ۱۵ روز کاری",
+            "en": "10–15 business days"
+          },
+          "price": 800
+        }
+      }
+    },
+    {
+      "id": "store",
+      "name": {
+        "fa": "فروشگاهی",
+        "en": "Online store"
+      },
+      "title": {
+        "fa": "طراحی وبسایت فروشگاهی",
+        "en": "Online store design"
+      },
+      "tagline": {
+        "fa": "فروشگاه آنلاین کامل با سبد خرید و درگاه پرداخت",
+        "en": "A complete online store with shopping cart and payment gateway"
+      },
+      "structureLabel": {
+        "fa": "تعداد محصول",
+        "en": "Number of products"
+      },
+      "rows": {
+        "custom": {
+          "structure": {
+            "fa": "محصولات نامحدود",
+            "en": "Unlimited products"
+          },
+          "design": {
+            "fa": "طراحی کاملاً اختصاصی + انیمیشن",
+            "en": "Fully custom design + animation"
+          },
+          "features": {
+            "fa": "باشگاه مشتریان و اتصال به انبار",
+            "en": "Customer club and warehouse integration"
+          },
+          "seo": {
+            "fa": "سئوی کامل + نقشه سایت و اسکیما",
+            "en": "Full SEO + sitemap and schema"
+          },
+          "support": {
+            "fa": "۶ ماه پشتیبانی اولویت‌دار",
+            "en": "6 months of priority support"
+          },
+          "delivery": {
+            "fa": "۳۰ تا ۶۰ روز کاری",
+            "en": "30–60 business days"
+          },
+          "price": 5000
+        },
+        "special": {
+          "structure": {
+            "fa": "تا ۵۰۰ محصول",
+            "en": "Up to 500 products"
+          },
+          "design": {
+            "fa": "طراحی اختصاصی رابط کاربری",
+            "en": "Custom UI design"
+          },
+          "features": {
+            "fa": "کد تخفیف، موجودی و پیامک سفارش",
+            "en": "Discount codes, inventory and order SMS"
+          },
+          "seo": {
+            "fa": "سئوی فنی + بهینه‌سازی سرعت",
+            "en": "Technical SEO + speed optimization"
+          },
+          "support": {
+            "fa": "۳ ماه پشتیبانی",
+            "en": "3 months of support"
+          },
+          "delivery": {
+            "fa": "۱۵ تا ۳۰ روز کاری",
+            "en": "15–30 business days"
+          },
+          "price": 2000
+        },
+        "economy": {
+          "structure": {
+            "fa": "تا ۵۰ محصول",
+            "en": "Up to 50 products"
+          },
+          "design": {
+            "fa": "قالب آماده با شخصی‌سازی",
+            "en": "Ready-made template with customization"
+          },
+          "features": {
+            "fa": "سبد خرید و درگاه پرداخت",
+            "en": "Shopping cart and payment gateway"
+          },
+          "seo": {
+            "fa": "سئوی پایه",
+            "en": "Basic SEO"
+          },
+          "support": {
+            "fa": "۱ ماه پشتیبانی",
+            "en": "1 month of support"
+          },
+          "delivery": {
+            "fa": "۱۰ تا ۱۵ روز کاری",
+            "en": "10–15 business days"
+          },
+          "price": 900
+        }
+      }
+    }
+  ]
+}
