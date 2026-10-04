@@ -1,4 +1,5 @@
 {
+  "discountPercent": 10,
   "listUpdated": "2026-10-03T00:00:00+03:30",
   "currency": "USD",
   "highlightPlan": "special",
@@ -126,7 +127,7 @@
             "fa": "۲۰ تا ۳۰ روز کاری",
             "en": "20–30 business days"
           },
-          "price": 1400
+          "price": 1399
         },
         "special": {
           "structure": {
@@ -153,7 +154,7 @@
             "fa": "۱۰ تا ۱۵ روز کاری",
             "en": "10–15 business days"
           },
-          "price": 600
+          "price": 599
         },
         "economy": {
           "structure": {
@@ -180,7 +181,7 @@
             "fa": "۷ تا ۱۰ روز کاری",
             "en": "7–10 business days"
           },
-          "price": 250
+          "price": 249
         }
       }
     },
@@ -224,7 +225,7 @@
             "fa": "۲۰ تا ۳۰ روز کاری",
             "en": "20–30 business days"
           },
-          "price": 1600
+          "price": 1599
         },
         "special": {
           "structure": {
@@ -251,7 +252,7 @@
             "fa": "۱۰ تا ۱۵ روز کاری",
             "en": "10–15 business days"
           },
-          "price": 700
+          "price": 699
         },
         "economy": {
           "structure": {
@@ -278,7 +279,7 @@
             "fa": "۷ تا ۱۰ روز کاری",
             "en": "7–10 business days"
           },
-          "price": 300
+          "price": 299
         }
       }
     },
@@ -322,7 +323,7 @@
             "fa": "۲۵ تا ۴۵ روز کاری",
             "en": "25–45 business days"
           },
-          "price": 2400
+          "price": 2399
         },
         "special": {
           "structure": {
@@ -349,7 +350,7 @@
             "fa": "۱۲ تا ۲۰ روز کاری",
             "en": "12–20 business days"
           },
-          "price": 1000
+          "price": 999
         },
         "economy": {
           "structure": {
@@ -376,7 +377,7 @@
             "fa": "۷ تا ۱۲ روز کاری",
             "en": "7–12 business days"
           },
-          "price": 450
+          "price": 449
         }
       }
     },
@@ -420,7 +421,7 @@
             "fa": "۳۰ تا ۶۰ روز کاری",
             "en": "30–60 business days"
           },
-          "price": 3800
+          "price": 3799
         },
         "special": {
           "structure": {
@@ -447,7 +448,7 @@
             "fa": "۱۵ تا ۲۵ روز کاری",
             "en": "15–25 business days"
           },
-          "price": 1600
+          "price": 1599
         },
         "economy": {
           "structure": {
@@ -474,7 +475,7 @@
             "fa": "۱۰ تا ۱۵ روز کاری",
             "en": "10–15 business days"
           },
-          "price": 700
+          "price": 699
         }
       }
     },
@@ -518,7 +519,7 @@
             "fa": "۳۰ تا ۶۰ روز کاری",
             "en": "30–60 business days"
           },
-          "price": 4200
+          "price": 4199
         },
         "special": {
           "structure": {
@@ -545,7 +546,7 @@
             "fa": "۱۵ تا ۳۰ روز کاری",
             "en": "15–30 business days"
           },
-          "price": 1800
+          "price": 1799
         },
         "economy": {
           "structure": {
@@ -572,7 +573,7 @@
             "fa": "۱۰ تا ۱۵ روز کاری",
             "en": "10–15 business days"
           },
-          "price": 800
+          "price": 799
         }
       }
     },
@@ -620,7 +621,7 @@
             "fa": "۳۰ تا ۶۰ روز کاری",
             "en": "30–60 business days"
           },
-          "price": 5000
+          "price": 4999
         },
         "special": {
           "structure": {
@@ -647,7 +648,7 @@
             "fa": "۱۵ تا ۳۰ روز کاری",
             "en": "15–30 business days"
           },
-          "price": 2000
+          "price": 1999
         },
         "economy": {
           "structure": {
@@ -674,7 +675,7 @@
             "fa": "۱۰ تا ۱۵ روز کاری",
             "en": "10–15 business days"
           },
-          "price": 900
+          "price": 899
         }
       }
     }

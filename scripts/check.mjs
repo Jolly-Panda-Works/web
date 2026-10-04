@@ -29,6 +29,7 @@ for (const k of fa) if (!en.has(k)) err(`lang/en.json is missing key: ${k}`);
 // 2. price list
 const plans = json("data/plans.json");
 const planIds = plans.plans.map((p) => p.id);
+if (!(plans.discountPercent >= 0 && plans.discountPercent < 100)) err("data/plans.json: discountPercent must be between 0 and 99");
 const biling = (v, where) => { if (!v || !v.en || !v.fa) err(`${where}: needs both "en" and "fa" text`); };
 plans.plans.forEach((p) => biling(p.name, `plan ${p.id} name`));
 plans.features.forEach((f) => biling(f.label, `feature ${f.id} label`));
@@ -53,7 +54,13 @@ for (const p of json("data/projects.json")) {
   if (!typeIds.has(p.type)) err(`project ${p.id}: unknown type "${p.type}" (use one of ${[...typeIds].join(", ")})`);
   biling(p.title, `project ${p.id} title`); biling(p.shortDescription, `project ${p.id} shortDescription`);
   if (p.image && !fs.existsSync(path.join(ROOT, p.image))) err(`project ${p.id}: image not found: ${p.image}`);
+  for (const l of p.actionLinks || []) if (!/^https?:\/\//.test(l.url || "")) err(`project ${p.id}: actionLinks url must start with http(s)://`);
+  for (const g of p.gallery || []) if (!fs.existsSync(path.join(ROOT, g.src))) err(`project ${p.id}: gallery image not found: ${g.src}`);
 }
+
+// Persian text must use the Latin brand name, never «جولی پاندا»
+const faText = fs.readFileSync(path.join(ROOT, "lang/fa.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/projects.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/plans.json"), "utf8");
+if (/جولی[\s\u200c]*پاندا/.test(faText)) err("Persian text contains «جولی پاندا» — write «استودیو Jolly Panda» instead");
 
 // 4. rate
 const rate = json("data/rate.json");

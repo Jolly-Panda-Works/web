@@ -24,15 +24,6 @@
   function typeById(id) { return data.plans.types.filter(function (t) { return t.id === id; })[0]; }
   function planById(id) { return data.plans.plans.filter(function (p) { return p.id === id; })[0]; }
 
-  function priceNode(usd, cls) {
-    var f = JP.pricing.format(usd, data);
-    var wrap = document.createDocumentFragment();
-    var main = el("span", cls || "", f.main);
-    wrap.appendChild(main);
-    if (f.sub) wrap.appendChild(el("span", "price-sub", f.sub));
-    return wrap;
-  }
-
   /* ---------- selection ---------- */
   function save() {
     try { sessionStorage.setItem(STORE_KEY, JSON.stringify(JP.selection)); } catch (e) { /* private mode */ }
@@ -107,7 +98,7 @@
         var b = el("button", "price-cell"); b.type = "button";
         b.dataset.type = ty.id; b.dataset.plan = pl.id;
         b.setAttribute("aria-label", JP.t("packages.cellSelect", { type: JP.pick(ty.name), plan: JP.pick(pl.name) }));
-        b.appendChild(priceNode(ty.rows[pl.id].price));
+        b.appendChild(JP.pricing.node(ty.rows[pl.id].price, data));
         b.addEventListener("click", function () { select(ty.id, pl.id); });
         td.appendChild(b); tr.appendChild(td);
       });
@@ -151,9 +142,7 @@
 
       var price = el("div", "plan-card__price");
       price.appendChild(el("span", "plan-card__price-label", JP.t("pricing.startingPrice")));
-      var f = JP.pricing.format(row.price, data);
-      price.appendChild(el("span", "plan-card__price-value", f.main));
-      if (f.sub) price.appendChild(el("span", "price-sub", f.sub));
+      price.appendChild(JP.pricing.node(row.price, data, { chip: true, cls: "plan-card__price-value" }));
       card.appendChild(price);
 
       var ul = el("ul", "plan-card__list");
@@ -198,6 +187,7 @@
       paintSelection();
       watchForm();
       JP.pricing.fillNotes();
+      JP.pricing.fillBanners();
       document.dispatchEvent(new CustomEvent("jp:packages-ready", { detail: { data: data } }));
       if (pre) document.dispatchEvent(new CustomEvent("jp:selection", { detail: JP.selection }));
       if (window.JollyPandaAnimations) window.JollyPandaAnimations.observe(document.querySelectorAll("#priceTable"));

@@ -79,9 +79,12 @@
     var ty = typeById(JP.selection.type), pl = planById(JP.selection.plan), row = ty.rows[pl.id];
     var email = $("f-email").value.trim(), name = $("f-name").value.trim();
     var rate = data.rate;
+    var pct = JP.pricing.discountPercent(data);
+    var payUsd = JP.pricing.discounted(row.price, data);      // price after the discount
+    var fmt = function (n) { return new Intl.NumberFormat("en-US").format(n); };
     var rialNote = "";
     if (rate) {
-      var rial = Math.round(row.price * rate.rateRial);
+      var rial = Math.round(payUsd * rate.rateRial);
       rialNote = "Indicative Rial equivalent on the request date: " + new Intl.NumberFormat("en-US").format(rial) +
         " IRR (1 USD = " + new Intl.NumberFormat("en-US").format(rate.rateRial) + " IRR). The payment currency and exchange rate are confirmed in the final contract.";
     }
@@ -101,7 +104,10 @@
       project_message: $("f-message").value.trim(),
       website_type: ty.name.en,
       plan_name: pl.name.en,
-      price_usd: "USD " + new Intl.NumberFormat("en-US").format(row.price),
+      price_usd: "USD " + fmt(payUsd),
+      price_list_usd: "USD " + fmt(row.price),
+      discount_percent: pct ? String(pct) : "0",
+      discount_note: pct ? pct + "% discount applied to the regular price of USD " + fmt(row.price) + "." : "",
       rial_note: rialNote,
       scope_structure: row.structure.en,
       scope_structure_label: (ty.structureLabel ? ty.structureLabel.en : "Structure & pages"),
@@ -165,6 +171,7 @@
     var params = buildParams();
 
     if (!isConfigured()) {          // EmailJS not set up yet -> open the visitor's mail app
+      console.warn("[form.js] EmailJS is not configured (js/config.js still has YOUR_… placeholders) — falling back to the mail app.");
       mailtoFallback(params);
       showSuccess(JP.t("form.ok.fallback", { email: cfg.contactEmail }));
       return;
@@ -178,7 +185,7 @@
         showSuccess(JP.t(confirmed ? "form.ok.text" : "form.ok.textNoConfirm", { email: params.email }));
       })
       .catch(function (e) {
-        console.error("[form.js]", e);
+        console.error("[form.js] EmailJS request failed:", e && e.message ? e.message : e);
         showError(JP.t("form.err.send", { email: cfg.contactEmail }));
       })
       .then(function () { setBusy(false); });

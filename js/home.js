@@ -18,7 +18,6 @@
 
     plans.plans.forEach(function (plan) {
       var min = Math.min.apply(null, plans.types.map(function (t) { return t.rows[plan.id].price; }));
-      var price = JP.pricing.format(min, data);
       var highlight = plans.highlightPlan === plan.id;
 
       var card = el("article", "teaser-card" + (highlight ? " teaser-card--highlight" : ""));
@@ -26,9 +25,9 @@
       card.appendChild(el("h3", "teaser-card__name", JP.pick(plan.name)));
       card.appendChild(el("p", "teaser-card__desc", JP.t("home.q5." + plan.id)));
       card.appendChild(el("span", "teaser-card__from", JP.t("pricing.from")));
-      var p = el("div", "teaser-card__price", price.main);
+      var p = el("div", "teaser-card__price");
+      p.appendChild(JP.pricing.node(min, data, { chip: true }));
       card.appendChild(p);
-      if (price.sub) card.appendChild(el("span", "price-sub", price.sub));
 
       var link = el("a", "teaser-card__link");
       link.href = "packages.html#compare";
@@ -50,6 +49,7 @@
     Promise.all([JP.pricing.load(), JP.ready]).then(function (r) {
       render(r[0]);
       JP.pricing.fillNotes();
+      JP.pricing.fillBanners();
     }).catch(function (e) { console.error("[home.js]", e); });
   });
 })();

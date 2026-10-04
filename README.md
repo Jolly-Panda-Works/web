@@ -5,9 +5,9 @@ Website-design services site of [Jolly Panda Studio](https://jollypanda.ir) — 
 ## What it does
 
 - **Home** — walks the visitor through the questions *why a website? · what if I don't have one? · why Jolly Panda? · how is a site made? · how much?* and ends with a guide button to the packages and the form.
-- **Packages** — the exact price list from the PowerPoint (6 website types × Economy / Special / Custom). Prices are in **US dollars**; on the **Persian** pages they are shown in **Rial**, converted with the live rate. The **last update date** is shown in both languages (Jalali calendar in Persian).
+- **Packages** — the exact price list from the PowerPoint (6 website types × Economy / Special / Custom). Prices are in **US dollars** (regular price + a site-wide discount label, `discountPercent` in `data/plans.json`); on the **Persian** pages they are shown in **Rial**, converted with the live rate. The **last update date** is shown in both languages (Jalali calendar in Persian).
 - **Request form** — the selected package is attached to the request. On send, two emails go out: the request to the studio, and a confirmation to the visitor with an **English pre-contract** pre-filled from their request.
-- **Portfolio** — searchable, filterable by website type, details dialog.
+- **Portfolio** — searchable, filterable by website type; every project has its own page (`project-detail.html?id=…`) in the same style as the main site.
 - Footer links back to the main site, [jollypanda.ir](https://jollypanda.ir).
 
 ## How the Rial price works
@@ -15,8 +15,7 @@ Website-design services site of [Jolly Panda Studio](https://jollypanda.ir) — 
 ```
 GitHub Action (once a day at 08:00 Tehran; retry at 20:00 only if the morning call failed)
   └─ scripts/fetch-rate.mjs  → Navasan API (key = repository secret) → data/rate.json
-  └─ scripts/build-pages.mjs → index.html, packages.html, projects.html (+ /fa/)
-  └─ deploy to GitHub Pages
+  └─ commit → Vercel builds (scripts/build-pages.mjs) and deploys
 Browser (Persian page): price_rial = price_usd × data/rate.json.rateRial
 ```
 
@@ -24,13 +23,12 @@ The API key never reaches the browser. If the API fails, the last good rate stay
 
 ## Setup (once)
 
-1. **Settings → Pages → Source: GitHub Actions.**
-2. **Settings → Secrets and variables → Actions → New repository secret:** `NAVASAN_API_KEY` (key from [navasan.tech](https://www.navasan.tech/webserviceguide/)). Optional *variables*: `NAVASAN_ITEM` (default `usd_sell`), `NAVASAN_UNIT` (`rial` — default, the service returns Rial — or `toman`).
-3. **Email:** follow [`email-templates/README.md`](email-templates/README.md), then fill `email` in `site.config.json`.
-4. Edit `site.config.json` (`siteUrl`, `contactEmail`), run `node scripts/build-pages.mjs`, commit, push.
-5. Run the workflow once from the **Actions** tab (Run workflow) to fetch the first rate. After that it runs by itself every day.
+Hosted on **Vercel** (auto-deploys on every push to `main`; `vercel.json` sets the build). Step-by-step guide in Persian: [`docs/VERCEL.fa.md`](docs/VERCEL.fa.md).
 
-Persian setup guide: [`docs/SETUP.fa.md`](docs/SETUP.fa.md).
+1. **Vercel:** import the repo — nothing to change in the import screen.
+2. **Email (EmailJS):** create the two templates from [`email-templates/`](email-templates/README.md), then add the four IDs as Vercel environment variables (`EMAILJS_SERVICE_ID`, `EMAILJS_PUBLIC_KEY`, `EMAILJS_STUDIO_TEMPLATE_ID`, `EMAILJS_CONFIRM_TEMPLATE_ID`) and **redeploy**. Until then the form falls back to opening the visitor's mail app.
+3. **Rial prices:** add the repository secret `NAVASAN_API_KEY` (key from [navasan.tech](https://www.navasan.tech/webserviceguide/)); optional variables `NAVASAN_ITEM` (default `usd_sell`) and `NAVASAN_UNIT` (`rial` by default). Allow *Read and write* workflow permissions, then run **Update USD rate** once from the Actions tab.
+4. Set `SITE_URL` (your final domain) in Vercel, or edit `siteUrl` in `site.config.json`.
 
 ## Everyday editing
 
@@ -55,7 +53,8 @@ data/             plans.json (price list) · projects.json · rate.json (written
 scripts/          build-pages · fetch-rate · check · assemble-site · serve
 email-templates/  EmailJS HTML (studio notification, customer pre-contract)
 css/ js/ assets/  styles (shared with the main site's design tokens), scripts, images
-.github/workflows/deploy.yml  rate + build + deploy (daily) · check.yml  PR checks
+vercel.json  Vercel build settings
+.github/workflows/update-rate.yml  daily USD rate (commit -> Vercel deploys) · check.yml  PR checks
 ```
 
 Copyright © Jolly Panda Studio. All rights reserved.

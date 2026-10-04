@@ -9,7 +9,7 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const OUT = path.join(ROOT, "_site");
 const INCLUDE = [
-  "index.html", "packages.html", "projects.html", "fa", "assets", "css", "js", "data", "lang",
+  "index.html", "packages.html", "projects.html", "project-detail.html", "fa", "assets", "css", "js", "data", "lang",
   "manifest.json", "robots.txt", "sitemap.xml", ".nojekyll", "CNAME",
 ];
 

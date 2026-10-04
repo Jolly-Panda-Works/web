@@ -50,25 +50,6 @@
 
 </main>
 
-<!-- project details modal -->
-<div class="modal" hidden="" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-<div class="modal__backdrop" data-close=""></div>
-<div class="modal__panel" tabindex="-1">
-<button class="modal__close" data-close="" data-i18n-attr="aria-label:projects.close" aria-label="" type="button">{{icon:x}}</button>
-<div class="modal__media" id="modalMedia"></div>
-<div class="modal__body">
-<span class="modal__type" id="modalType"></span>
-<h2 id="modalTitle"></h2>
-<div class="modal__text" id="modalText"></div>
-<h3 class="modal__sub" data-i18n="projects.highlights" id="modalHlTitle">Highlights</h3>
-<ul class="modal__list" id="modalHighlights"></ul>
-<h3 class="modal__sub" data-i18n="projects.tech">Technologies</h3>
-<ul class="modal__tags" id="modalTags"></ul>
-<a class="btn btn-primary" hidden="" id="modalVisit" rel="noopener noreferrer" target="_blank"><span data-i18n="projects.visit">Visit website</span></a>
-</div>
-</div>
-</div>
-
 {{> footer}}
 {{> scripts}}
 <script defer="" src="{{root}}js/projects.js"></script>

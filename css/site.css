@@ -141,7 +141,6 @@ html[lang="fa"] .teaser-card__from { letter-spacing: 0; text-transform: none; }
 .teaser__footnote { text-align: center; font-size: var(--fs-small); color: var(--color-ink-faint); margin-top: var(--space-xs); }
 @media (min-width: 768px) { .teaser { grid-template-columns: repeat(3, 1fr); } }
 
-.price-sub { display: block; font-size: var(--fs-tiny); font-weight: 600; color: var(--color-ink-faint); line-height: 1.3; }
 .rate-note {
   display: inline-flex; align-items: center; gap: var(--space-2xs); flex-wrap: wrap;
   font-size: var(--fs-tiny); font-weight: 600; color: var(--color-ink-soft);
@@ -180,7 +179,7 @@ html[lang="fa"] .teaser-card__from { letter-spacing: 0; text-transform: none; }
 }
 .price-cell:hover { border-color: var(--color-orange); background: #fff; transform: translateY(-2px); }
 .price-cell.is-selected { background: var(--color-orange); color: #fff; border-color: var(--color-orange); box-shadow: var(--shadow-orange); }
-.price-cell.is-selected .price-sub { color: rgba(255, 255, 255, 0.85); }
+.price-cell.is-selected .price-was { color: rgba(255, 255, 255, 0.8); }
 
 /* ---------- Type tabs & plan cards ---------- */
 .type-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-2xs); margin-bottom: var(--space-lg); }
@@ -272,7 +271,7 @@ html[lang="fa"] .teaser-card__from { letter-spacing: 0; text-transform: none; }
 @media (min-width: 900px) { .request { grid-template-columns: 300px 1fr; } .summary-card { position: sticky; top: calc(var(--nav-height) + 20px); } }
 
 /* ---------- Projects: placeholder cover, modal ---------- */
-.project-card { cursor: pointer; text-align: start; font: inherit; width: 100%; }
+.project-card { text-align: start; }
 .project-card__media--ph {
   display: grid; place-items: center; background: linear-gradient(135deg, var(--color-orange-light), var(--color-yellow-light));
 }
@@ -285,24 +284,6 @@ html[lang="fa"] .teaser-card__from { letter-spacing: 0; text-transform: none; }
 .project-card__badge { background: var(--color-orange); color: #fff; }
 .project-card__tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--space-sm); }
 .tag { font-size: 0.7rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: var(--radius-full); background: var(--color-taupe-light); color: var(--color-ink-soft); direction: ltr; }
-
-.modal { position: fixed; inset: 0; z-index: var(--z-modal); display: grid; place-items: center; padding: var(--space-sm); }
-.modal__backdrop { position: absolute; inset: 0; background: rgba(42, 25, 23, 0.6); backdrop-filter: blur(4px); }
-.modal__panel { position: relative; width: min(760px, 100%); max-height: calc(100dvh - 2rem); overflow-y: auto; background: var(--color-paper); border-radius: var(--radius-lg); box-shadow: var(--shadow-lift); animation: bar-in 0.35s var(--ease-bounce); outline: none; }
-.modal__close { position: absolute; top: 12px; inset-inline-end: 12px; z-index: 2; width: 40px; height: 40px; border-radius: 50%; background: var(--color-surface); border: 1.5px solid var(--color-border-strong); display: grid; place-items: center; }
-.modal__close .icon { width: 18px; height: 18px; stroke-width: 2.4; }
-.modal__media { aspect-ratio: 16 / 7; overflow: hidden; background: var(--color-paper-alt); display: grid; place-items: center; }
-.modal__media img { width: 100%; height: 100%; object-fit: cover; }
-.modal__media .cover-ph { width: 46%; }
-.modal__body { padding: var(--space-lg); display: grid; gap: var(--space-xs); justify-items: start; }
-.modal__type { font-size: var(--fs-tiny); font-weight: 800; color: var(--color-orange-dark); background: var(--color-orange-light); padding: 0.25rem 0.75rem; border-radius: var(--radius-full); }
-.modal__body h2 { font-size: var(--fs-h2); }
-.modal__text p + p { margin-top: var(--space-xs); }
-.modal__sub { font-size: 1rem; margin-top: var(--space-sm); }
-.modal__list { padding-inline-start: 1.2rem; display: grid; gap: 4px; font-size: var(--fs-small); color: var(--color-ink-soft); }
-.modal__tags { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; }
-.modal .btn { margin-top: var(--space-sm); }
-body.is-modal-open { overflow: hidden; }
 
 /* ---------- Footer additions ---------- */
 .site-footer__text { font-size: var(--fs-small); max-width: 300px; }
@@ -327,3 +308,43 @@ body[data-page="packages"].has-selection .site-footer { padding-bottom: 84px; }
   .speech--2 { top: 44px; inset-inline-start: 22%; }
   .speech--3 { top: 0; inset-inline-end: 0; }
 }
+
+/* ---------- Discount: struck-through regular price, new price, label ---------- */
+.price-stack { display: inline-flex; flex-direction: column; align-items: inherit; gap: 2px; line-height: 1.25; }
+.price-cell .price-stack { display: flex; align-items: center; }
+.price-was { font-size: 0.78em; font-weight: 600; color: var(--color-ink-faint); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.price-now { font-weight: 800; }
+.discount-chip {
+  display: inline-flex; align-items: center; width: fit-content; padding: 0.18rem 0.6rem; border-radius: var(--radius-full);
+  background: var(--color-yellow); color: var(--color-ink); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.02em; line-height: 1.4;
+}
+.teaser-card__price, .plan-card__price-value { display: block; }
+.teaser-card__price .price-stack, .plan-card__price .price-stack { align-items: flex-start; }
+.teaser-card__price .price-was, .plan-card__price .price-was { font-size: 1rem; }
+.teaser-card__price .price-now { font-size: 1.9rem; }
+.plan-card__price-value { font-size: 2rem; }
+.plan-card__price .price-now { display: block; }
+.discount-banner {
+  display: flex; align-items: center; justify-content: center; gap: var(--space-xs); width: fit-content; max-width: 100%;
+  margin: var(--space-sm) auto 0; padding: 0.5rem 1.1rem 0.5rem 0.6rem; border-radius: var(--radius-full);
+  background: var(--color-yellow-light); border: 1.5px solid var(--color-yellow); font-weight: 800; font-size: var(--fs-small); color: var(--color-ink);
+}
+.discount-banner:empty { display: none; }
+.page-hero .discount-banner { margin-inline: 0; }
+.teaser { margin-top: var(--space-lg); }
+
+/* ---------- Project detail page (reuses the reference .project-hero / .project-detail rules) ---------- */
+.project-hero--ph { background: var(--gradient-brand); }
+.project-hero__ph { position: absolute; inset: 0; display: flex; justify-content: flex-end; align-items: flex-start; padding-inline: 8%; padding-top: calc(var(--nav-height) + 56px); pointer-events: none; }
+.project-hero__ph .cover-ph { width: min(40%, 440px); }
+@media (max-width: 767px) { .project-hero__ph { display: none; } }
+.project-download__image--ph { display: grid; place-items: center; background: linear-gradient(135deg, var(--color-orange-light), var(--color-yellow-light)); }
+.project-download__image--ph .cover-ph { width: 70%; }
+.project-card__tags { margin-top: var(--space-sm); }
+
+/* Rial amounts are long (e.g. 1,573,750,000): keep each on one line and scale them down */
+.price-now, .price-was { white-space: nowrap; }
+html[lang="fa"] .teaser-card__price .price-now { font-size: 1.45rem; }
+html[lang="fa"] .plan-card__price .price-now, html[lang="fa"] .plan-card__price-value { font-size: 1.55rem; }
+html[lang="fa"] .teaser-card__price .price-was, html[lang="fa"] .plan-card__price .price-was { font-size: 0.9rem; }
+html[lang="fa"] .price-cell { font-size: 0.92rem; }

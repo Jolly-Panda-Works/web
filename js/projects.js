@@ -9,7 +9,7 @@
   "use strict";
   var JP = window.JP;
   var projects = [], types = {}, state = { type: "all", query: "" };
-  var grid, results, filters, modal, lastFocus = null, debounce = null;
+  var grid, results, filters, debounce = null;
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -54,7 +54,7 @@
   }
 
   function card(p) {
-    var c = el("button", "project-card"); c.type = "button";
+    var c = el("a", "project-card"); c.href = "project-detail.html?id=" + encodeURIComponent(p.id);
     var media = el("div", "project-card__media");
     cover(p, media);
     media.appendChild(el("span", "project-card__badge", typeName(p.type)));
@@ -72,7 +72,6 @@
     ic.innerHTML = '<svg class="dir-icon__ltr" viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="dir-icon__rtl" viewBox="0 0 24 24" fill="none"><path d="M19 12H5M11 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
     link.appendChild(ic); foot.appendChild(link); body.appendChild(foot);
     c.appendChild(media); c.appendChild(body);
-    c.addEventListener("click", function () { openModal(p, c); });
     return c;
   }
 
@@ -107,51 +106,12 @@
     });
   }
 
-  /* ---------- details dialog ---------- */
-  function openModal(p, opener) {
-    lastFocus = opener;
-    var media = document.getElementById("modalMedia"); media.textContent = ""; media.className = "modal__media";
-    cover(p, media);
-    document.getElementById("modalType").textContent = typeName(p.type) + (p.year ? " · " + p.year : "");
-    document.getElementById("modalTitle").textContent = JP.pick(p.title);
-    var text = document.getElementById("modalText"); text.textContent = "";
-    JP.pick(p.fullDescription || p.shortDescription).split(/\n\n+/).forEach(function (para) { text.appendChild(el("p", "", para)); });
-    var list = (p.highlights && (p.highlights[JP.lang] || p.highlights.en)) || [];
-    var ul = document.getElementById("modalHighlights"); ul.textContent = "";
-    list.forEach(function (h) { ul.appendChild(el("li", "", h)); });
-    document.getElementById("modalHlTitle").hidden = ul.hidden = !list.length;
-    var tags = document.getElementById("modalTags"); tags.textContent = "";
-    (p.tags || []).forEach(function (t) { tags.appendChild(el("li", "tag", t)); });
-    var visit = document.getElementById("modalVisit");
-    if (p.url) { visit.href = p.url; visit.hidden = false; } else { visit.hidden = true; }
-    modal.hidden = false; document.body.classList.add("is-modal-open");
-    modal.querySelector(".modal__panel").focus();
-  }
-  function closeModal() {
-    if (modal.hidden) return;
-    modal.hidden = true; document.body.classList.remove("is-modal-open");
-    if (lastFocus) lastFocus.focus();
-  }
-
   document.addEventListener("DOMContentLoaded", function () {
     grid = document.getElementById("projectsGrid");
     results = document.getElementById("projectsResults");
     filters = document.getElementById("projectsFilters");
-    modal = document.getElementById("projectModal");
     if (!grid) return;
 
-    modal.addEventListener("click", function (e) { if (e.target.closest("[data-close]")) closeModal(); });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeModal();
-      if (e.key === "Tab" && !modal.hidden) {          // keep focus inside the dialog
-        var f = modal.querySelectorAll("button, a[href], [tabindex]:not([tabindex='-1'])");
-        f = Array.prototype.filter.call(f, function (n) { return !n.hidden && n.offsetParent !== null; });
-        if (!f.length) return;
-        var first = f[0], last = f[f.length - 1];
-        if (e.shiftKey && (document.activeElement === first || document.activeElement === modal.querySelector(".modal__panel"))) { e.preventDefault(); last.focus(); }
-        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
-      }
-    });
     document.getElementById("projectsSearch").addEventListener("input", function (e) {
       var v = e.target.value; clearTimeout(debounce);
       debounce = setTimeout(function () { state.query = v; render(); }, 160);

@@ -30,6 +30,11 @@
       "title": "Portfolio — websites we have built — Jolly Panda Web",
       "description": "Browse and search websites built by Jolly Panda. Filter by website type: blog, portfolio, corporate, educational, news or online store.",
       "keywords": "web design portfolio, website examples, نمونه کار طراحی سایت, نمونه کار وبسایت"
+    },
+    "projectDetail": {
+      "title": "Project details — Jolly Panda Web",
+      "description": "Details of a website built by Jolly Panda.",
+      "keywords": "website project, case study"
     }
   },
   "og": {
@@ -43,11 +48,13 @@
     "usd": "US dollars",
     "dollarWord": "USD",
     "rialWord": "Rial",
-    "equivalent": "about {usd} USD",
     "noteEn": "All prices are in US dollars and are the starting point of each plan.",
     "noteRate": "Prices are converted to Rial at today's rate: 1 USD = {rate} Rial.",
     "noteNoRate": "The exchange rate is not available right now, so prices are shown in US dollars.",
-    "noDate": "not available yet"
+    "noDate": "not available yet",
+    "discountLabel": "{pct}% off",
+    "discountBanner": "{pct}% discount on all plans",
+    "was": "Regular price"
   },
   "home": {
     "hero": {
@@ -213,7 +220,8 @@
       "n1": "The final price is set in a consultation with the Jolly Panda team.",
       "n2": "Prices are in US dollars and are the starting point of each plan.",
       "n3": "Domain and hosting costs are charged separately from the plans.",
-      "n4": "All plans include responsive design (mobile and tablet) and an SSL certificate."
+      "n4": "All plans include responsive design (mobile and tablet) and an SSL certificate.",
+      "n5": "The discount is already applied to every price shown on this page."
     },
     "bar": {
       "selected": "Selected:",
@@ -312,5 +320,43 @@
       "cta": "Back to jollypanda.ir"
     },
     "copyright": "© 2026 Jolly Panda Studio. All rights reserved."
+  },
+  "projectDetail": {
+    "back": "Back to Portfolio",
+    "notFound": {
+      "title": "We couldn't find that project",
+      "desc": "It may have been renamed or removed. Take a look at everything we've built instead.",
+      "cta": "Browse the portfolio"
+    },
+    "error": "We couldn't load this project right now.",
+    "highlightsTitle": "Highlights",
+    "tagsTitle": "Built with",
+    "gallery": {
+      "galleryTitle": "Gallery",
+      "close": "Close",
+      "next": "Next",
+      "prev": "Previous",
+      "counter": "{current} of {total}"
+    },
+    "actionLinks": {
+      "website": "Visit website"
+    },
+    "share": {
+      "label": "Share",
+      "copyLink": "Copy link",
+      "copied": "Link copied",
+      "twitter": "Share on X",
+      "telegram": "Share on Telegram",
+      "linkedin": "Share on LinkedIn",
+      "message": "{project} by {team} — take a look:"
+    },
+    "download": {
+      "title": "Want a website like this?",
+      "desc": "Take a look at the live website, or pick a package and tell us about yours.",
+      "descFallback": "This one isn't public — but pick a package and tell us about yours."
+    },
+    "cta": {
+      "button": "Choose a package"
+    }
   }
 }

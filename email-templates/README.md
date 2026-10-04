@@ -35,7 +35,7 @@ The request form sends **two emails** through [EmailJS](https://www.emailjs.com/
 
 ## Variables the form sends
 
-`reference`, `request_date`, `site_language`, `name`, `email`, `to_email`, `to_name`, `reply_to`, `studio_email`, `phone`, `business`, `domain_status`, `project_message`, `website_type`, `plan_name`, `price_usd`, `rial_note`, `scope_structure_label`, `scope_structure`, `scope_design`, `scope_features`, `scope_seo`, `scope_support`, `scope_delivery`, `intro_fa`.
+`reference`, `request_date`, `site_language`, `name`, `email`, `to_email`, `to_name`, `reply_to`, `studio_email`, `phone`, `business`, `domain_status`, `project_message`, `website_type`, `plan_name`, `price_usd` (after discount), `price_list_usd`, `discount_percent`, `discount_note`, `rial_note`, `scope_structure_label`, `scope_structure`, `scope_design`, `scope_features`, `scope_seo`, `scope_support`, `scope_delivery`, `intro_fa`.
 
 Website type, plan and scope are always sent in English (the pre-contract is English whatever the site language). `intro_fa` holds a short Persian note and is only filled when the visitor used the Persian site.
 
