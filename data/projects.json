@@ -1,56 +1,5 @@
 [
   {
-    "id": "jollypanda-studio",
-    "type": "corporate",
-    "year": "2026",
-    "domain": "jollypanda.ir",
-    "tags": [
-      "HTML5",
-      "CSS3",
-      "Vanilla JS",
-      "Bilingual EN/FA",
-      "RTL",
-      "SEO"
-    ],
-    "image": null,
-    "title": {
-      "en": "Jolly Panda Studio",
-      "fa": "استودیو Jolly Panda"
-    },
-    "shortDescription": {
-      "en": "The studio's own website — lightweight, fully responsive and bilingual (English LTR and Persian RTL), with JSON-driven content.",
-      "fa": "وب‌سایت خود استودیو — سبک، کاملاً واکنش‌گرا و دوزبانه (انگلیسی چپ‌به‌راست و فارسی راست‌به‌چپ) با محتوای مبتنی بر JSON."
-    },
-    "fullDescription": {
-      "en": "The official website of Jolly Panda Studio, built with plain HTML, CSS and JavaScript — no frameworks. Every page exists in English and Persian with its own URL, language tags and hreflang links, and the content (navigation, services, team, footer) is edited in JSON files instead of in the page code.\n\nSearch-friendly from the start: semantic HTML5, unique titles and descriptions per page, canonical URLs, Open Graph and Twitter cards, a web app manifest and JSON-LD structured data.",
-      "fa": "وب‌سایت رسمی استودیو Jolly Panda که با HTML و CSS و JavaScript ساده و بدون فریم‌ورک ساخته شده است. هر صفحه به دو زبان انگلیسی و فارسی و با آدرس، برچسب زبان و لینک‌های hreflang مخصوص خودش وجود دارد و محتوا (منو، خدمات، تیم، فوتر) به‌جای کد صفحه، در فایل‌های JSON ویرایش می‌شود.\n\nاز ابتدا سئو‌محور: HTML5 معنادار، عنوان و توضیح یکتا برای هر صفحه، آدرس canonical، کارت‌های Open Graph و توییتر، وب‌اپ مانیفست و داده ساختاریافته JSON-LD."
-    },
-    "highlights": {
-      "en": [
-        "English (LTR) and Persian (RTL) with separate crawlable URLs",
-        "JSON-driven content — edit text without touching code",
-        "Semantic HTML, Open Graph and JSON-LD structured data",
-        "Accessibility-friendly and performance-focused"
-      ],
-      "fa": [
-        "انگلیسی (چپ‌به‌راست) و فارسی (راست‌به‌چپ) با آدرس‌های جدا و قابل خزش",
-        "محتوای مبتنی بر JSON — ویرایش متن بدون دست‌زدن به کد",
-        "HTML معنادار، Open Graph و داده ساختاریافته JSON-LD",
-        "سازگار با دسترس‌پذیری و متمرکز بر کارایی"
-      ]
-    },
-    "actionLinks": [
-      {
-        "type": "website",
-        "url": "https://jollypanda.ir",
-        "label": {
-          "en": "Visit website",
-          "fa": "مشاهده وب‌سایت"
-        }
-      }
-    ]
-  },
-  {
     "id": "dopamall",
     "type": "store",
     "year": "2026",
@@ -62,7 +11,7 @@
       "SQLite",
       "Tailwind CSS"
     ],
-    "image": null,
+    "image": "assets/projects/dopamall/dopamall banner.png",
     "title": {
       "en": "Dopamall",
       "fa": "دوپامال"
@@ -113,10 +62,10 @@
       "RTL",
       "Jalali calendar"
     ],
-    "image": null,
+    "image": "assets/projects/useffarahmand/useffarahmand-cover.png",
     "title": {
       "en": "Usef Farahmand — Portfolio",
-      "fa": "یوسف فرهمند — پورتفولیو"
+      "fa": "یوسف فرحمند — پورتفولیو"
     },
     "shortDescription": {
       "en": "A personal portfolio website in English and Persian, with a full language engine, right-to-left styling and Jalali date support.",
@@ -130,13 +79,11 @@
       "en": [
         "Full English/Persian language engine",
         "Clean RTL and LTR layouts",
-        "Jalali calendar conversion",
         "Dynamic sections translated too"
       ],
       "fa": [
         "موتور کامل چندزبانه فارسی/انگلیسی",
         "چیدمان راست‌به‌چپ و چپ‌به‌راست تمیز",
-        "تبدیل تاریخ به تقویم شمسی",
         "ترجمه بخش‌های پویا"
       ]
     },
