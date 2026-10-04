@@ -17,7 +17,12 @@
     host.textContent = "";
 
     plans.plans.forEach(function (plan) {
-      var min = Math.min.apply(null, plans.types.map(function (t) { return t.rows[plan.id].price; }));
+      // cheapest website type for this plan, compared AFTER its own discount
+      var best = null;
+      plans.types.forEach(function (t) {
+        var p = JP.pricing.pct(t, plan, data), now = JP.pricing.discounted(t.rows[plan.id].price, p);
+        if (!best || now < best.now) best = { usd: t.rows[plan.id].price, pct: p, now: now };
+      });
       var highlight = plans.highlightPlan === plan.id;
 
       var card = el("article", "teaser-card" + (highlight ? " teaser-card--highlight" : ""));
@@ -26,7 +31,7 @@
       card.appendChild(el("p", "teaser-card__desc", JP.t("home.q5." + plan.id)));
       card.appendChild(el("span", "teaser-card__from", JP.t("pricing.from")));
       var p = el("div", "teaser-card__price");
-      p.appendChild(JP.pricing.node(min, data, { chip: true }));
+      p.appendChild(JP.pricing.node(best.usd, data, { pct: best.pct, chip: true }));
       card.appendChild(p);
 
       var link = el("a", "teaser-card__link");

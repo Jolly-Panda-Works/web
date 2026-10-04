@@ -3,14 +3,15 @@
    Loads data/plans.json (the price list, in US dollars) and data/rate.json
    (the USD -> IRR rate that the GitHub Action refreshes). Provides:
      JP.pricing.load()            -> Promise<{ plans, rate }>
-     JP.pricing.format(usd)       -> { main, was, pct }   main = price after the discount,
+     JP.pricing.pct(type, plan)   -> discount % of one website type x plan (see "discount" below)
+     JP.pricing.format(usd, data, pct) -> { main, was, pct }   main = price after the discount,
                                      was = regular price (only when a discount applies).
                                      Rial in Persian when a rate exists, otherwise USD.
      JP.pricing.node(usd, data)   -> DOM node: struck-through regular price + discounted price (+ label)
      JP.pricing.fillNotes()       -> fills every [data-rate-note] with the "last updated" line
      JP.pricing.fillBanners()     -> fills every [data-discount-banner] ("10% discount on all plans")
-   plans.json stores the regular (list) price in USD; plans.discountPercent is taken
-   off it: discounted = round(list x (100 - pct) / 100).
+   plans.json stores the regular (list) price in USD; the discount is taken off it:
+   discounted = round(list x (100 - pct) / 100). Discount per item: see "discount" below.
    English always shows US dollars. Persian shows Rial (USD x rate) when the
    rate file holds a valid rate, and falls back to dollars + a notice if not.
    ========================================================================== */
@@ -52,11 +53,25 @@
   }
 
   function useRial(data) { return JP.lang === "fa" && data && data.rate; }
-  function pctOf(data) {
-    var p = data && data.plans && Number(data.plans.discountPercent);
-    return p > 0 && p < 100 ? p : 0;
+
+  /* ---- discount ----
+     data/plans.json holds the regular price. The discount (%) for one website type x plan is the
+     first value found, most specific first:
+        types[].rows[plan].discount  >  types[].discount  >  plans[].discount  >  discountPercent
+     (0 = no discount, also as an override). discounted = round(regular x (100 - pct) / 100). */
+  function clean(p) { p = Number(p); return isFinite(p) && p > 0 && p < 100 ? p : 0; }
+  function pct(ty, pl, data) {
+    var row = ty && ty.rows && ty.rows[pl.id];
+    var chain = [row && row.discount, ty && ty.discount, pl && pl.discount, data && data.plans && data.plans.discountPercent];
+    for (var i = 0; i < chain.length; i++) if (chain[i] !== undefined && chain[i] !== null) return clean(chain[i]);
+    return 0;
   }
-  function discounted(usd, data) { return Math.round(usd * (100 - pctOf(data)) / 100); }
+  function allPcts(data) {
+    var out = [];
+    data.plans.types.forEach(function (ty) { data.plans.plans.forEach(function (pl) { out.push(pct(ty, pl, data)); }); });
+    return out;
+  }
+  function discounted(usd, p) { return Math.round(usd * (100 - clean(p)) / 100); }
 
   function show(usd, data) {
     if (useRial(data)) return num(Math.round(usd * data.rate.rateRial)) + " " + JP.t("pricing.rialWord");
@@ -64,13 +79,13 @@
   }
 
   /** main = price to pay (after discount); was = regular price, only when a discount applies. */
-  function format(usd, data) {
-    var pct = pctOf(data);
-    return { main: show(discounted(usd, data), data), was: pct ? show(usd, data) : "", pct: pct };
+  function format(usd, data, p) {
+    p = clean(p);
+    return { main: show(discounted(usd, p), data), was: p ? show(usd, data) : "", pct: p };
   }
 
   /** Plain-text version used in the summary card and selection bar (the discounted price). */
-  function plain(usd, data) { return format(usd, data).main; }
+  function plain(usd, data, p) { return format(usd, data, p).main; }
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -79,14 +94,14 @@
     return n;
   }
 
-  function discountLabel(data) {
-    var pct = pctOf(data);
-    return pct ? JP.t("pricing.discountLabel", { pct: num(pct) }) : "";
+  function discountLabel(p) {
+    p = clean(p);
+    return p ? JP.t("pricing.discountLabel", { pct: num(p) }) : "";
   }
 
   /** Struck-through regular price, the discounted price and (optionally) the discount label. */
   function node(usd, data, opts) {
-    var f = format(usd, data);
+    var f = format(usd, data, opts && opts.pct);
     var wrap = el("span", "price-stack");
     if (f.was) {
       var was = el("s", "price-was", f.was);
@@ -94,7 +109,7 @@
       wrap.appendChild(was);
     }
     wrap.appendChild(el("span", "price-now" + (opts && opts.cls ? " " + opts.cls : ""), f.main));
-    if (f.pct && opts && opts.chip) wrap.appendChild(el("span", "discount-chip", discountLabel(data)));
+    if (f.pct && opts && opts.chip) wrap.appendChild(el("span", "discount-chip", discountLabel(f.pct)));
     return wrap;
   }
 
@@ -143,39 +158,27 @@
         label.appendChild(strong);
         el.appendChild(label);
 
-        var extra = null;
-        if (JP.lang === "fa") {
-          extra = data.rate
-            ? JP.t("pricing.noteRate", { rate: num(data.rate.rateRial) })
-            : JP.t("pricing.noteNoRate");
-        }
-        if (extra) {
-          var sep = document.createElement("span");
-          sep.setAttribute("aria-hidden", "true");
-          sep.textContent = "·";
-          el.appendChild(sep);
-          var note = document.createElement("span");
-          note.textContent = extra;
-          el.appendChild(note);
-        }
       });
     });
   }
 
+  /** "10% discount on all plans" when every price has the same discount, "Up to 15% off" when they differ. */
   function fillBanners() {
     var nodes = document.querySelectorAll("[data-discount-banner]");
     if (!nodes.length) return Promise.resolve();
     return Promise.all([load(), JP.ready]).then(function (r) {
-      var pct = pctOf(r[0]);
+      var all = allPcts(r[0]), max = Math.max.apply(null, all), min = Math.min.apply(null, all);
       nodes.forEach(function (n) {
         n.textContent = "";
-        n.hidden = !pct;
-        if (!pct) return;
-        n.appendChild(el("span", "discount-chip", discountLabel(r[0])));
-        n.appendChild(el("span", "", JP.t("pricing.discountBanner", { pct: num(pct) })));
+        n.hidden = !(max > 0);
+        if (!(max > 0)) return;
+        n.appendChild(el("span", "discount-chip", discountLabel(max)));
+        n.appendChild(el("span", "", JP.t(min === max ? "pricing.discountBanner" : "pricing.discountBannerUpTo", { pct: num(max) })));
       });
+      // notes that only make sense while a discount exists
+      document.querySelectorAll("[data-discount-note]").forEach(function (n) { n.hidden = !(max > 0); });
     });
   }
 
-  JP.pricing = { load: load, format: format, plain: plain, node: node, discounted: discounted, discountPercent: pctOf, discountLabel: discountLabel, usdText: usdText, fillNotes: fillNotes, fillBanners: fillBanners, formatDate: formatDate, number: num };
+  JP.pricing = { load: load, pct: pct, allPcts: allPcts, format: format, plain: plain, node: node, discounted: discounted, discountLabel: discountLabel, usdText: usdText, fillNotes: fillNotes, fillBanners: fillBanners, formatDate: formatDate, number: num };
 })();

@@ -53,7 +53,7 @@
     if (!JP.selection) return "";
     var ty = typeById(JP.selection.type), pl = planById(JP.selection.plan);
     var usd = ty.rows[pl.id].price;
-    return JP.pick(ty.name) + " — " + JP.pick(pl.name) + " — " + JP.pricing.plain(usd, data);
+    return JP.pick(ty.name) + " — " + JP.pick(pl.name) + " — " + JP.pricing.plain(usd, data, JP.pricing.pct(ty, pl, data));
   }
 
   function paintSelection() {
@@ -98,7 +98,7 @@
         var b = el("button", "price-cell"); b.type = "button";
         b.dataset.type = ty.id; b.dataset.plan = pl.id;
         b.setAttribute("aria-label", JP.t("packages.cellSelect", { type: JP.pick(ty.name), plan: JP.pick(pl.name) }));
-        b.appendChild(JP.pricing.node(ty.rows[pl.id].price, data));
+        b.appendChild(JP.pricing.node(ty.rows[pl.id].price, data, { pct: JP.pricing.pct(ty, pl, data) }));
         b.addEventListener("click", function () { select(ty.id, pl.id); });
         td.appendChild(b); tr.appendChild(td);
       });
@@ -142,7 +142,7 @@
 
       var price = el("div", "plan-card__price");
       price.appendChild(el("span", "plan-card__price-label", JP.t("pricing.startingPrice")));
-      price.appendChild(JP.pricing.node(row.price, data, { chip: true, cls: "plan-card__price-value" }));
+      price.appendChild(JP.pricing.node(row.price, data, { pct: JP.pricing.pct(ty, pl, data), chip: true, cls: "plan-card__price-value" }));
       card.appendChild(price);
 
       var ul = el("ul", "plan-card__list");

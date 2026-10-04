@@ -49,11 +49,10 @@
     "dollarWord": "USD",
     "rialWord": "Rial",
     "noteEn": "All prices are in US dollars and are the starting point of each plan.",
-    "noteRate": "Prices are converted to Rial at today's rate: 1 USD = {rate} Rial.",
-    "noteNoRate": "The exchange rate is not available right now, so prices are shown in US dollars.",
     "noDate": "not available yet",
     "discountLabel": "{pct}% off",
     "discountBanner": "{pct}% discount on all plans",
+    "discountBannerUpTo": "Up to {pct}% off on selected plans",
     "was": "Regular price"
   },
   "home": {
@@ -264,11 +263,10 @@
     },
     "ok": {
       "title": "Request sent!",
-      "text": "We've received your request. A confirmation email with a pre-contract (in English) is on its way to {email}.",
+      "text": "We've received your request. A confirmation email with a pre-contract is on its way to {email}.",
       "textNoConfirm": "We've received your request and will reply to {email}. (The automatic confirmation email could not be sent.)",
       "fallback": "Your email app should open with the request ready to send. If nothing happens, email us at {email}.",
-      "another": "Send another request",
-      "preContract": "It includes a pre-contract (in English) for you to review."
+      "another": "Send another request"
     },
     "domainLabels": {
       "yes": "Has domain and hosting",
@@ -276,7 +274,11 @@
       "unsure": "Not sure about domain and hosting"
     },
     "mail": {
-      "faNote": "Pre-contract sent in English."
+      "usd": "USD {n}",
+      "discountNote": "{pct}% discount applied to the regular price of {list}.",
+      "rialNote": "Indicative Rial equivalent on the request date: {rial} IRR (1 USD = {rate} IRR). The payment currency and exchange rate are confirmed in the final contract.",
+      "structureLabel": "Structure & pages",
+      "siteLanguage": "English"
     }
   },
   "projects": {

@@ -5,7 +5,7 @@ Website-design services site of [Jolly Panda Studio](https://jollypanda.ir) — 
 ## What it does
 
 - **Home** — walks the visitor through the questions *why a website? · what if I don't have one? · why Jolly Panda? · how is a site made? · how much?* and ends with a guide button to the packages and the form.
-- **Packages** — the exact price list from the PowerPoint (6 website types × Economy / Special / Custom). Prices are in **US dollars** (regular price + a site-wide discount label, `discountPercent` in `data/plans.json`); on the **Persian** pages they are shown in **Rial**, converted with the live rate. The **last update date** is shown in both languages (Jalali calendar in Persian).
+- **Packages** — the exact price list from the PowerPoint (6 website types × Economy / Special / Custom). Prices are in **US dollars** (regular price + discount label; `discountPercent` in `data/plans.json` is the default for everything, and a `discount` field on a plan, a type or a single type×plan row overrides it — most specific wins, `0` = no discount); on the **Persian** pages they are shown in **Rial**, converted with the live rate. The **last update date** is shown in both languages (Jalali calendar in Persian).
 - **Request form** — the selected package is attached to the request. On send, two emails go out: the request to the studio, and a confirmation to the visitor with an **English pre-contract** pre-filled from their request.
 - **Portfolio** — searchable, filterable by website type; every project has its own page (`project-detail.html?id=…`) in the same style as the main site.
 - Footer links back to the main site, [jollypanda.ir](https://jollypanda.ir).
@@ -26,7 +26,7 @@ The API key never reaches the browser. If the API fails, the last good rate stay
 Hosted on **Vercel** (auto-deploys on every push to `main`; `vercel.json` sets the build). Step-by-step guide in Persian: [`docs/VERCEL.fa.md`](docs/VERCEL.fa.md).
 
 1. **Vercel:** import the repo — nothing to change in the import screen.
-2. **Email (EmailJS):** create the two templates from [`email-templates/`](email-templates/README.md), then add the four IDs as Vercel environment variables (`EMAILJS_SERVICE_ID`, `EMAILJS_PUBLIC_KEY`, `EMAILJS_STUDIO_TEMPLATE_ID`, `EMAILJS_CONFIRM_TEMPLATE_ID`) and **redeploy**. Until then the form falls back to opening the visitor's mail app.
+2. **Email (EmailJS):** create the two templates from [`email-templates/`](email-templates/README.md), then add the IDs as Vercel environment variables (`EMAILJS_SERVICE_ID`, `EMAILJS_PUBLIC_KEY`, `EMAILJS_STUDIO_TEMPLATE_ID`, `EMAILJS_CONFIRM_TEMPLATE_ID` for the English pre-contract, `EMAILJS_CONFIRM_TEMPLATE_ID_FA` for the Persian one) and **redeploy**. Until then the form falls back to opening the visitor's mail app.
 3. **Rial prices:** add the repository secret `NAVASAN_API_KEY` (key from [navasan.tech](https://www.navasan.tech/webserviceguide/)); optional variables `NAVASAN_ITEM` (default `usd_sell`) and `NAVASAN_UNIT` (`rial` by default). Allow *Read and write* workflow permissions, then run **Update USD rate** once from the Actions tab.
 4. Set `SITE_URL` (your final domain) in Vercel, or edit `siteUrl` in `site.config.json`.
 
