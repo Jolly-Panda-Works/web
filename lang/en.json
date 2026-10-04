@@ -258,6 +258,7 @@
       "required": "Please fill in this field.",
       "email": "Please enter a valid email address.",
       "consent": "Please accept to continue.",
+      "network": "We couldn't reach the email service — your network may be blocking it. Please try again, or email us directly at {email}.",
       "noPackage": "Please select a package first.",
       "send": "We couldn't send your request. Please try again, or email us directly at {email}."
     },
@@ -332,7 +333,7 @@
     },
     "error": "We couldn't load this project right now.",
     "highlightsTitle": "Highlights",
-    "tagsTitle": "Built with",
+    "tagsTitle": "Topics & technologies",
     "gallery": {
       "galleryTitle": "Gallery",
       "close": "Close",

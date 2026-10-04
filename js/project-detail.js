@@ -13,6 +13,7 @@
   var root = null, project = null, types = {};
 
   function esc(s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function src(path) { return /^https?:\/\//i.test(path) ? path : JP.root + path; }
   function list(field) { return (field && (field[JP.lang] || field.en)) || []; }
 
   var ICONS = {
@@ -39,7 +40,7 @@
 
   /* ---------- placeholder cover (used when a project has no screenshot) ---------- */
   function placeholder(p) {
-    return '<div class="cover-ph"><div class="cover-ph__bar"><i></i><i></i><i></i></div><div class="cover-ph__body">' + esc(p.domain || JP.pick(p.title, "en")) + "</div></div>";
+    return '<div class="cover-ph"><div class="cover-ph__bar"><i></i><i></i><i></i></div><div class="cover-ph__body">' + esc(p.domain && p.domain.length <= 24 ? p.domain : JP.pick(p.title, "en")) + "</div></div>";
   }
 
   /* ---------- lightbox (gallery) ---------- */
@@ -168,7 +169,7 @@
 
     var hasImg = !!p.image;
     var cover = hasImg
-      ? '<img class="project-hero__cover-img" src="' + esc(JP.root + p.image) + '" alt="" draggable="false"/>'
+      ? '<img class="project-hero__cover-img" data-cover src="' + esc(src(p.image)) + '" alt="" draggable="false"/>'
       : '<div class="project-hero__ph" aria-hidden="true">' + placeholder(p) + "</div>";
     var logo = p.logo ? '<span class="project-hero__logo"><img src="' + esc(JP.root + p.logo) + '" alt=""/></span>' : "";
 
@@ -186,7 +187,7 @@
       '<div class="project-detail__body" data-reveal>' + paragraphs + '</div><div class="project-detail__aside">' + highlights + tags + "</div></div></div></section>";
 
     var hasLinks = links.length > 0;
-    var dlImg = hasImg ? '<div class="project-download__image" data-reveal><img src="' + esc(JP.root + p.image) + '" alt="' + esc(title) + '" draggable="false"/></div>'
+    var dlImg = hasImg ? '<div class="project-download__image" data-reveal><img data-cover src="' + esc(src(p.image)) + '" alt="' + esc(title) + '" draggable="false"/></div>'
       : '<div class="project-download__image project-download__image--ph" data-reveal>' + placeholder(p) + "</div>";
     var download = '<section class="section project-download"><div class="container"><div class="project-download__grid">' +
       '<div class="project-download__content" data-reveal><h2>' + esc(JP.t("projectDetail.download.title")) + "</h2><p>" +
@@ -197,6 +198,19 @@
 
     root.innerHTML = hero + body + gallerySection(p) + download;
     if (window.JollyPandaAnimations) window.JollyPandaAnimations.observe(root.querySelectorAll("[data-reveal]"));
+    // a screenshot that cannot be loaded (e.g. the other site is offline) falls back to the brand-style mock
+    root.querySelectorAll("img[data-cover]").forEach(function (img) {
+      img.addEventListener("error", function () {
+        var holder = img.parentElement;
+        if (holder.classList.contains("project-hero")) {
+          holder.classList.add("project-hero--ph");
+          img.outerHTML = '<div class="project-hero__ph" aria-hidden="true">' + placeholder(project) + "</div>";
+        } else {
+          holder.classList.add("project-download__image--ph");
+          img.outerHTML = placeholder(project);
+        }
+      });
+    });
     wireGallery(); wireShare(title);
   }
 

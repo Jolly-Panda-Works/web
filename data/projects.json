@@ -1,5 +1,56 @@
 [
   {
+    "id": "jollypanda-studio",
+    "type": "corporate",
+    "year": "2026",
+    "domain": "jollypanda.ir",
+    "tags": [
+      "HTML5",
+      "CSS3",
+      "Vanilla JS",
+      "Bilingual EN/FA",
+      "RTL",
+      "SEO"
+    ],
+    "image": null,
+    "title": {
+      "en": "Jolly Panda Studio",
+      "fa": "استودیو Jolly Panda"
+    },
+    "shortDescription": {
+      "en": "The studio's own website — lightweight, fully responsive and bilingual (English LTR and Persian RTL), with JSON-driven content.",
+      "fa": "وب‌سایت خود استودیو — سبک، کاملاً واکنش‌گرا و دوزبانه (انگلیسی چپ‌به‌راست و فارسی راست‌به‌چپ) با محتوای مبتنی بر JSON."
+    },
+    "fullDescription": {
+      "en": "The official website of Jolly Panda Studio, built with plain HTML, CSS and JavaScript — no frameworks. Every page exists in English and Persian with its own URL, language tags and hreflang links, and the content (navigation, services, team, footer) is edited in JSON files instead of in the page code.\n\nSearch-friendly from the start: semantic HTML5, unique titles and descriptions per page, canonical URLs, Open Graph and Twitter cards, a web app manifest and JSON-LD structured data.",
+      "fa": "وب‌سایت رسمی استودیو Jolly Panda که با HTML و CSS و JavaScript ساده و بدون فریم‌ورک ساخته شده است. هر صفحه به دو زبان انگلیسی و فارسی و با آدرس، برچسب زبان و لینک‌های hreflang مخصوص خودش وجود دارد و محتوا (منو، خدمات، تیم، فوتر) به‌جای کد صفحه، در فایل‌های JSON ویرایش می‌شود.\n\nاز ابتدا سئو‌محور: HTML5 معنادار، عنوان و توضیح یکتا برای هر صفحه، آدرس canonical، کارت‌های Open Graph و توییتر، وب‌اپ مانیفست و داده ساختاریافته JSON-LD."
+    },
+    "highlights": {
+      "en": [
+        "English (LTR) and Persian (RTL) with separate crawlable URLs",
+        "JSON-driven content — edit text without touching code",
+        "Semantic HTML, Open Graph and JSON-LD structured data",
+        "Accessibility-friendly and performance-focused"
+      ],
+      "fa": [
+        "انگلیسی (چپ‌به‌راست) و فارسی (راست‌به‌چپ) با آدرس‌های جدا و قابل خزش",
+        "محتوای مبتنی بر JSON — ویرایش متن بدون دست‌زدن به کد",
+        "HTML معنادار، Open Graph و داده ساختاریافته JSON-LD",
+        "سازگار با دسترس‌پذیری و متمرکز بر کارایی"
+      ]
+    },
+    "actionLinks": [
+      {
+        "type": "website",
+        "url": "https://jollypanda.ir",
+        "label": {
+          "en": "Visit website",
+          "fa": "مشاهده وب‌سایت"
+        }
+      }
+    ]
+  },
+  {
     "id": "dopamall",
     "type": "store",
     "year": "2026",
@@ -91,6 +142,248 @@
       {
         "type": "website",
         "url": "https://www.useffarahmand.com",
+        "label": {
+          "en": "Visit website",
+          "fa": "مشاهده وب‌سایت"
+        }
+      }
+    ]
+  },
+  {
+    "id": "abolfazl-nezami",
+    "type": "portfolio",
+    "year": "2026",
+    "domain": "me.jollypanda.ir/bio/abolfazl-nezami",
+    "image": "https://abolfazlnezami.ir/assets/images/og/og-image.jpg",
+    "tags": [
+      "Flutter",
+      "Dart",
+      "Node.js",
+      "Mobile development"
+    ],
+    "title": {
+      "en": "Abolfazl Nezami",
+      "fa": "Abolfazl Nezami"
+    },
+    "shortDescription": {
+      "en": "Personal portfolio of a Flutter & Node.js full-stack developer, with a terminal-style interface and a downloadable resume.",
+      "fa": "پورتفولیوی شخصی یک توسعه‌دهنده فول‌استک Flutter و Node.js، با رابط کاربری ترمینال‌مانند و رزومه قابل دانلود."
+    },
+    "fullDescription": {
+      "en": "A personal profile and portfolio for Abolfazl Nezami, a full-stack developer from Mashhad, Iran, who builds cross-platform mobile apps with Flutter and Dart and scalable backend services with Node.js.\n\nThe page is styled like a developer's terminal: visitors can read the about, experience, skills, certificates and education sections, type commands to explore, download the resume as a PDF and get in touch.",
+      "fa": "پروفایل و پورتفولیوی شخصی Abolfazl Nezami، توسعه‌دهنده فول‌استک اهل مشهد، که اپلیکیشن‌های موبایل چندپلتفرمی را با Flutter و Dart و سرویس‌های بک‌اندِ مقیاس‌پذیر را با Node.js می‌سازد.\n\nصفحه شبیه ترمینال یک برنامه‌نویس طراحی شده است: بازدیدکننده می‌تواند بخش‌های درباره، تجربه، مهارت‌ها، گواهینامه‌ها و تحصیلات را ببیند، با تایپ دستور صفحه را بگردد، رزومه را به‌صورت PDF دانلود کند و تماس بگیرد."
+    },
+    "highlights": {
+      "en": [
+        "Terminal-style interface with commands",
+        "Downloadable PDF resume",
+        "Experience, skills, certificates and education sections",
+        "English and Persian versions"
+      ],
+      "fa": [
+        "رابط کاربری ترمینال‌مانند همراه با دستورها",
+        "رزومه PDF قابل دانلود",
+        "بخش‌های تجربه، مهارت‌ها، گواهینامه‌ها و تحصیلات",
+        "نسخه‌های انگلیسی و فارسی"
+      ]
+    },
+    "actionLinks": [
+      {
+        "type": "website",
+        "url": "https://me.jollypanda.ir/bio/abolfazl-nezami/",
+        "label": {
+          "en": "Visit website",
+          "fa": "مشاهده وب‌سایت"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mohammadjavad-gholizade",
+    "type": "portfolio",
+    "year": "2026",
+    "domain": "me.jollypanda.ir/bio/mohammadjavad-gholizade",
+    "image": "https://usef-farahmand.github.io/mohammadjavad-gholizade/assets/images/og/og-image.jpg",
+    "tags": [
+      "Unity",
+      "XR",
+      "VR/AR",
+      "WebXR",
+      "Multiplayer"
+    ],
+    "title": {
+      "en": "Mohammad Javad Gholizade",
+      "fa": "Mohammad Javad Gholizade"
+    },
+    "shortDescription": {
+      "en": "Portfolio of a senior Unity developer and XR specialist: VR/AR training simulations, multiplayer systems and hyper-casual games.",
+      "fa": "پورتفولیوی یک توسعه‌دهنده ارشد Unity و متخصص XR: شبیه‌سازهای آموزشی VR/AR، سیستم‌های چندنفره و بازی‌های هایپرکژوال."
+    },
+    "fullDescription": {
+      "en": "A portfolio website for Mohammad Javad Gholizade, a senior Unity developer and XR specialist with 6+ years of experience building VR/AR training simulations, multiplayer systems and hyper-casual games for industrial, medical and educational clients.\n\nThe site presents his experience, selected projects, skills, education and awards in a game-inspired layout, in English and Persian.",
+      "fa": "وب‌سایت پورتفولیوی Mohammad Javad Gholizade، توسعه‌دهنده ارشد Unity و متخصص XR با بیش از ۶ سال تجربه در ساخت شبیه‌سازهای آموزشی VR/AR، سیستم‌های چندنفره و بازی‌های هایپرکژوال برای مشتریان صنعتی، پزشکی و آموزشی.\n\nسایت تجربه‌ها، پروژه‌های منتخب، مهارت‌ها، تحصیلات و جوایز او را در چیدمانی الهام‌گرفته از بازی و به دو زبان انگلیسی و فارسی نشان می‌دهد."
+    },
+    "highlights": {
+      "en": [
+        "Experience, selected projects, skills, education and awards",
+        "Game-inspired layout",
+        "English and Persian versions"
+      ],
+      "fa": [
+        "تجربه، پروژه‌های منتخب، مهارت‌ها، تحصیلات و جوایز",
+        "چیدمان الهام‌گرفته از بازی",
+        "نسخه‌های انگلیسی و فارسی"
+      ]
+    },
+    "actionLinks": [
+      {
+        "type": "website",
+        "url": "https://me.jollypanda.ir/bio/mohammadjavad-gholizade/",
+        "label": {
+          "en": "Visit website",
+          "fa": "مشاهده وب‌سایت"
+        }
+      }
+    ]
+  },
+  {
+    "id": "mojtaba-mofidinejad",
+    "type": "portfolio",
+    "year": "2026",
+    "domain": "me.jollypanda.ir/bio/mojtaba-mofidinejad",
+    "image": "https://me.jollypanda.ir/bio/mojtaba-mofidinejad/assets/images/og/og-image.jpg",
+    "tags": [
+      "Game design",
+      "Game production",
+      "Unity",
+      "Level design",
+      "Casual games"
+    ],
+    "title": {
+      "en": "Mojtaba MofidiNejad",
+      "fa": "Mojtaba MofidiNejad"
+    },
+    "shortDescription": {
+      "en": "Portfolio of a game designer and producer focused on casual mobile titles, from gameplay design to production and publishing.",
+      "fa": "پورتفولیوی یک طراح و تهیه‌کننده بازی با تمرکز بر بازی‌های کژوال موبایل، از طراحی گیم‌پلی تا تولید و انتشار."
+    },
+    "fullDescription": {
+      "en": "A portfolio website for Mojtaba MofidiNejad, a game designer and producer who creates casual mobile games with engaging, interactive mechanics — covering everything from gameplay design to production and publishing.\n\nVisitors can browse his experience, selected projects, skills and education, follow his LinkedIn and GitHub links and get in touch, in English or Persian.",
+      "fa": "وب‌سایت پورتفولیوی Mojtaba MofidiNejad، طراح و تهیه‌کننده بازی که بازی‌های کژوال موبایل با مکانیک‌های جذاب و تعاملی می‌سازد و از طراحی گیم‌پلی تا تولید و انتشار را پوشش می‌دهد.\n\nبازدیدکننده می‌تواند تجربه‌ها، پروژه‌های منتخب، مهارت‌ها و تحصیلات او را ببیند، لینک‌های LinkedIn و GitHub را دنبال کند و تماس بگیرد؛ به زبان انگلیسی یا فارسی."
+    },
+    "highlights": {
+      "en": [
+        "Experience, selected projects, skills and education",
+        "LinkedIn and GitHub links",
+        "English and Persian versions"
+      ],
+      "fa": [
+        "تجربه، پروژه‌های منتخب، مهارت‌ها و تحصیلات",
+        "لینک‌های LinkedIn و GitHub",
+        "نسخه‌های انگلیسی و فارسی"
+      ]
+    },
+    "actionLinks": [
+      {
+        "type": "website",
+        "url": "https://me.jollypanda.ir/bio/mojtaba-mofidinejad/",
+        "label": {
+          "en": "Visit website",
+          "fa": "مشاهده وب‌سایت"
+        }
+      }
+    ]
+  },
+  {
+    "id": "rasoul-sajjadi",
+    "type": "portfolio",
+    "year": "2026",
+    "domain": "me.jollypanda.ir/bio/rasoul-sajjadi",
+    "image": "https://me.jollypanda.ir/bio/rasoul-sajjadi/assets/img/og-cover.png",
+    "tags": [
+      "Level design",
+      "Unreal Engine 5",
+      "Multiplayer maps",
+      "Game design"
+    ],
+    "title": {
+      "en": "Rasoul Sajjadi",
+      "fa": "Rasoul Sajjadi"
+    },
+    "shortDescription": {
+      "en": "Portfolio of a level designer with 5+ years in the game industry: story-driven levels, Unreal Engine 5 blockouts and multiplayer maps.",
+      "fa": "پورتفولیوی یک لول دیزاینر با بیش از ۵ سال سابقه در صنعت بازی: لول‌های داستان‌محور، بلاک‌اوت در Unreal Engine 5 و نقشه‌های بازی چندنفره."
+    },
+    "fullDescription": {
+      "en": "A portfolio website for Rasoul Sajjadi, a level designer with 5+ years in the game industry. His work covers story-driven levels, blockouts in Unreal Engine 5, and maps and points of interest for multiplayer games.\n\nThe site uses a dark, neon visual style inspired by level blockouts, with about, experience, skills and contact sections in English and Persian.",
+      "fa": "وب‌سایت پورتفولیوی Rasoul Sajjadi، لول دیزاینر با بیش از ۵ سال سابقه در صنعت بازی. کارهای او شامل لول‌های داستان‌محور، بلاک‌اوت در Unreal Engine 5 و نقشه‌ها و نقاط مهم (POI) برای بازی‌های چندنفره است.\n\nسایت با استایل تیره و نئونیِ الهام‌گرفته از بلاک‌اوت لول‌ها و بخش‌های درباره، تجربه، مهارت‌ها و تماس، به دو زبان انگلیسی و فارسی طراحی شده است."
+    },
+    "highlights": {
+      "en": [
+        "Dark, neon visual style",
+        "About, experience, skills and contact sections",
+        "English and Persian versions"
+      ],
+      "fa": [
+        "استایل تیره و نئونی",
+        "بخش‌های درباره، تجربه، مهارت‌ها و تماس",
+        "نسخه‌های انگلیسی و فارسی"
+      ]
+    },
+    "actionLinks": [
+      {
+        "type": "website",
+        "url": "https://me.jollypanda.ir/bio/rasoul-sajjadi/",
+        "label": {
+          "en": "Visit website",
+          "fa": "مشاهده وب‌سایت"
+        }
+      }
+    ]
+  },
+  {
+    "id": "sepehr-chahnavi",
+    "type": "portfolio",
+    "year": "2026",
+    "domain": "me.jollypanda.ir/bio/sepehr-chahnavi",
+    "image": "https://usef-farahmand.github.io/sepehr-chahnavi/assets/images/og/og-image.jpg",
+    "tags": [
+      "Unity",
+      "C#",
+      "Multiplayer networking",
+      "AR/VR",
+      "Gameplay programming"
+    ],
+    "title": {
+      "en": "Sepehr Chahnavi",
+      "fa": "Sepehr Chahnavi"
+    },
+    "shortDescription": {
+      "en": "Portfolio of a senior game developer: gameplay programming, multiplayer networking and AR/VR, with a game-style design.",
+      "fa": "پورتفولیوی یک توسعه‌دهنده ارشد بازی: برنامه‌نویسی گیم‌پلی، شبکه چندنفره و AR/VR، با طراحی به سبک بازی."
+    },
+    "fullDescription": {
+      "en": "A portfolio website for Sepehr Chahnavi, a senior game developer specializing in gameplay programming, Unity, multiplayer networking and AR/VR — founder of Rebellis AI and former CTO of Bitnerd Game Studio.\n\nThe page has a game-style look, with about, experience, skills, personal projects and education sections, a contact area with his email and LinkedIn, and English and Persian versions.",
+      "fa": "وب‌سایت پورتفولیوی Sepehr Chahnavi، توسعه‌دهنده ارشد بازی با تخصص در برنامه‌نویسی گیم‌پلی، Unity، شبکه چندنفره و AR/VR — بنیان‌گذار Rebellis AI و CTO پیشین استودیوی بازی‌سازی Bitnerd.\n\nصفحه ظاهری به سبک بازی دارد و شامل بخش‌های درباره، تجربه، مهارت‌ها، پروژه‌های شخصی و تحصیلات، یک بخش تماس با ایمیل و LinkedIn و نسخه‌های انگلیسی و فارسی است."
+    },
+    "highlights": {
+      "en": [
+        "Game-style design",
+        "About, experience, skills, personal projects and education",
+        "Contact area with email and LinkedIn",
+        "English and Persian versions"
+      ],
+      "fa": [
+        "طراحی به سبک بازی",
+        "درباره، تجربه، مهارت‌ها، پروژه‌های شخصی و تحصیلات",
+        "بخش تماس با ایمیل و LinkedIn",
+        "نسخه‌های انگلیسی و فارسی"
+      ]
+    },
+    "actionLinks": [
+      {
+        "type": "website",
+        "url": "https://me.jollypanda.ir/bio/sepehr-chahnavi/",
         "label": {
           "en": "Visit website",
           "fa": "مشاهده وب‌سایت"

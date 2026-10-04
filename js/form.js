@@ -149,19 +149,36 @@
     };
   }
 
+  /** One POST to EmailJS. A request that hangs is cut after 15 s; a network failure (not an HTTP error) is retried once. */
   function sendEmailJS(templateId, params) {
     var e = cfg.email;
-    return fetch("https://api.emailjs.com/api/v1.0/email/send", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ service_id: e.serviceId, template_id: templateId, user_id: e.publicKey, template_params: params }),
-    }).then(function (res) {
-      if (res.ok) return;
-      return res.text().then(function (t) {
-        var hint = /recipient/i.test(t) ? " → open this template in EmailJS ▸ Settings and set \"To Email\" to {{to_email}}" : "";
-        throw new Error("EmailJS " + res.status + ": " + t + " [template " + templateId + "]" + hint);
+    function attempt(n) {
+      var ctrl = typeof AbortController === "function" ? new AbortController() : null;
+      var timer = ctrl ? setTimeout(function () { ctrl.abort(); }, 15000) : null;
+      return fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ service_id: e.serviceId, template_id: templateId, user_id: e.publicKey, template_params: params }),
+        signal: ctrl ? ctrl.signal : undefined,
+      }).then(function (res) {
+        if (timer) clearTimeout(timer);
+        if (res.ok) return;
+        return res.text().then(function (t) {
+          var hint = /recipient/i.test(t) ? " → open this template in EmailJS ▸ Settings and set \"To Email\" to {{to_email}}" : "";
+          if (/template id not found/i.test(t)) hint = " → this template id does not exist in your EmailJS account; check the EMAILJS_*TEMPLATE_ID variables";
+          var err = new Error("EmailJS " + res.status + ": " + t + " [template " + templateId + "]" + hint);
+          err.http = true;
+          throw err;
+        });
+      }, function (netErr) {                       // timeout / offline / blocked: the request never got an answer
+        if (timer) clearTimeout(timer);
+        if (n < 2) { console.warn("[form.js] api.emailjs.com did not answer (" + (netErr && netErr.name) + ") — retrying once…"); return delay(1500).then(function () { return attempt(n + 1); }); }
+        var err = new Error("api.emailjs.com is not reachable from this network (" + (netErr && netErr.name ? netErr.name : "network error") + ")");
+        err.network = true;
+        throw err;
       });
-    });
+    }
+    return attempt(1);
   }
 
   function mailtoFallback(p) {
@@ -219,8 +236,10 @@
     //  single template -> both use cfg.email.templateId; the template only contains {{{message_html}}}
     //  separate templates -> studio + confirmation templates, both with "To Email" = {{to_email}}
     var contact = cfg.contactEmail || "";
-    var studioSubject = "New website request " + ref + " — " + params.website_type + " / " + params.plan_name;
-    var confirmSubject = (useFa ? "پیش‌قرارداد " : "Your pre-contract ") + ref + " — " + confirmParams.website_type + " / " + confirmParams.plan_name;
+    // no "/", "&" or quotes in subjects: EmailJS HTML-escapes them if the template's Subject field uses {{subject}} instead of {{{subject}}}
+    var studioSubject = "New website request " + ref + " — " + params.website_type + " · " + params.plan_name;
+    var confirmSubject = (useFa ? "پیش‌قرارداد " : "Your pre-contract ") + ref + " — " + confirmParams.website_type + " · " + confirmParams.plan_name;
+    console.info("[form.js] sending the request notification to " + contact + " and the pre-contract to " + params.email);
     var studioMail, confirmMail, confirmId, studioId;
     if (single) {
       var TPL = window.JP_EMAIL_TEMPLATES;
@@ -242,7 +261,7 @@
       })
       .catch(function (e) {
         console.error("[form.js] EmailJS request failed:", e && e.message ? e.message : e);
-        showError(JP.t("form.err.send", { email: cfg.contactEmail }));
+        showError(JP.t(e && e.network ? "form.err.network" : "form.err.send", { email: cfg.contactEmail }));
       })
       .then(function () { setBusy(false); });
   }

@@ -18,9 +18,9 @@ These three HTML files are **not** pasted into EmailJS. The build embeds them in
 | Field | Value |
 |---|---|
 | To Email | `{{to_email}}` |
-| From Name | `{{from_name}}` |
+| From Name | `{{{from_name}}}` |
 | Reply To | `{{reply_to}}` |
-| Subject | `{{subject}}` |
+| Subject | `{{{subject}}}` |
 | Content (Code editor, HTML) | `{{{message_html}}}` — **three** braces, otherwise the HTML is shown as text |
 
 3. Set the Vercel environment variables `EMAILJS_SERVICE_ID`, `EMAILJS_PUBLIC_KEY` (Account → General) and `EMAILJS_TEMPLATE_ID`, then redeploy (or put `serviceId`, `publicKey`, `templateId` into `site.config.json` → `email` and run `node scripts/build-pages.mjs`).

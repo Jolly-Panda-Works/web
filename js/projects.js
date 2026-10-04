@@ -17,6 +17,8 @@
     if (text != null) n.textContent = text;
     return n;
   }
+  /** `image` in data/projects.json is a path inside the site (assets/projects/...) or a full https:// URL. */
+  function src(path) { return /^https?:\/\//i.test(path) ? path : JP.root + path; }
   function norm(s) { return String(s || "").toLowerCase().trim(); }
   function typeName(id) { return types[id] ? JP.pick(types[id].name) : JP.t("projects.other"); }
 
@@ -37,7 +39,7 @@
     var ph = el("div", "cover-ph");
     var bar = el("div", "cover-ph__bar"); bar.innerHTML = "<i></i><i></i><i></i>";
     ph.appendChild(bar);
-    ph.appendChild(el("div", "cover-ph__body", p.domain || JP.pick(p.title, "en")));
+    ph.appendChild(el("div", "cover-ph__body", p.domain && p.domain.length <= 24 ? p.domain : JP.pick(p.title, "en")));
     return ph;
   }
   function cover(p, host) {
@@ -45,7 +47,7 @@
       var img = new Image();
       img.alt = JP.pick(p.title); img.loading = "lazy"; img.decoding = "async";
       img.onerror = function () { host.textContent = ""; host.classList.add("project-card__media--ph"); host.appendChild(placeholder(p)); };
-      img.src = JP.root + p.image;
+      img.src = src(p.image);
       host.appendChild(img);
     } else {
       host.classList.add("project-card__media--ph");

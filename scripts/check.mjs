@@ -59,7 +59,7 @@ for (const p of json("data/projects.json")) {
   if (!p.id) err("a project has no id"); else if (seen.has(p.id)) err(`duplicate project id: ${p.id}`); else seen.add(p.id);
   if (!typeIds.has(p.type)) err(`project ${p.id}: unknown type "${p.type}" (use one of ${[...typeIds].join(", ")})`);
   biling(p.title, `project ${p.id} title`); biling(p.shortDescription, `project ${p.id} shortDescription`);
-  if (p.image && !fs.existsSync(path.join(ROOT, p.image))) err(`project ${p.id}: image not found: ${p.image}`);
+  if (p.image && !/^https?:\/\//i.test(p.image) && !fs.existsSync(path.join(ROOT, p.image))) err(`project ${p.id}: image not found: ${p.image}`);
   for (const l of p.actionLinks || []) if (!/^https?:\/\//.test(l.url || "")) err(`project ${p.id}: actionLinks url must start with http(s)://`);
   for (const g of p.gallery || []) if (!fs.existsSync(path.join(ROOT, g.src))) err(`project ${p.id}: gallery image not found: ${g.src}`);
 }

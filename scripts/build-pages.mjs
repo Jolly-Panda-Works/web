@@ -250,6 +250,7 @@ write("manifest.json", JSON.stringify({
 }, null, 2) + "\n");
 
 const okId = (k) => cfg.email[k] && !String(cfg.email[k]).startsWith("YOUR_");
+console.log(`Request notifications go to: ${cfg.contactEmail}${env.CONTACT_EMAIL ? "" : "  (default — set CONTACT_EMAIL in Vercel to receive them at your own address)"}`);
 const emailReady = okId("serviceId") && okId("publicKey") && (okId("templateId") || (okId("studioTemplateId") && okId("confirmTemplateId")));
 if (!emailReady) console.warn("⚠  EmailJS is NOT configured: the request form will open the visitor's mail app instead of sending emails. See docs/VERCEL.fa.md.");
 console.log(`Built ${count} pages + 404.html, config.js, sitemap.xml, robots.txt, manifest.json  (site: ${SITE})`);
