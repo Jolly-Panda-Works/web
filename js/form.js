@@ -94,7 +94,7 @@
       site_language: JP.lang === "fa" ? "Persian" : "English",
       name: name,
       email: email,
-      to_email: email,           // confirmation template sends to this address
+      to_email: email,           // recipient of the CONFIRMATION email (the visitor)
       to_name: name,
       reply_to: cfg.contactEmail || "",
       studio_email: cfg.contactEmail || "",
@@ -128,7 +128,10 @@
       body: JSON.stringify({ service_id: e.serviceId, template_id: templateId, user_id: e.publicKey, template_params: params }),
     }).then(function (res) {
       if (res.ok) return;
-      return res.text().then(function (t) { throw new Error("EmailJS " + res.status + ": " + t); });
+      return res.text().then(function (t) {
+        var hint = /recipient/i.test(t) ? " → open this template in EmailJS ▸ Settings and set \"To Email\" to {{to_email}}" : "";
+        throw new Error("EmailJS " + res.status + ": " + t + " [template " + templateId + "]" + hint);
+      });
     });
   }
 
@@ -177,8 +180,12 @@
       return;
     }
 
+    // Both templates use {{to_email}} as their "To Email": the studio email gets the studio
+    // address, the confirmation email gets the visitor's address.
+    var studioParams = Object.assign({}, params, { to_email: cfg.contactEmail || "", to_name: "Jolly Panda Studio" });
+
     setBusy(true);
-    sendEmailJS(cfg.email.studioTemplateId, params)
+    sendEmailJS(cfg.email.studioTemplateId, studioParams)
       .then(function () { return delay(1200); })                      // EmailJS allows 1 request / second
       .then(function () { return sendEmailJS(cfg.email.confirmTemplateId, params).then(function () { return true; }, function (e) { console.warn("[form.js] confirmation failed", e); return false; }); })
       .then(function (confirmed) {

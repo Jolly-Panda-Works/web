@@ -16,9 +16,9 @@ The request form sends **two emails** through [EmailJS](https://www.emailjs.com/
 
 | Field | Value |
 |---|---|
-| To Email | the studio inbox, e.g. `sales@jollypanda.ir` |
+| To Email | `{{to_email}}` (the form fills in the studio address from `contactEmail` — default `sales@jollypanda.ir`) |
 | From Name | `Jolly Panda Web` |
-| Reply To | `{{email}}` |
+| Reply To | `{{email}}` (the visitor, so you can reply directly) |
 | Subject | `New website request {{reference}} — {{website_type}} / {{plan_name}}` |
 
 **Customer confirmation + pre-contract**
@@ -29,6 +29,8 @@ The request form sends **two emails** through [EmailJS](https://www.emailjs.com/
 | From Name | `Jolly Panda Studio` |
 | Reply To | `{{reply_to}}` |
 | Subject | `Your pre-contract {{reference}} — {{website_type}} / {{plan_name}}` |
+
+> **Both templates must have `{{to_email}}` in the *To Email* field.** An empty or mistyped *To Email* makes EmailJS answer `422 The recipients address is corrupted`.
 
 3. Copy the two **Template IDs** and your **Public Key** (Account → General) into `site.config.json` → `email`, then run `node scripts/build-pages.mjs` and commit.
 4. In EmailJS **Account → Security** restrict the allowed domains to your site's domain, so the public key cannot be used from other sites.

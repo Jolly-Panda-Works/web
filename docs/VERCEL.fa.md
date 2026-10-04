@@ -29,11 +29,11 @@
 2. در **Email Templates** دو Template بسازید. محتوای هرکدام را در ویرایشگر کد (حالت HTML) از فایل‌های پوشه `email-templates/` جایگذاری کنید:
    - `studio-notification.html` ← ایمیلی که به خودتان می‌رسد
    - `customer-confirmation-precontract.html` ← ایمیلی که به مشتری می‌رود (تأییدیه + پیش‌قرارداد انگلیسی)
-3. تنظیمات هر Template (قسمت Settings سمت راست):
+3. تنظیمات هر Template (قسمت Settings سمت راست). **در هر دو Template فیلد To Email باید دقیقاً `{{to_email}}` باشد** (سایت خودش آدرس شما را برای Template اول و آدرس مشتری را برای Template دوم می‌فرستد؛ آدرس شما از `CONTACT_EMAIL` یا `contactEmail` در `site.config.json` می‌آید، پیش‌فرض `sales@jollypanda.ir`):
 
 | | Template شما | Template مشتری |
 |---|---|---|
-| To Email | ایمیل خودتان (مثلاً `sales@jollypanda.ir`) | `{{to_email}}` |
+| To Email | `{{to_email}}` | `{{to_email}}` |
 | From Name | `Jolly Panda Web` | `Jolly Panda Studio` |
 | Reply To | `{{email}}` | `{{reply_to}}` |
 | Subject | `New website request {{reference}} — {{website_type}} / {{plan_name}}` | `Your pre-contract {{reference}} — {{website_type}} / {{plan_name}}` |
@@ -72,6 +72,7 @@
 | خطای 400 با «The Public Key is invalid» یا Template not found | شناسه‌ها اشتباه کپی شده‌اند. |
 | خطای 412 یا مشکل احراز هویت Gmail | اتصال Service منقضی شده؛ در EmailJS دوباره Service را وصل (Reconnect) کنید. |
 | ایمیل شما می‌رسد ولی مشتری نه | در Template مشتری، فیلد **To Email** باید دقیقاً `{{to_email}}` باشد. |
+| خطای **422: The recipients address is corrupted** | فیلد **To Email** در Template خالی است یا درست نوشته نشده (فاصله اضافه، اسم متغیر اشتباه مثل `{{to_mail}}`، یا آدرس ناقص). در EmailJS ← Email Templates ← همان Template ← Settings، مقدار To Email را روی `{{to_email}}` بگذارید و Save کنید. شناسه Template ناقص در پیام خطای Console نوشته شده تا بفهمید کدام Template است. |
 | از ایران بدون فیلترشکن کار نمی‌کند | ارسال از مرورگر بازدیدکننده به `api.emailjs.com` انجام می‌شود؛ اگر برای بعضی کاربران در دسترس نیست، فرم پیام «مستقیم ایمیل بزنید» را نشان می‌دهد. |
 
 ## ۳. دامنه اختصاصی
