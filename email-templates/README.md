@@ -1,42 +1,38 @@
 # Email templates (EmailJS)
 
-The request form sends **two emails** through [EmailJS](https://www.emailjs.com/) (free plan: 200 emails/month ≈ 100 requests):
+The request form sends **two emails** through [EmailJS](https://www.emailjs.com/) (free plan: 2 templates, 200 emails/month ≈ 100 requests):
 
-| Template file | Goes to | Purpose |
+| File | Goes to | Purpose |
 |---|---|---|
 | `studio-notification.html` | the studio inbox | the full request (always English) |
 | `customer-confirmation-precontract.html` | visitors of the **English** site | confirmation + pre-contract, **fully in English** |
 | `customer-confirmation-precontract.fa.html` | visitors of the **Persian** site | the same pre-contract **in Persian** (right-to-left, Jalali date) |
 
-That makes **three** EmailJS templates. The site picks the pre-contract by the language of the page the visitor used. If the Persian template id is not configured, Persian visitors get the English one.
+## Setup with ONE EmailJS template (recommended)
 
-## Create the two templates in EmailJS
+These three HTML files are **not** pasted into EmailJS. The build embeds them in `js/email-templates.js`; the page fills in the visitor's data and sends the finished HTML to EmailJS as a variable. So EmailJS needs a single, generic template:
 
 1. **Email Services → Add new service** (Gmail / Outlook / SMTP). Note the **Service ID**.
-2. **Email Templates → Create new template**, then in the editor switch to the **code editor** and paste the HTML file. Settings:
-
-**Studio notification**
-
-| Field | Value |
-|---|---|
-| To Email | `{{to_email}}` (the form fills in the studio address from `contactEmail` — default `sales@jollypanda.ir`) |
-| From Name | `Jolly Panda Web` |
-| Reply To | `{{email}}` (the visitor, so you can reply directly) |
-| Subject | `New website request {{reference}} — {{website_type}} / {{plan_name}}` |
-
-**Customer confirmation + pre-contract** (create it twice: English file and Persian file, same settings; for the Persian one use the subject `پیش‌قرارداد {{reference}} — {{website_type}} / {{plan_name}}`)
+2. **Email Templates → Create new template**, with these settings:
 
 | Field | Value |
 |---|---|
 | To Email | `{{to_email}}` |
-| From Name | `Jolly Panda Studio` |
+| From Name | `{{from_name}}` |
 | Reply To | `{{reply_to}}` |
-| Subject | `Your pre-contract {{reference}} — {{website_type}} / {{plan_name}}` |
+| Subject | `{{subject}}` |
+| Content (Code editor, HTML) | `{{{message_html}}}` — **three** braces, otherwise the HTML is shown as text |
 
-> **Both templates must have `{{to_email}}` in the *To Email* field.** An empty or mistyped *To Email* makes EmailJS answer `422 The recipients address is corrupted`.
+3. Set the Vercel environment variables `EMAILJS_SERVICE_ID`, `EMAILJS_PUBLIC_KEY` (Account → General) and `EMAILJS_TEMPLATE_ID`, then redeploy (or put `serviceId`, `publicKey`, `templateId` into `site.config.json` → `email` and run `node scripts/build-pages.mjs`).
+4. In EmailJS **Account → Security** restrict the allowed domains to your site's domain.
 
-3. Copy the three **Template IDs** and your **Public Key** (Account → General) into `site.config.json` → `email` (`studioTemplateId`, `confirmTemplateId`, `confirmTemplateIdFa`) — or set the Vercel environment variables `EMAILJS_STUDIO_TEMPLATE_ID`, `EMAILJS_CONFIRM_TEMPLATE_ID`, `EMAILJS_CONFIRM_TEMPLATE_ID_FA` — then run `node scripts/build-pages.mjs` and commit.
-4. In EmailJS **Account → Security** restrict the allowed domains to your site's domain, so the public key cannot be used from other sites.
+The same template sends all emails: the studio notice goes to `contactEmail` (reply-to = the visitor), the pre-contract goes to the visitor (reply-to = the studio). Persian visitors get the Persian pre-contract, everyone else the English one — decided by the page language, no extra template needed.
+
+Edit the wording in the three HTML files, then run `node scripts/build-pages.mjs` (Vercel does it on every deploy).
+
+## Older setup: separate templates (optional)
+
+Without `templateId` the form uses separate EmailJS templates (`studioTemplateId`, `confirmTemplateId`, and `confirmTemplateIdFa` for Persian) with the HTML files above pasted into the Code editor. Every one needs *To Email* = `{{to_email}}`; an empty or mistyped value makes EmailJS answer `422 The recipients address is corrupted`. This needs three templates, so it does not fit the free plan if you want Persian pre-contracts.
 
 ## Variables the form sends
 

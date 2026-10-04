@@ -1,11 +1,13 @@
 /* ==========================================================================
    Jolly Panda Web — form.js
    Validates the request form and sends TWO emails through EmailJS
-   (https://www.emailjs.com — works from a static GitHub Pages site):
-     1. a notification to the studio (template: studioTemplateId), and
+   (https://www.emailjs.com — works from any static host):
+     1. a notification to the studio, and
      2. a confirmation to the visitor that contains the PRE-CONTRACT pre-filled with their
-        request: in Persian for visitors of the Persian site (template: confirmTemplateIdFa),
-        in English otherwise (template: confirmTemplateId).
+        request: in Persian for visitors of the Persian site, in English otherwise.
+   Recommended setup: ONE EmailJS template (templateId) whose body is just {{{message_html}}};
+   the page fills js/email-templates.js (built from /email-templates) and sends the finished HTML.
+   Older setup (still supported): separate templates studioTemplateId / confirmTemplateId / confirmTemplateIdFa.
    The template HTML lives in
    /email-templates. If EmailJS is not configured yet, the form falls back to opening
    the visitor's mail app with the request ready to send.
@@ -29,12 +31,15 @@
   };
 
   function $(id) { return document.getElementById(id); }
+  function ok(v) { return !!v && String(v).indexOf("YOUR_") !== 0; }
+  /** ONE EmailJS template for every email (recommended): the page builds the finished HTML and sends it as {{{message_html}}}. */
+  function singleMode() { var e = cfg.email || {}; return ok(e.templateId) && !!window.JP_EMAIL_TEMPLATES; }
   function isConfigured() {
     var e = cfg.email || {};
-    return ["serviceId", "publicKey", "studioTemplateId", "confirmTemplateId"].every(function (k) {
-      return e[k] && String(e[k]).indexOf("YOUR_") !== 0;
-    });
+    return ok(e.serviceId) && ok(e.publicKey) && (ok(e.templateId) || (ok(e.studioTemplateId) && ok(e.confirmTemplateId)));
   }
+  var esc = function (s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); };
+  function fill(tpl, params) { return tpl.replace(/\{\{(\w+)\}\}/g, function (m, k) { return esc(params[k]); }); }
   function faTemplateReady() {
     var id = (cfg.email || {}).confirmTemplateIdFa;
     return JP.lang === "fa" && !!id && String(id).indexOf("YOUR_") !== 0;
@@ -91,7 +96,7 @@
    * lang "fa": values in Persian for the Persian pre-contract — only used when the visitor is on
    *            the Persian site AND a Persian template id is configured (JP.dict is the Persian dictionary then).
    */
-  function buildParams(lang) {
+  function buildParams(lang, ref) {
     var fa = lang === "fa";
     var ty = typeById(JP.selection.type), pl = planById(JP.selection.plan), row = ty.rows[pl.id];
     var email = $("f-email").value.trim(), name = $("f-name").value.trim();
@@ -113,7 +118,7 @@
     var L = fa ? "fa" : "en";
     var domainKey = $("f-domain").value;
     return {
-      reference: reference(),
+      reference: ref,
       request_date: dateText,
       site_language: fa ? "Persian" : "English",
       name: name,
@@ -195,10 +200,12 @@
       var pk = $("packages"); if (pk) pk.scrollIntoView({ behavior: "smooth" });
       return;
     }
-    var useFa = faTemplateReady();                       // Persian site + Persian template configured -> Persian pre-contract
-    if (JP.lang === "fa" && !useFa) console.warn("[form.js] No Persian pre-contract template configured (EMAILJS_CONFIRM_TEMPLATE_ID_FA) — sending the English one.");
-    var params = buildParams("en");                      // studio notice + mail-app fallback: always English
-    var confirmParams = useFa ? buildParams("fa") : params;
+    var ref = reference();                               // the same reference number in every email of this request
+    var single = singleMode();
+    var useFa = single ? JP.lang === "fa" : faTemplateReady();   // single template: always possible; separate templates: only if the Persian one exists
+    if (!single && JP.lang === "fa" && !useFa) console.warn("[form.js] No Persian pre-contract template configured (EMAILJS_CONFIRM_TEMPLATE_ID_FA) — sending the English one.");
+    var params = buildParams("en", ref);                 // studio notice + mail-app fallback: always English
+    var confirmParams = useFa ? buildParams("fa", ref) : params;
     var confirmTemplate = useFa ? cfg.email.confirmTemplateIdFa : cfg.email.confirmTemplateId;
 
     if (!isConfigured()) {          // EmailJS not set up yet -> open the visitor's mail app
@@ -208,14 +215,28 @@
       return;
     }
 
-    // Both templates use {{to_email}} as their "To Email": the studio email gets the studio
-    // address, the confirmation email gets the visitor's address.
-    var studioParams = Object.assign({}, params, { to_email: cfg.contactEmail || "", to_name: "Jolly Panda Studio" });
+    // Two requests, 1.2 s apart (EmailJS allows 1 per second):
+    //  single template -> both use cfg.email.templateId; the template only contains {{{message_html}}}
+    //  separate templates -> studio + confirmation templates, both with "To Email" = {{to_email}}
+    var contact = cfg.contactEmail || "";
+    var studioSubject = "New website request " + ref + " — " + params.website_type + " / " + params.plan_name;
+    var confirmSubject = (useFa ? "پیش‌قرارداد " : "Your pre-contract ") + ref + " — " + confirmParams.website_type + " / " + confirmParams.plan_name;
+    var studioMail, confirmMail, confirmId, studioId;
+    if (single) {
+      var TPL = window.JP_EMAIL_TEMPLATES;
+      studioId = confirmId = cfg.email.templateId;
+      studioMail = { to_email: contact, from_name: "Jolly Panda Web", reply_to: params.email, subject: studioSubject, message_html: fill(TPL.studio, params) };
+      confirmMail = { to_email: params.email, from_name: "Jolly Panda Studio", reply_to: contact, subject: confirmSubject, message_html: fill(useFa ? TPL.customer_fa : TPL.customer_en, confirmParams) };
+    } else {
+      studioId = cfg.email.studioTemplateId; confirmId = confirmTemplate;
+      studioMail = Object.assign({}, params, { to_email: contact, to_name: "Jolly Panda Studio" });
+      confirmMail = confirmParams;
+    }
 
     setBusy(true);
-    sendEmailJS(cfg.email.studioTemplateId, studioParams)
+    sendEmailJS(studioId, studioMail)
       .then(function () { return delay(1200); })                      // EmailJS allows 1 request / second
-      .then(function () { return sendEmailJS(confirmTemplate, confirmParams).then(function () { return true; }, function (e) { console.warn("[form.js] confirmation failed", e); return false; }); })
+      .then(function () { return sendEmailJS(confirmId, confirmMail).then(function () { return true; }, function (e) { console.warn("[form.js] confirmation failed", e); return false; }); })
       .then(function (confirmed) {
         showSuccess(JP.t(confirmed ? "form.ok.text" : "form.ok.textNoConfirm", { email: params.email }));
       })

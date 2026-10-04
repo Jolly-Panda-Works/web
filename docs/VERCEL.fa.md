@@ -21,50 +21,52 @@
 
 اگر در Console مرورگر (کلید F12) این پیام را ببینید، همین مشکل است: `EmailJS is not configured`.
 
-### راه‌حل (روش پیشنهادی: متغیرهای محیطی Vercel)
+### راه‌حل (با یک Template و متغیرهای محیطی Vercel)
 
-**الف) ساخت Service و دو Template در EmailJS** (یک‌بار):
+**الف) ساخت Service و یک Template در EmailJS** (یک‌بار):
+
+> پلن رایگان EmailJS فقط دو Template اجازه می‌دهد. سایت طوری ساخته شده که **فقط یک Template** لازم دارد: متن کامل هر سه ایمیل (ایمیل استودیو، پیش‌قرارداد انگلیسی، پیش‌قرارداد فارسی) داخل خود سایت آماده می‌شود و فقط به‌عنوان یک متغیر برای EmailJS فرستاده می‌شود.
 
 1. در [emailjs.com](https://www.emailjs.com) ثبت‌نام کنید و **Email Services ← Add New Service** را بزنید (مثلاً Gmail یا Outlook). مقدار **Service ID** را یادداشت کنید.
-2. در **Email Templates** **سه** Template بسازید. محتوای هرکدام را در ویرایشگر کد (حالت HTML) از فایل‌های پوشه `email-templates/` جایگذاری کنید:
-   - `studio-notification.html` ← ایمیلی که به خودتان می‌رسد (همیشه انگلیسی)
-   - `customer-confirmation-precontract.html` ← پیش‌قرارداد برای مشتری‌هایی که **سایت انگلیسی** را دیده‌اند (کاملاً انگلیسی، بدون هیچ متن فارسی)
-   - `customer-confirmation-precontract.fa.html` ← پیش‌قرارداد **فارسی** برای مشتری‌هایی که **سایت فارسی** را دیده‌اند
-3. تنظیمات هر Template (قسمت Settings سمت راست). **در هر دو Template فیلد To Email باید دقیقاً `{{to_email}}` باشد** (سایت خودش آدرس شما را برای Template اول و آدرس مشتری را برای Template دوم می‌فرستد؛ آدرس شما از `CONTACT_EMAIL` یا `contactEmail` در `site.config.json` می‌آید، پیش‌فرض `sales@jollypanda.ir`):
+2. در **Email Templates ← Create New Template** یک Template بسازید و تنظیمات سمت راست (Settings) را دقیقاً این‌طور پر کنید:
 
-| | Template شما | دو Template مشتری (انگلیسی و فارسی) |
-|---|---|---|
-| To Email | `{{to_email}}` | `{{to_email}}` |
-| From Name | `Jolly Panda Web` | `Jolly Panda Studio` |
-| Reply To | `{{email}}` | `{{reply_to}}` |
-| Subject | `New website request {{reference}} — {{website_type}} / {{plan_name}}` | انگلیسی: `Your pre-contract {{reference}} — {{website_type}} / {{plan_name}}`<br>فارسی: `پیش‌قرارداد {{reference}} — {{website_type}} / {{plan_name}}` |
+| فیلد | مقدار |
+|---|---|
+| To Email | `{{to_email}}` |
+| From Name | `{{from_name}}` |
+| Reply To | `{{reply_to}}` |
+| Subject | `{{subject}}` |
 
-4. **Template ID** هر سه و **Public Key** (از Account ← General) را یادداشت کنید.
+3. بدنه ایمیل (Content) را روی **Code Editor** (حالت HTML) بگذارید، همه چیز را پاک کنید و فقط همین یک خط را بنویسید. **سه‌تایی بودن آکولادها مهم است**؛ با دوتایی، کدهای HTML به‌صورت متن خام نمایش داده می‌شود:
+
+```
+{{{message_html}}}
+```
+
+4. Save کنید و **Template ID** و **Public Key** (از Account ← General) را یادداشت کنید.
 
 **ب) ثبت در Vercel:**
 
-در Vercel وارد پروژه شوید: **Settings ← Environment Variables** و این پنج متغیر را بسازید (برای Production و Preview):
+در Vercel وارد پروژه شوید: **Settings ← Environment Variables** و این سه متغیر را بسازید (برای Production و Preview):
 
 | نام | مقدار |
 |---|---|
 | `EMAILJS_SERVICE_ID` | Service ID |
 | `EMAILJS_PUBLIC_KEY` | Public Key |
-| `EMAILJS_STUDIO_TEMPLATE_ID` | Template ID ایمیل خودتان |
-| `EMAILJS_CONFIRM_TEMPLATE_ID` | Template ID پیش‌قرارداد **انگلیسی** |
-| `EMAILJS_CONFIRM_TEMPLATE_ID_FA` | Template ID پیش‌قرارداد **فارسی** |
+| `EMAILJS_TEMPLATE_ID` | Template ID |
 
 اختیاری: `CONTACT_EMAIL` (ایمیل دریافت درخواست‌ها، پیش‌فرض `sales@jollypanda.ir`).
 
 > **مهم:** متغیرهای محیطی فقط روی build‌های جدید اثر می‌گذارند. بعد از ذخیره، به **Deployments** بروید، روی آخرین deploy سه‌نقطه را بزنید و **Redeploy** کنید.
 
-(روش جایگزین: همین مقدارها را در فایل `site.config.json` بخش `email` بنویسید، `node scripts/build-pages.mjs` را اجرا و کامیت کنید.)
+سایت دو ایمیل می‌فرستد: یکی به `CONTACT_EMAIL` (درخواست کامل) و یکی به مشتری (پیش‌قرارداد، فارسی برای سایت فارسی و انگلیسی برای سایت انگلیسی). Template شما همان یک Template است و **Template دومِ رایگان خالی می‌ماند**.
 
-**ج) محدود کردن دامنه در EmailJS:** در EmailJS به **Account ← Security** بروید و دامنه سایت را به‌عنوان دامنه مجاز ثبت کنید. Public Key داخل سایت دیده می‌شود و این کار جلوی استفاده دیگران را می‌گیرد.
-
-> اگر `EMAILJS_CONFIRM_TEMPLATE_ID_FA` را نگذارید، مشتری‌های سایت فارسی هم پیش‌قرارداد انگلیسی می‌گیرند (در Console هشدار می‌دهد).
+**روش قدیمی (اختیاری):** اگر `EMAILJS_TEMPLATE_ID` را نگذارید و به‌جای آن `EMAILJS_STUDIO_TEMPLATE_ID` و `EMAILJS_CONFIRM_TEMPLATE_ID` (و برای فارسی `EMAILJS_CONFIRM_TEMPLATE_ID_FA`) را بگذارید، سایت با Templateهای جدا کار می‌کند؛ محتوای HTML آن‌ها در پوشه `email-templates/` است و در هر کدام To Email باید `{{to_email}}` باشد. این روش به سه Template نیاز دارد (روی پلن رایگان فقط دو تا ممکن است).
 
 ### امضای هم‌بنیان‌گذار
-بلوک امضای استودیو در پیش‌قرارداد، نام **Usef Farahmand** با سمت **Co-founder**، تاریخ همان روز درخواست و تصویر امضا را نشان می‌دهد. تصویر امضا باید فایل `assets/signature/usef-farahmand.png` باشد (PNG با پس‌زمینه شفاف، جوهر تیره، حدود ۶۰۰×۲۰۰ پیکسل). کلاینت‌های ایمیل فقط تصویری را نشان می‌دهند که لینک عمومی داشته باشد، پس فایل از خود سایت سرو می‌شود؛ یعنی هر کس آدرس آن را بداند می‌تواند آن را دانلود کند. تا وقتی فایل نباشد، فقط نام، سمت و تاریخ نمایش داده می‌شود. برای درست‌بودن آدرس تصویر، `SITE_URL` باید دامنه نهایی باشد.
+بلوک امضای استودیو در پیش‌قرارداد، نام **Usef Farahmand** با سمت **Co-founder**، تاریخ همان روز درخواست و تصویر امضا را نشان می‌دهد. تصویر امضا در `assets/signature/usef-farahmand.png` است. کلاینت‌های ایمیل فقط تصویری را نشان می‌دهند که لینک عمومی داشته باشد، پس فایل از خود سایت سرو می‌شود؛ یعنی هر کس آدرس آن را بداند می‌تواند آن را دانلود کند. برای درست‌بودن آدرس تصویر، `SITE_URL` باید دامنه نهایی باشد.
+
+**ج) محدود کردن دامنه در EmailJS:** در EmailJS به **Account ← Security** بروید و دامنه سایت را به‌عنوان دامنه مجاز ثبت کنید. Public Key داخل سایت دیده می‌شود و این کار جلوی استفاده دیگران را می‌گیرد.
 
 ### تست
 سایت را باز کنید (بهتر است با Ctrl+F5)، یک پکیج انتخاب و فرم را پر کنید. باید پیام «درخواست ارسال شد» ببینید و دو ایمیل برسد: یکی برای شما، یکی برای مشتری (پوشه Spam را هم نگاه کنید).
@@ -79,8 +81,11 @@
 | خطای 400 با «The Public Key is invalid» یا Template not found | شناسه‌ها اشتباه کپی شده‌اند. |
 | خطای 412 یا مشکل احراز هویت Gmail | اتصال Service منقضی شده؛ در EmailJS دوباره Service را وصل (Reconnect) کنید. |
 | تصویر امضا در ایمیل دیده نمی‌شود | فایل `assets/signature/usef-farahmand.png` را در ریپو نگذاشته‌اید، یا `SITE_URL` درست نیست. آدرس `/assets/signature/usef-farahmand.png` را روی سایت خودتان باز کنید؛ باید تصویر را ببینید. |
-| ایمیل شما می‌رسد ولی مشتری نه | در Template مشتری، فیلد **To Email** باید دقیقاً `{{to_email}}` باشد. |
-| خطای **422: The recipients address is corrupted** | فیلد **To Email** در Template خالی است یا درست نوشته نشده (فاصله اضافه، اسم متغیر اشتباه مثل `{{to_mail}}`، یا آدرس ناقص). در EmailJS ← Email Templates ← همان Template ← Settings، مقدار To Email را روی `{{to_email}}` بگذارید و Save کنید. شناسه Template ناقص در پیام خطای Console نوشته شده تا بفهمید کدام Template است. |
+| ایمیل شما می‌رسد ولی مشتری نه | فیلد **To Email** در Template باید دقیقاً `{{to_email}}` باشد (برای هر دو ایمیل از همان یک Template استفاده می‌شود). |
+| خطای **422: The recipients address is corrupted** | فیلد **To Email** در Template خالی است یا درست نوشته نشده (فاصله اضافه، اسم متغیر اشتباه مثل `{{to_mail}}`، یا آدرس ناقص). در EmailJS ← Email Templates ← همان Template ← Settings، مقدار To Email را روی `{{to_email}}` بگذارید و Save کنید. شناسه Template ناقص در پیام خطای Console نوشته شده. |
+| ایمیل می‌رسد ولی به‌جای متن زیبا، کدهای `<table ...>` دیده می‌شود | در بدنه Template به‌جای `{{{message_html}}}` (سه‌تایی) از `{{message_html}}` (دوتایی) استفاده شده. |
+| ایمیل می‌رسد ولی بدنه‌اش خالی است | بدنه Template باید دقیقاً `{{{message_html}}}` باشد؛ نام متغیر را درست بنویسید (حروف کوچک، با underscore). |
+| موضوع (Subject) ایمیل خالی یا `{{subject}}` است | در Template فیلد Subject باید دقیقاً `{{subject}}` باشد. |
 | از ایران بدون فیلترشکن کار نمی‌کند | ارسال از مرورگر بازدیدکننده به `api.emailjs.com` انجام می‌شود؛ اگر برای بعضی کاربران در دسترس نیست، فرم پیام «مستقیم ایمیل بزنید» را نشان می‌دهد. |
 
 ## ۳. دامنه اختصاصی
