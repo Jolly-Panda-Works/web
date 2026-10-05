@@ -98,109 +98,109 @@
           {
             "@type": "Offer",
             "name": "Blog — Economy plan",
-            "price": 224,
+            "price": 212,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Blog — Special plan",
-            "price": 539,
+            "price": 509,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Blog — Custom plan",
-            "price": 1259,
+            "price": 1189,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Portfolio — Economy plan",
-            "price": 269,
+            "price": 254,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Portfolio — Special plan",
-            "price": 629,
+            "price": 594,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Portfolio — Custom plan",
-            "price": 1439,
+            "price": 1359,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Corporate — Economy plan",
-            "price": 404,
+            "price": 382,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Corporate — Special plan",
-            "price": 899,
+            "price": 849,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Corporate — Custom plan",
-            "price": 2159,
+            "price": 2039,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Educational — Economy plan",
-            "price": 629,
+            "price": 594,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Educational — Special plan",
-            "price": 1439,
+            "price": 1359,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Educational — Custom plan",
-            "price": 3419,
+            "price": 3229,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "News — Economy plan",
-            "price": 719,
+            "price": 679,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "News — Special plan",
-            "price": 1619,
+            "price": 1529,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "News — Custom plan",
-            "price": 3779,
+            "price": 3569,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Online store — Economy plan",
-            "price": 809,
+            "price": 764,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Online store — Special plan",
-            "price": 1799,
+            "price": 1699,
             "priceCurrency": "USD"
           },
           {
             "@type": "Offer",
             "name": "Online store — Custom plan",
-            "price": 4499,
+            "price": 4249,
             "priceCurrency": "USD"
           }
         ]
@@ -268,6 +268,18 @@
 <div class="table-wrap" data-reveal="">
 <table class="price-table" id="priceTable"></table>
 </div>
+<div class="download-box" data-reveal="">
+<div class="download-box__text">
+<h3 data-i18n="packages.download.title">Download the price list</h3>
+<p data-i18n="packages.download.desc">Our PowerPoint brochure with the latest prices and discount — in English (US dollars) or Persian (prices in Rial at today's rate).</p>
+</div>
+<div class="download-box__actions">
+<button class="btn btn-secondary" data-brochure="en" type="button"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span data-label="" data-i18n="packages.download.en">English brochure</span></button>
+<button class="btn btn-secondary" data-brochure="fa" type="button"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg><span data-label="" data-i18n="packages.download.fa">Persian brochure</span></button>
+</div>
+<p class="download-box__format" data-i18n="packages.download.format">PowerPoint (.pptx)</p>
+<p class="form-status form-status--error" hidden="" id="brochureStatus" role="alert"></p>
+</div>
 </div>
 </section>
 
@@ -291,7 +303,7 @@
 <li><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="packages.notes.n2">Prices are in US dollars and are the starting point of each plan.</span></li>
 <li><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="packages.notes.n3">Domain and hosting costs are charged separately from the plans.</span></li>
 <li><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="packages.notes.n4">All plans include responsive design (mobile and tablet) and an SSL certificate.</span></li>
-<li><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="packages.notes.n5">The discount is already applied to every price shown on this page.</span></li>
+<li data-discount-note=""><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg><span data-i18n="packages.notes.n5">The discount is already applied to every price shown on this page.</span></li>
 </ul>
 </aside>
 </div>
@@ -434,6 +446,8 @@
 
 <script defer="" src="js/pricing.js"></script>
 <script defer="" src="js/packages.js"></script>
+<script defer="" src="js/brochure.js"></script>
+<script defer="" src="js/email-templates.js"></script>
 <script defer="" src="js/form.js"></script>
 </body>
 </html>

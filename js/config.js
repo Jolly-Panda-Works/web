@@ -9,5 +9,6 @@ window.JP_CONFIG = {
     "publicKey": "5aW25Z91EWICPCbil",
     "studioTemplateId": "template_te8hqqm",
     "confirmTemplateId": "template_9bs4k5x"
-  }
+  },
+  "signatureUrl": "https://web.jollypanda.ir/assets/signature/usef-farahmand.png"
 };

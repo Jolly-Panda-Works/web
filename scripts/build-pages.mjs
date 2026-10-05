@@ -70,6 +70,7 @@ const ICONS = {
   arrow: '<path d="M5 12h14M13 6l6 6-6 6"/>',
   mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
   home: '<path d="M4 11l8-7 8 7v9H4v-9z"/><path d="M10 20v-6h4v6"/>',
+  download: '<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>',
 };
 const icon = (n) => {
   if (!ICONS[n]) throw new Error("Unknown icon: " + n);
