@@ -103,7 +103,7 @@
     "type": "portfolio",
     "year": "2026",
     "domain": "me.jollypanda.ir/bio/abolfazl-nezami",
-    "image": "https://abolfazlnezami.ir/assets/images/og/og-image.jpg",
+    "image": "assets/projects/profiles/bolfazl-nezami.png",
     "tags": [
       "Flutter",
       "Dart",
@@ -152,7 +152,7 @@
     "type": "portfolio",
     "year": "2026",
     "domain": "me.jollypanda.ir/bio/mohammadjavad-gholizade",
-    "image": "https://usef-farahmand.github.io/mohammadjavad-gholizade/assets/images/og/og-image.jpg",
+    "image": "assets/projects/profiles/mohammadjavad-gholizade.png",
     "tags": [
       "Unity",
       "XR",
@@ -200,7 +200,7 @@
     "type": "portfolio",
     "year": "2026",
     "domain": "me.jollypanda.ir/bio/mojtaba-mofidinejad",
-    "image": "https://me.jollypanda.ir/bio/mojtaba-mofidinejad/assets/images/og/og-image.jpg",
+    "image": "assets/projects/profiles/mojtaba-mofidinejad.png",
     "tags": [
       "Game design",
       "Game production",
@@ -248,7 +248,7 @@
     "type": "portfolio",
     "year": "2026",
     "domain": "me.jollypanda.ir/bio/rasoul-sajjadi",
-    "image": "https://me.jollypanda.ir/bio/rasoul-sajjadi/assets/img/og-cover.png",
+    "image": "assets/projects/profiles/rasoul-sajjadi.png",
     "tags": [
       "Level design",
       "Unreal Engine 5",
@@ -283,56 +283,6 @@
       {
         "type": "website",
         "url": "https://me.jollypanda.ir/bio/rasoul-sajjadi/",
-        "label": {
-          "en": "Visit website",
-          "fa": "مشاهده وب‌سایت"
-        }
-      }
-    ]
-  },
-  {
-    "id": "sepehr-chahnavi",
-    "type": "portfolio",
-    "year": "2026",
-    "domain": "me.jollypanda.ir/bio/sepehr-chahnavi",
-    "image": "https://usef-farahmand.github.io/sepehr-chahnavi/assets/images/og/og-image.jpg",
-    "tags": [
-      "Unity",
-      "C#",
-      "Multiplayer networking",
-      "AR/VR",
-      "Gameplay programming"
-    ],
-    "title": {
-      "en": "Sepehr Chahnavi — Portfolio",
-      "fa": "سپهر چهنوی - پورتفولیو"
-    },
-    "shortDescription": {
-      "en": "Portfolio of a senior game developer: gameplay programming, multiplayer networking and AR/VR, with a game-style design.",
-      "fa": "پورتفولیوی یک توسعه‌دهنده ارشد بازی: برنامه‌نویسی گیم‌پلی، شبکه چندنفره و AR/VR، با طراحی به سبک بازی."
-    },
-    "fullDescription": {
-      "en": "A portfolio website for Sepehr Chahnavi, a senior game developer specializing in gameplay programming, Unity, multiplayer networking and AR/VR — founder of Rebellis AI and former CTO of Bitnerd Game Studio.\n\nThe page has a game-style look, with about, experience, skills, personal projects and education sections, a contact area with his email and LinkedIn, and English and Persian versions.",
-      "fa": "وب‌سایت پورتفولیوی سپهر چهنوی، توسعه‌دهنده ارشد بازی با تخصص در برنامه‌نویسی گیم‌پلی، Unity، شبکه چندنفره و AR/VR — بنیان‌گذار Rebellis AI و CTO پیشین استودیوی بازی‌سازی Bitnerd.\n\nصفحه ظاهری به سبک بازی دارد و شامل بخش‌های درباره، تجربه، مهارت‌ها، پروژه‌های شخصی و تحصیلات، یک بخش تماس با ایمیل و LinkedIn و نسخه‌های انگلیسی و فارسی است."
-    },
-    "highlights": {
-      "en": [
-        "Game-style design",
-        "About, experience, skills, personal projects and education",
-        "Contact area with email and LinkedIn",
-        "English and Persian versions"
-      ],
-      "fa": [
-        "طراحی به سبک بازی",
-        "درباره، تجربه، مهارت‌ها، پروژه‌های شخصی و تحصیلات",
-        "بخش تماس با ایمیل و LinkedIn",
-        "نسخه‌های انگلیسی و فارسی"
-      ]
-    },
-    "actionLinks": [
-      {
-        "type": "website",
-        "url": "https://me.jollypanda.ir/bio/sepehr-chahnavi/",
         "label": {
           "en": "Visit website",
           "fa": "مشاهده وب‌سایت"
