@@ -92,7 +92,7 @@ function discountPct(ty, pl) {
   }
   return 0;
 }
-const discountedPrice = (ty, pl) => Math.round(ty.rows[pl.id].price * (100 - discountPct(ty, pl)) / 100);
+const discountedPrice = (ty, pl) => Math.round(ty.rows[pl.id].price * (100 - discountPct(ty, pl))) / 100;
 
 /* ---------- structured data ---------- */
 function jsonLd(lang, page) {

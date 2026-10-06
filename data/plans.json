@@ -1,6 +1,6 @@
 {
-  "discountPercent": 15,
-  "listUpdated": "2026-10-03T00:00:00+03:30",
+  "discountPercent": 10,
+  "listUpdated": "2026-10-05T00:00:00+03:30",
   "currency": "USD",
   "highlightPlan": "special",
   "plans": [
@@ -127,7 +127,7 @@
             "fa": "۲۰ تا ۳۰ روز کاری",
             "en": "20–30 business days"
           },
-          "price": 1399
+          "price": 139.99
         },
         "special": {
           "structure": {
@@ -154,7 +154,7 @@
             "fa": "۱۰ تا ۱۵ روز کاری",
             "en": "10–15 business days"
           },
-          "price": 599
+          "price": 59.99
         },
         "economy": {
           "structure": {
@@ -181,7 +181,7 @@
             "fa": "۷ تا ۱۰ روز کاری",
             "en": "7–10 business days"
           },
-          "price": 249
+          "price": 24.99
         }
       }
     },
@@ -225,7 +225,7 @@
             "fa": "۲۰ تا ۳۰ روز کاری",
             "en": "20–30 business days"
           },
-          "price": 1599
+          "price": 159.99
         },
         "special": {
           "structure": {
@@ -252,7 +252,7 @@
             "fa": "۱۰ تا ۱۵ روز کاری",
             "en": "10–15 business days"
           },
-          "price": 699
+          "price": 69.99
         },
         "economy": {
           "structure": {
@@ -279,7 +279,7 @@
             "fa": "۷ تا ۱۰ روز کاری",
             "en": "7–10 business days"
           },
-          "price": 299
+          "price": 29.99
         }
       }
     },
@@ -323,7 +323,7 @@
             "fa": "۲۵ تا ۴۵ روز کاری",
             "en": "25–45 business days"
           },
-          "price": 2399
+          "price": 239.99
         },
         "special": {
           "structure": {
@@ -350,7 +350,7 @@
             "fa": "۱۲ تا ۲۰ روز کاری",
             "en": "12–20 business days"
           },
-          "price": 999
+          "price": 99.99
         },
         "economy": {
           "structure": {
@@ -377,7 +377,7 @@
             "fa": "۷ تا ۱۲ روز کاری",
             "en": "7–12 business days"
           },
-          "price": 449
+          "price": 44.99
         }
       }
     },
@@ -421,7 +421,7 @@
             "fa": "۳۰ تا ۶۰ روز کاری",
             "en": "30–60 business days"
           },
-          "price": 3799
+          "price": 379.99
         },
         "special": {
           "structure": {
@@ -448,7 +448,7 @@
             "fa": "۱۵ تا ۲۵ روز کاری",
             "en": "15–25 business days"
           },
-          "price": 1599
+          "price": 159.99
         },
         "economy": {
           "structure": {
@@ -475,7 +475,7 @@
             "fa": "۱۰ تا ۱۵ روز کاری",
             "en": "10–15 business days"
           },
-          "price": 699
+          "price": 69.99
         }
       }
     },
@@ -519,7 +519,7 @@
             "fa": "۳۰ تا ۶۰ روز کاری",
             "en": "30–60 business days"
           },
-          "price": 4199
+          "price": 419.99
         },
         "special": {
           "structure": {
@@ -546,7 +546,7 @@
             "fa": "۱۵ تا ۳۰ روز کاری",
             "en": "15–30 business days"
           },
-          "price": 1799
+          "price": 179.99
         },
         "economy": {
           "structure": {
@@ -573,7 +573,7 @@
             "fa": "۱۰ تا ۱۵ روز کاری",
             "en": "10–15 business days"
           },
-          "price": 799
+          "price": 79.99
         }
       }
     },
@@ -621,7 +621,7 @@
             "fa": "۳۰ تا ۶۰ روز کاری",
             "en": "30–60 business days"
           },
-          "price": 4999
+          "price": 499.99
         },
         "special": {
           "structure": {
@@ -648,7 +648,7 @@
             "fa": "۱۵ تا ۳۰ روز کاری",
             "en": "15–30 business days"
           },
-          "price": 1999
+          "price": 199.99
         },
         "economy": {
           "structure": {
@@ -675,7 +675,7 @@
             "fa": "۱۰ تا ۱۵ روز کاری",
             "en": "10–15 business days"
           },
-          "price": 899
+          "price": 89.99
         }
       }
     }

@@ -1,21 +1,28 @@
-name: Update USD rate
+name: Update USD rate & price-list PDFs
 
 # Hosting is on Vercel, which redeploys automatically on every push to main.
-# This workflow only refreshes data/rate.json and commits it — that commit is
-# what triggers the Vercel deployment with the new Rial prices.
+# This workflow refreshes data/rate.json and the price-list PDFs in downloads/ and commits them —
+# that commit is what triggers the Vercel deployment with the new prices.
 #
-# The rate is fetched ONCE a day (08:00 Tehran). If that call fails, the second
-# run 12 hours later (20:00 Tehran, same day) tries again; if the first one
-# succeeded, the second run skips the API entirely.
+# The rate is fetched ONCE a day (08:00 Tehran). If that call fails, the second run 12 hours
+# later (20:00 Tehran, same day) tries again; if the first one succeeded, the second run skips the API.
 # "Run workflow" (manual) always calls the API.
+# It also runs when you change data/plans.json (prices, discounts, texts), the brochure template
+# or the brochure script, so the PDFs never lag behind the website.
 on:
   schedule:
     - cron: "30 4 * * *"    # 04:30 UTC = 08:00 Tehran  (daily fetch)
     - cron: "30 16 * * *"   # 16:30 UTC = 20:00 Tehran  (retry, only if still not updated today)
+  push:
+    branches: [main]
+    paths:
+      - data/plans.json
+      - brochure/**
+      - scripts/make-brochure.py
   workflow_dispatch:
 
 permissions:
-  contents: write           # commit the refreshed data/rate.json
+  contents: write           # commit the refreshed data/rate.json and downloads/*.pdf
 
 concurrency:
   group: update-rate
@@ -37,23 +44,49 @@ jobs:
         env:
           NAVASAN_API_KEY: ${{ secrets.NAVASAN_API_KEY }}
           NAVASAN_ITEM: ${{ vars.NAVASAN_ITEM }}   # optional, default usd_sell
-          NAVASAN_UNIT: ${{ vars.NAVASAN_UNIT }}   # optional, default rial
+          NAVASAN_UNIT: ${{ vars.NAVASAN_UNIT }}   # optional, default toman (Navasan quotes Toman; x10 = Rial)
           SKIP_IF_UPDATED_TODAY: ${{ github.event_name != 'workflow_dispatch' }}
         run: node scripts/fetch-rate.mjs
 
       - name: Check data
         run: node scripts/check.mjs
 
+      # The PDFs only change when prices, discounts, texts, the rate or the template change.
+      - name: Do the PDFs need rebuilding?
+        id: brochure
+        run: |
+          NEW=$(cat data/plans.json data/rate.json brochure/*.pptx scripts/make-brochure.py | sha256sum | cut -d' ' -f1)
+          OLD=$(cat downloads/.source-hash 2>/dev/null || true)
+          echo "hash=$NEW" >> "$GITHUB_OUTPUT"
+          if [ "$NEW" = "$OLD" ] && [ -f downloads/Jolly-Panda-Web-Price-List-fa.pdf ] && [ -f downloads/Jolly-Panda-Web-Price-List-en.pdf ]; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"; echo "PDFs are up to date."
+          else
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install LibreOffice and python-pptx
+        if: steps.brochure.outputs.needed == 'true'
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libreoffice-impress fonts-liberation fonts-dejavu-core
+          pip install --quiet python-pptx
+
+      - name: Build the price-list PDFs (Persian + English)
+        if: steps.brochure.outputs.needed == 'true'
+        run: |
+          python3 scripts/make-brochure.py
+          echo "${{ steps.brochure.outputs.hash }}" > downloads/.source-hash
+
       # NOTE: no "[skip ci]" in this message — Vercel would honour it and skip the deployment.
-      - name: Commit refreshed rate (Vercel deploys it)
+      - name: Commit refreshed rate and PDFs (Vercel deploys them)
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/rate.json
+          git add data/rate.json downloads/
           if git diff --cached --quiet; then
-            echo "Rate unchanged — nothing to commit."
+            echo "Nothing changed — nothing to commit."
           else
-            git commit -m "chore(rate): update USD to IRR rate"
+            git commit -m "chore(rate): update USD rate and price-list PDFs"
             git pull --rebase origin "${GITHUB_REF_NAME}"
             git push
           fi

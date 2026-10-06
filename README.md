@@ -5,8 +5,8 @@ Website-design services site of [Jolly Panda Studio](https://jollypanda.ir) — 
 ## What it does
 
 - **Home** — walks the visitor through the questions *why a website? · what if I don't have one? · why Jolly Panda? · how is a site made? · how much?* and ends with a guide button to the packages and the form.
-- **Packages** — the exact price list from the PowerPoint (6 website types × Economy / Special / Custom). Prices are in **US dollars** (regular price + discount label; `discountPercent` in `data/plans.json` is the default for everything, and a `discount` field on a plan, a type or a single type×plan row overrides it — most specific wins, `0` = no discount); on the **Persian** pages they are shown in **Rial**, converted with the live rate. The **last update date** is shown in both languages (Jalali calendar in Persian).
-- **Price-list brochure** — the Packages page offers a PowerPoint brochure in **Persian** (prices in Rial) and **English** (US dollars), built in the visitor's browser from `assets/brochure/JollyPanda_Website_Plans_template.pptx` with the current prices, discounts and the last-update date (`js/brochure.js`, JSZip vendored in `js/vendor/`). Nothing to regenerate — it is always as current as the site. To change the design, edit the template in PowerPoint but keep its structure (9 slides, same shape names, tables with the same rows/columns).
+- **Packages** — the exact price list from the PowerPoint (6 website types × Economy / Special / Custom). Prices are in **US dollars** (regular price + discount label, cents like `24.99`; `discountPercent` in `data/plans.json` is the default for everything, and a `discount` field on a plan, a type or a single type×plan row overrides it — most specific wins, `0` = no discount); on the **Persian** pages they are shown in **Rial**, converted with the live rate. The **last update date** is shown in both languages (Jalali calendar in Persian).
+- **Price-list brochure (PDF)** — the Packages page offers a PDF brochure in **Persian** (prices in Rial) and **English** (US dollars), in the same design as the PowerPoint template in `brochure/`. A GitHub Action rebuilds the two PDFs (`scripts/make-brochure.py`: python-pptx + LibreOffice) whenever the rate, `data/plans.json` or the template change, and commits them to `downloads/`. Each PDF shows the regular price struck through, the discounted price, the discount label and the last-update date. To change its design, edit the template in PowerPoint but keep its structure (9 slides, same shape names, tables with the same rows/columns).
 - **Request form** — the selected package is attached to the request. On send, two emails go out: the request to the studio, and a confirmation to the visitor with an **English pre-contract** pre-filled from their request.
 - **Portfolio** — searchable, filterable by website type; every project has its own page (`project-detail.html?id=…`) in the same style as the main site.
 - Footer links back to the main site, [jollypanda.ir](https://jollypanda.ir).
@@ -17,7 +17,7 @@ Website-design services site of [Jolly Panda Studio](https://jollypanda.ir) — 
 GitHub Action (once a day at 08:00 Tehran; retry at 20:00 only if the morning call failed)
   └─ scripts/fetch-rate.mjs  → Navasan API (key = repository secret) → data/rate.json
   └─ commit → Vercel builds (scripts/build-pages.mjs) and deploys
-Browser (Persian page): price_rial = price_usd × data/rate.json.rateRial
+Browser (Persian page): price_rial = price_usd × data/rate.json.rateRial   (Navasan Toman × 10 = Rial)
 ```
 
 The API key never reaches the browser. If the API fails, the last good rate stays in `data/rate.json`; with no rate at all, Persian pages fall back to dollars with a notice.
@@ -28,7 +28,7 @@ Hosted on **Vercel** (auto-deploys on every push to `main`; `vercel.json` sets t
 
 1. **Vercel:** import the repo — nothing to change in the import screen.
 2. **Email (EmailJS):** create the two templates from [`email-templates/`](email-templates/README.md), then create **one** generic EmailJS template (body `{{{message_html}}}` — fits the free plan) and add `EMAILJS_SERVICE_ID`, `EMAILJS_PUBLIC_KEY`, `EMAILJS_TEMPLATE_ID` as Vercel environment variables and **redeploy**. Until then the form falls back to opening the visitor's mail app.
-3. **Rial prices:** add the repository secret `NAVASAN_API_KEY` (key from [navasan.tech](https://www.navasan.tech/webserviceguide/)); optional variables `NAVASAN_ITEM` (default `usd_sell`) and `NAVASAN_UNIT` (`rial` by default). Allow *Read and write* workflow permissions, then run **Update USD rate** once from the Actions tab.
+3. **Rial prices:** add the repository secret `NAVASAN_API_KEY` (key from [navasan.tech](https://www.navasan.tech/webserviceguide/)); optional variables `NAVASAN_ITEM` (default `usd_sell`) and `NAVASAN_UNIT` (`toman` by default — Navasan quotes the dollar in Toman, the site multiplies by 10 to get Rial; use `rial` only if the number you get is already in Rial). Allow *Read and write* workflow permissions, then run **Update USD rate** once from the Actions tab.
 4. Set `SITE_URL` (your final domain) in Vercel, or edit `siteUrl` in `site.config.json`.
 
 ## Everyday editing

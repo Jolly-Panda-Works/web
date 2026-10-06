@@ -10,8 +10,10 @@
      NAVASAN_API_KEY   (required)  your Navasan API key
      NAVASAN_ITEM      (optional)  Navasan item to use, default "usd_sell"
                                    (e.g. usd_buy, harat_naghdi_sell, mex_usd_sell)
-     NAVASAN_UNIT      (optional)  unit the API returns: "rial" (default — the
-                                   service already returns Rial) or "toman" (x10 to Rial).
+     NAVASAN_UNIT      (optional)  unit of the number the API returns: "toman" (default — Navasan
+                                   quotes the dollar in Toman, e.g. 268800) or "rial". Toman x 10 = Rial.
+                                   (Navasan's own docs example shows "11270" for the dollar on 1398-06-20,
+                                   when it traded around 11,000 Toman — i.e. Toman.)
      SKIP_IF_UPDATED_TODAY (optional) "true" = do nothing when data/rate.json was
                                    already refreshed today (Asia/Tehran date). The
                                    scheduled workflow runs twice a day with this flag, so
@@ -31,7 +33,7 @@ const OUT = path.join(ROOT, "data", "rate.json");
 
 const key = process.env.NAVASAN_API_KEY;
 const item = process.env.NAVASAN_ITEM || "usd_sell";
-const unit = (process.env.NAVASAN_UNIT || "rial").toLowerCase();
+const unit = (process.env.NAVASAN_UNIT || "toman").toLowerCase();
 const skipIfToday = String(process.env.SKIP_IF_UPDATED_TODAY).toLowerCase() === "true";
 
 function keepOld(reason) {
@@ -45,7 +47,8 @@ const tehranDay = (d) => new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Tehr
 if (skipIfToday && fs.existsSync(OUT)) {
   try {
     const prev = JSON.parse(fs.readFileSync(OUT, "utf8"));
-    if (prev.rateRial && prev.fetchedAt && tehranDay(new Date(prev.fetchedAt)) === tehranDay(new Date())) {
+    // a rate stored with a different unit setting is wrong -> never skip, fetch again
+    if (prev.rateRial && prev.fetchedAt && prev.sourceUnit === unit && tehranDay(new Date(prev.fetchedAt)) === tehranDay(new Date())) {
       console.log(`Rate already updated today (${prev.fetchedAt}) — skipping the API call.`);
       process.exit(0);
     }

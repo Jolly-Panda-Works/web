@@ -99,15 +99,17 @@
 2. Vercel رکورد DNS لازم را نشان می‌دهد؛ برای زیردامنه معمولاً یک رکورد CNAME است. همان را در پنل DNS دامنه بسازید.
 3. در Environment Variables مقدار `SITE_URL` را دقیقاً برابر آدرس نهایی بگذارید (مثلاً `https://web.jollypanda.ir`) و Redeploy کنید. این مقدار در canonical، sitemap و hreflang استفاده می‌شود.
 
-## ۴. نرخ دلار (به‌صورت خودکار)
+## ۴. نرخ دلار و PDF قیمت (به‌صورت خودکار)
 
-نرخ توسط GitHub Action گرفته می‌شود و در `data/rate.json` کامیت می‌شود؛ همین کامیت باعث می‌شود Vercel خودکار سایت را با قیمت جدید منتشر کند.
+نرخ و دو PDF قیمت توسط GitHub Action ساخته و در ریپو کامیت می‌شوند؛ همین کامیت باعث می‌شود Vercel خودکار سایت را با قیمت جدید منتشر کند.
 
 1. در GitHub: **Settings ← Secrets and variables ← Actions ← New repository secret** با نام `NAVASAN_API_KEY` و مقدار کلید API نوسان.
-2. **Settings ← Actions ← General ← Workflow permissions** را روی **Read and write permissions** بگذارید (برای اینکه Action بتواند فایل نرخ را کامیت کند).
-3. تب **Actions ← Update USD rate ← Run workflow** را یک‌بار دستی اجرا کنید.
+2. **Settings ← Actions ← General ← Workflow permissions** را روی **Read and write permissions** بگذارید (برای اینکه Action بتواند فایل‌ها را کامیت کند).
+3. تب **Actions ← Update USD rate & price-list PDFs ← Run workflow** را یک‌بار دستی اجرا کنید.
 
-بعد از آن هر روز ساعت ۰۸:۰۰ به وقت تهران نرخ گرفته می‌شود؛ اگر خطا بدهد ساعت ۲۰:۰۰ همان روز دوباره تلاش می‌کند.
+بعد از آن هر روز ساعت ۰۸:۰۰ به وقت تهران نرخ گرفته می‌شود؛ اگر خطا بدهد ساعت ۲۰:۰۰ همان روز دوباره تلاش می‌کند. با هر تغییر در `data/plans.json` هم PDFها دوباره ساخته می‌شوند.
+
+**واحد نرخ:** نوسان قیمت دلار را به **تومان** می‌دهد (مثلاً ۲۶۸٬۸۰۰) و سایت آن را ×۱۰ می‌کند تا ریال شود. بعد از اولین اجرا `data/rate.json` را باز کنید: `rateRial` باید حدود ۱۰ برابر عدد نوسان باشد (مثلاً ۲٬۶۸۸٬۰۰۰) و `sourceUnit` برابر `toman`.
 
 ## ۵. ویرایش‌های روزمره
 

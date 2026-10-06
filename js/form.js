@@ -105,7 +105,8 @@
     var payUsd = JP.pricing.discounted(row.price, pct);       // price after the discount
     var nf = new Intl.NumberFormat(fa ? "fa-IR" : "en-US");
     var T = function (key, vars) { return fa ? JP.t(key, vars) : EN[key].replace(/\{(\w+)\}/g, function (m, k) { return vars[k]; }); };
-    var usd = function (n) { return T("form.mail.usd", { n: nf.format(n) }); };
+    var nf2 = new Intl.NumberFormat(fa ? "fa-IR" : "en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    var usd = function (n) { return T("form.mail.usd", { n: Number.isInteger(n) ? nf.format(n) : nf2.format(n) }); };   // 24.99 / 22.50 / 60
 
     var rialNote = "";
     if (rate) {

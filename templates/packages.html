@@ -41,11 +41,10 @@
 <p data-i18n="packages.download.desc">Desc</p>
 </div>
 <div class="download-box__actions">
-<button class="btn btn-secondary" data-brochure="en" type="button">{{icon:download}}<span data-label="" data-i18n="packages.download.en">English brochure</span></button>
-<button class="btn btn-secondary" data-brochure="fa" type="button">{{icon:download}}<span data-label="" data-i18n="packages.download.fa">Persian brochure</span></button>
+<a class="btn btn-secondary" download="" href="{{root}}downloads/Jolly-Panda-Web-Price-List-en.pdf">{{icon:download}}<span data-i18n="packages.download.en">English brochure</span></a>
+<a class="btn btn-secondary" download="" href="{{root}}downloads/Jolly-Panda-Web-Price-List-fa.pdf">{{icon:download}}<span data-i18n="packages.download.fa">Persian brochure</span></a>
 </div>
-<p class="download-box__format" data-i18n="packages.download.format">PowerPoint (.pptx)</p>
-<p class="form-status form-status--error" hidden="" id="brochureStatus" role="alert"></p>
+<p class="download-box__format" data-i18n="packages.download.format">PDF</p>
 </div>
 </div>
 </section>
@@ -164,7 +163,6 @@
 {{> scripts}}
 <script defer="" src="{{root}}js/pricing.js"></script>
 <script defer="" src="{{root}}js/packages.js"></script>
-<script defer="" src="{{root}}js/brochure.js"></script>
 <script defer="" src="{{root}}js/email-templates.js"></script>
 <script defer="" src="{{root}}js/form.js"></script>
 </body>

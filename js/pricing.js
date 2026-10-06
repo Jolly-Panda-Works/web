@@ -48,8 +48,14 @@
   };
   function num(n) { return nf[JP.lang].format(n); }
 
+  // dollar amounts: whole numbers without decimals, otherwise exactly two (24.99, 22.50)
+  var nf2 = {
+    fa: new Intl.NumberFormat("fa-IR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+    en: new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+  };
+  function usdNum(n) { return Number.isInteger(n) ? num(n) : nf2[JP.lang].format(n); }
   function usdText(usd) {
-    return JP.lang === "fa" ? num(usd) + " " + JP.t("pricing.dollarWord") : "$" + num(usd);
+    return JP.lang === "fa" ? usdNum(usd) + " " + JP.t("pricing.dollarWord") : "$" + usdNum(usd);
   }
 
   function useRial(data) { return JP.lang === "fa" && data && data.rate; }
@@ -58,7 +64,7 @@
      data/plans.json holds the regular price. The discount (%) for one website type x plan is the
      first value found, most specific first:
         types[].rows[plan].discount  >  types[].discount  >  plans[].discount  >  discountPercent
-     (0 = no discount, also as an override). discounted = round(regular x (100 - pct) / 100). */
+     (0 = no discount, also as an override). discounted = round(regular x (100 - pct)) / 100  (to the cent). */
   function clean(p) { p = Number(p); return isFinite(p) && p > 0 && p < 100 ? p : 0; }
   function pct(ty, pl, data) {
     var row = ty && ty.rows && ty.rows[pl.id];
@@ -71,7 +77,7 @@
     data.plans.types.forEach(function (ty) { data.plans.plans.forEach(function (pl) { out.push(pct(ty, pl, data)); }); });
     return out;
   }
-  function discounted(usd, p) { return Math.round(usd * (100 - clean(p)) / 100); }
+  function discounted(usd, p) { return Math.round(usd * (100 - clean(p))) / 100; }   // rounded to cents
 
   function show(usd, data) {
     if (useRial(data)) return num(Math.round(usd * data.rate.rateRial)) + " " + JP.t("pricing.rialWord");
@@ -180,5 +186,5 @@
     });
   }
 
-  JP.pricing = { load: load, pct: pct, allPcts: allPcts, format: format, plain: plain, node: node, discounted: discounted, discountLabel: discountLabel, usdText: usdText, fillNotes: fillNotes, fillBanners: fillBanners, formatDate: formatDate, number: num };
+  JP.pricing = { load: load, pct: pct, allPcts: allPcts, format: format, plain: plain, node: node, discounted: discounted, discountLabel: discountLabel, usdText: usdText, usdNum: usdNum, fillNotes: fillNotes, fillBanners: fillBanners, formatDate: formatDate, number: num };
 })();

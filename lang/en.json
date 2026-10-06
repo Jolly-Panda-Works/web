@@ -228,12 +228,10 @@
     },
     "download": {
       "title": "Download the price list",
-      "desc": "Our PowerPoint brochure with the latest prices and discount — in English (US dollars) or Persian (prices in Rial at today's rate).",
+      "desc": "Our price-list brochure with the latest prices and discount.",
       "en": "English brochure",
       "fa": "Persian brochure",
-      "preparing": "Preparing…",
-      "error": "We couldn't prepare the file right now. Please try again in a moment.",
-      "format": "PowerPoint (.pptx)"
+      "format": "PDF"
     }
   },
   "form": {
