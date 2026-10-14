@@ -136,7 +136,7 @@ export function createShop({ plans, rate, dicts, projects }) {
         `<span class="service-card__link"><span>${esc(t(lang, "home.services.link"))}</span>${dirIcon(true)}</span></a>`;
     }).join("");
   }
-  const footerServices = (lang, base) => plans.types.map((ty) => `<li><a class="site-footer__link" href="${base}${servicePath(ty)}">${esc(pick(ty.title, lang))}</a></li>`).join("");
+  const footerServices = (lang, base, bilingual = false) => plans.types.map((ty) => `<li><a class="site-footer__link" ${bilingual ? `data-en="${esc(ty.title.en)}" data-fa="${esc(ty.title.fa)}" ` : ""}href="${base}${servicePath(ty)}">${esc(pick(ty.title, lang))}</a></li>`).join("");
   const serviceLinks = (lang, base, exceptId) => plans.types.filter((ty) => ty.id !== exceptId)
     .map((ty) => `<li><a class="service-links__item" href="${base}${servicePath(ty)}">${esc(pick(ty.title, lang))}</a></li>`).join("");
 

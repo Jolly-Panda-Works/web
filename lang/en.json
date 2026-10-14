@@ -417,6 +417,15 @@
       "button": "Choose a package"
     }
   },
+  "notFound": {
+    "metaTitle": "Page not found | Jolly Panda Web",
+    "metaDescription": "The page you're looking for couldn't be found.",
+    "title": "Page not found",
+    "text": "The page you're looking for has moved, been renamed, or never existed. Let's get you back on track.",
+    "imageAlt": "The Jolly Panda mascot, thinking about where the page went",
+    "primary": "Back to home",
+    "secondary": "Choose a package"
+  },
   "projects": {
     "hero": {
       "eyebrow": "Our work",

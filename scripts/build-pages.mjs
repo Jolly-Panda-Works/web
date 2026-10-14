@@ -107,6 +107,7 @@ const urlOf = (spec, lang) => {
 const depth = (spec) => spec.path.split("/").length - 1;
 
 function metaOf(spec, lang) {
+  if (spec.kind === "notfound") return { title: dicts[lang].notFound.metaTitle, description: dicts[lang].notFound.metaDescription, keywords: "" };
   if (spec.kind === "service") return shop.serviceMeta(spec.ty, lang);
   if (spec.kind === "project") return shop.projectMeta(spec.pr, lang);
   const m = dicts[lang].pages[spec.key];
@@ -190,10 +191,11 @@ function include(tpl) {
 
 function render(spec, lang) {
   const dict = dicts[lang], other = lang === "fa" ? "en" : "fa", meta = metaOf(spec, lang);
-  const base = "../".repeat(depth(spec));                        // path to the root of THIS language's pages
-  const rootRel = (lang === "fa" ? "../" : "") + base;           // path to the site root (assets, js, css, data)
   const kind = spec.kind;
-  const robots = "index, follow, max-image-preview:large";
+  // The 404 page is served at ANY address (/foo/bar), so its links are absolute from the site root.
+  const base = kind === "notfound" ? "/" : "../".repeat(depth(spec));                 // path to the root of THIS language's pages
+  const rootRel = kind === "notfound" ? "/" : (lang === "fa" ? "../" : "") + base;    // path to the site root (assets, js, css, data)
+  const robots = kind === "notfound" ? "noindex, follow" : "index, follow, max-image-preview:large";
   const navActive = { home: kind === "home", packages: kind === "packages" || kind === "service", projects: kind === "projects" || kind === "project" };
   const banner = shop.discountBanner(lang);
   const vars = {
@@ -207,13 +209,13 @@ function render(spec, lang) {
     en_active: lang === "en" ? " is-active" : "", fa_active: lang === "fa" ? " is-active" : "",
     en_pressed: lang === "en" ? "true" : "false", fa_pressed: lang === "fa" ? "true" : "false",
     telegram: cfg.social.telegram, linkedin: cfg.social.linkedin, github: cfg.social.github,
-    contact_email: cfg.contactEmail, jsonld: jsonLd(spec, lang), dir_icon: dirIcon(),
+    contact_email: cfg.contactEmail, jsonld: kind === "notfound" ? "" : jsonLd(spec, lang), dir_icon: dirIcon(),
     // pre-rendered content (same markup as the browser scripts draw)
     verification_meta: [
       env.GOOGLE_SITE_VERIFICATION ? `<meta content="${esc(env.GOOGLE_SITE_VERIFICATION)}" name="google-site-verification"/>` : "",
       env.BING_SITE_VERIFICATION ? `<meta content="${esc(env.BING_SITE_VERIFICATION)}" name="msvalidate.01"/>` : "",
     ].filter(Boolean).join("\n"),
-    footer_services: shop.footerServices(lang, base),
+    footer_services: shop.footerServices(lang, base, kind === "notfound"),
     static_price_table: kind === "packages" ? shop.priceTable(lang, base) : "",
     static_teaser: kind === "home" ? shop.teaser(lang, base) : "",
     static_services_grid: kind === "home" ? shop.servicesGrid(lang, base) : "",
@@ -291,8 +293,8 @@ window.JP_EMAIL_TEMPLATES = ${JSON.stringify({
 })};
 `);
 
-// 404 page (single bilingual page; <base href> makes its asset links work at any URL depth)
-write("404.html", read("templates/404.html").replace(/\{\{site_url\}\}/g, SITE));
+// 404 page: the full site layout (header, footer), in English; js/notfound.js switches it to Persian for /fa/… addresses
+write("404.html", render({ key: "404", kind: "notfound", path: "404.html", template: "404.html" }, "en"));
 
 // Co-founder signature printed in the pre-contract e-mail. E-mail clients need a public https URL, so the image is
 // served from this site. Until assets/signature/usef-farahmand.png exists a 1-pixel transparent image is used.
