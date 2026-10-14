@@ -19,6 +19,10 @@ for (const name of INCLUDE) {
   const src = path.join(ROOT, name);
   if (fs.existsSync(src)) fs.cpSync(src, path.join(OUT, name), { recursive: true });
 }
+// search-engine ownership files in the repository root (Google Search Console "HTML file", Bing "BingSiteAuth.xml")
+for (const f of fs.readdirSync(ROOT)) {
+  if (/^google[0-9a-f]+\.html$/.test(f) || f === "BingSiteAuth.xml") fs.copyFileSync(path.join(ROOT, f), path.join(OUT, f));
+}
 // custom 404 (GitHub Pages serves /404.html for any unknown URL)
 if (fs.existsSync(path.join(ROOT, "404.html"))) fs.copyFileSync(path.join(ROOT, "404.html"), path.join(OUT, "404.html"));
 console.log("Assembled", OUT);
