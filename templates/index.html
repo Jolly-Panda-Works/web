@@ -3,7 +3,7 @@
 <head>
 {{> head}}
 </head>
-<body data-file="{{file}}" data-page="{{page}}" dir="{{dir}}">
+<body data-file="{{file}}" data-page="{{page}}" data-path="{{path}}" dir="{{dir}}">
 {{> header}}
 <main id="main">
 
@@ -147,10 +147,22 @@
 <h2 data-i18n="home.q5.title">How much does it cost?</h2>
 <p data-i18n="home.q5.subtitle">Subtitle</p>
 </div>
-<p class="discount-banner" data-discount-banner="" hidden=""></p>
-<div class="teaser" data-teaser="" data-reveal-group=""></div>
-<p class="rate-note rate-note--center" data-rate-note=""></p>
+<p class="discount-banner" data-discount-banner=""{{discount_hidden}}>{{static_discount_banner}}</p>
+<div class="teaser" data-teaser="" data-reveal-group="">{{static_teaser}}</div>
+<p class="rate-note rate-note--center" data-rate-note="">{{static_rate_note}}</p>
 <p class="teaser__footnote" data-i18n="home.q5.footnote">Footnote</p>
+</div>
+</section>
+
+<!-- ============ SERVICES — one page per website type (internal links for search engines) ============ -->
+<section class="section" id="services">
+<div class="container">
+<div class="section-heading section-heading--center" data-reveal="">
+<span class="eyebrow" data-i18n="home.services.eyebrow">Our services</span>
+<h2 data-i18n="home.services.title">Website design for every kind of business</h2>
+<p data-i18n="home.services.subtitle">Subtitle</p>
+</div>
+<div class="services-grid" data-reveal-group="">{{static_services_grid}}</div>
 </div>
 </section>
 

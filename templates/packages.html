@@ -3,7 +3,7 @@
 <head>
 {{> head}}
 </head>
-<body data-file="{{file}}" data-page="{{page}}" dir="{{dir}}">
+<body data-file="{{file}}" data-page="{{page}}" data-path="{{path}}" dir="{{dir}}">
 {{> header}}
 <main id="main">
 
@@ -14,8 +14,8 @@
 <span class="eyebrow page-hero__eyebrow" data-i18n="packages.hero.eyebrow">Packages</span>
 <h1 data-i18n="packages.hero.title" data-reveal="">Pick the plan that fits your website</h1>
 <p data-i18n="packages.hero.intro" data-reveal="">Intro</p>
-<p class="discount-banner" data-discount-banner="" data-reveal="" hidden=""></p>
-<p class="rate-note" data-rate-note="" data-reveal=""></p>
+<p class="discount-banner" data-discount-banner="" data-reveal=""{{discount_hidden}}>{{static_discount_banner}}</p>
+<p class="rate-note" data-rate-note="" data-reveal="">{{static_rate_note}}</p>
 </div>
 <div class="packages-hero__visual" data-reveal="">
 <span aria-hidden="true" class="how__blob"></span>
@@ -33,7 +33,12 @@
 <p data-i18n="packages.compare.subtitle">Subtitle</p>
 </div>
 <div class="table-wrap" data-reveal="">
-<table class="price-table" id="priceTable"></table>
+<table class="price-table" id="priceTable">{{static_price_table}}</table>
+</div>
+<div class="service-links-box" data-reveal="">
+<h3 data-i18n="packages.services.title">Explore by website type</h3>
+<p data-i18n="packages.services.desc">Desc</p>
+<ul class="service-links">{{static_service_links}}</ul>
 </div>
 <div class="download-box" data-reveal="">
 <div class="download-box__text">

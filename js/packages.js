@@ -92,7 +92,11 @@
     var tbody = el("tbody");
     data.plans.types.forEach(function (ty) {
       var tr = el("tr");
-      var th = el("th", "", JP.pick(ty.name)); th.scope = "row"; tr.appendChild(th);
+      var th = el("th"); th.scope = "row";
+      var svc = (window.JP_CONFIG && window.JP_CONFIG.services && window.JP_CONFIG.services[ty.id]) || null;
+      if (svc) { var a = el("a", "price-table__link", JP.pick(ty.name)); a.href = svc; th.appendChild(a); }   // page of this website type
+      else th.textContent = JP.pick(ty.name);
+      tr.appendChild(th);
       data.plans.plans.forEach(function (pl) {
         var td = el("td", pl.id === data.plans.highlightPlan ? "is-highlight" : "");
         var b = el("button", "price-cell"); b.type = "button";

@@ -3,7 +3,7 @@
 <head>
 {{> head}}
 </head>
-<body data-file="{{file}}" data-page="{{page}}" dir="{{dir}}">
+<body data-file="{{file}}" data-page="{{page}}" data-path="{{path}}" dir="{{dir}}">
 {{> header}}
 <main id="main">
 
@@ -25,12 +25,10 @@
 <label class="visually-hidden" data-i18n="projects.searchLabel" for="projectsSearch">Search projects</label>
 <input autocomplete="off" class="projects-search__input" data-i18n-attr="placeholder:projects.searchPlaceholder" id="projectsSearch" placeholder="" type="search"/>
 </div>
-<div class="projects-filters" data-i18n-attr="aria-label:projects.filtersLabel" id="projectsFilters" role="group"></div>
+<div class="projects-filters" data-i18n-attr="aria-label:projects.filtersLabel" id="projectsFilters" role="group">{{static_project_filters}}</div>
 </div>
-<p aria-live="polite" class="projects-results" id="projectsResults"></p>
-<div class="projects__grid" id="projectsGrid">
-<div class="projects__loading" data-i18n="projects.loading">Loading projects…</div>
-</div>
+<p aria-live="polite" class="projects-results" id="projectsResults">{{static_projects_count}}</p>
+<div class="projects__grid" id="projectsGrid">{{static_project_cards}}</div>
 </div>
 </section>
 

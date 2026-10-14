@@ -1,7 +1,7 @@
 <footer class="site-footer">
 <div class="container site-footer__top">
 <div class="site-footer__brand">
-<a class="site-footer__logo" href="index.html">
+<a class="site-footer__logo" href="{{base}}index.html">
 <img alt="" class="site-footer__mark" height="34" src="{{root}}assets/logo/logo-nav-96.png" width="34"/>
 <span data-i18n="brand.name">Jolly Panda Web</span>
 </a>
@@ -22,9 +22,13 @@
 <div class="site-footer__group">
 <h3 class="site-footer__heading" data-i18n="footer.nav.title">Navigate</h3>
 <ul class="site-footer__list">
-<li><a class="site-footer__link" data-i18n="nav.home" href="index.html">Home</a></li>
-<li><a class="site-footer__link" data-i18n="nav.packages" href="packages.html">Packages</a></li>
-<li><a class="site-footer__link" data-i18n="nav.projects" href="projects.html">Portfolio</a></li>
+<li><a class="site-footer__link" data-i18n="nav.home" href="{{base}}index.html">Home</a></li>
+<li><a class="site-footer__link" data-i18n="nav.packages" href="{{base}}packages.html">Packages</a></li>
+<li><a class="site-footer__link" data-i18n="nav.projects" href="{{base}}projects.html">Portfolio</a></li>
+</ul>
+<h3 class="site-footer__heading site-footer__heading--sub" data-i18n="footer.services.title">Website types</h3>
+<ul class="site-footer__list">
+{{footer_services}}
 </ul>
 </div>
 <div class="site-footer__group site-footer__group--main">

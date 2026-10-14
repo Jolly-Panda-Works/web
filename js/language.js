@@ -13,7 +13,8 @@
   var html = document.documentElement;
   var lang = html.getAttribute("lang") === "fa" ? "fa" : "en";
   var root = html.getAttribute("data-root") || "";
-  var file = document.body.getAttribute("data-file") || "index.html";
+  // path of this page relative to the site root (e.g. "index.html", "services/blog-website-design.html")
+  var pagePath = document.body.getAttribute("data-path") || document.body.getAttribute("data-file") || "index.html";
 
   var JP = (window.JP = window.JP || {});
   JP.lang = lang;
@@ -62,8 +63,8 @@
       btn.addEventListener("click", function () {
         var target = btn.getAttribute("data-lang");
         if (target === lang) return;
-        // en page "index.html" <-> fa page "fa/index.html" (and back with ../)
-        var dest = target === "fa" ? "fa/" + file : (root ? root : "") + file;
+        // root = relative path to the site root: the same page in the other language is root + ("fa/" +) path
+        var dest = root + (target === "fa" ? "fa/" : "") + pagePath;
         window.location.href = dest + window.location.search + window.location.hash;
       });
     });

@@ -9,6 +9,8 @@ Website-design services site of [Jolly Panda Studio](https://jollypanda.ir) — 
 - **Price-list brochure (PDF)** — the Packages page offers a PDF brochure in **Persian** (prices in Rial) and **English** (US dollars), in the same design as the PowerPoint template in `brochure/`. A GitHub Action rebuilds the two PDFs (`scripts/make-brochure.py`: python-pptx + LibreOffice) whenever the rate, `data/plans.json` or the template change, and commits them to `downloads/`. Each PDF shows the regular price struck through, the discounted price, the discount label and the last-update date. To change its design, edit the template in PowerPoint but keep its structure (9 slides, same shape names, tables with the same rows/columns).
 - **Request form** — the selected package is attached to the request. On send, two emails go out: the request to the studio, and a confirmation to the visitor with an **English pre-contract** pre-filled from their request.
 - **Portfolio** — searchable, filterable by website type; every project has its own page (`project-detail.html?id=…`) in the same style as the main site.
+- **One page per website type** (`services/<slug>.html`, 6 × 2 languages) with plans, prices, FAQ and links, and **one static page per portfolio project** (`projects/<id>.html`).
+- **Search and AI visibility:** all prices, plans and content are written into the HTML at build time (no JavaScript needed to read them), JSON-LD (Organization, Service/Offer, FAQPage, BreadcrumbList), sitemap with hreflang, robots.txt that welcomes AI search crawlers — see [`docs/SEO.fa.md`](docs/SEO.fa.md).
 - Footer links back to the main site, [jollypanda.ir](https://jollypanda.ir).
 
 ## How the Rial price works
@@ -41,7 +43,7 @@ Hosted on **Vercel** (auto-deploys on every push to `main`; `vercel.json` sets t
 | Page layout | `templates/*.html` | `node scripts/build-pages.mjs`, commit |
 | Domain, emails | `site.config.json` | `node scripts/build-pages.mjs`, commit |
 
-`index.html`, `packages.html`, `projects.html`, `fa/*`, `404.html`, `js/config.js`, `sitemap.xml`, `robots.txt` and `manifest.json` are **generated** — edit the sources above instead.
+`index.html`, `packages.html`, `projects.html`, `services/*`, `projects/*`, `fa/*`, `404.html`, `js/config.js`, `sitemap.xml`, `robots.txt` and `manifest.json` are **generated** — edit the sources above instead.
 
 Local preview: `node scripts/build-pages.mjs && node scripts/serve.mjs` → http://localhost:8080 (Persian: `/fa/`). Needs Node 18+, no installs. Data checks: `node scripts/check.mjs`.
 

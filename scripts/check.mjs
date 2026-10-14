@@ -75,6 +75,17 @@ for (const f of ["customer-confirmation-precontract.html", "studio-notification.
 }
 if (/جولی[\s\u200c]*پاندا/.test(mail("customer-confirmation-precontract.fa.html"))) err("email-templates/customer-confirmation-precontract.fa.html contains «جولی پاندا» — write «استودیو Jolly Panda»");
 
+// page addresses must be URL-safe and unique (services/<slug>.html, projects/<id>.html)
+const slugs = new Set();
+for (const p of json("data/projects.json")) {
+  if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(p.id || "")) err(`project id "${p.id}" must be lower-case letters, digits and hyphens (it becomes projects/${p.id}.html)`);
+  if (slugs.has("p:" + p.id)) err(`duplicate project id ${p.id}`); slugs.add("p:" + p.id);
+}
+for (const t of plans.types) if (!/^[a-z0-9]+(-[a-z0-9]+)*$/.test(t.id || "")) err(`type id "${t.id}" must be lower-case letters, digits and hyphens`);
+for (const k of ["services.intro."]) for (const t of plans.types) {
+  for (const l of ["en", "fa"]) { const d = json(`lang/${l}.json`); if (!d.services || !d.services.intro || !d.services.intro[t.id]) err(`lang/${l}.json: missing services.intro.${t.id} (the text at the top of the ${t.id} page)`); }
+}
+
 // 4. rate
 const rate = json("data/rate.json");
 if (rate.rateRial != null && !(Number.isFinite(rate.rateRial) && rate.rateRial > 1000)) err(`data/rate.json: rateRial looks wrong (${rate.rateRial})`);

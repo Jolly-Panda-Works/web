@@ -31,6 +31,9 @@
       "description": "Browse and search websites built by Jolly Panda. Filter by website type: blog, portfolio, corporate, educational, news or online store.",
       "keywords": "web design portfolio, website examples, نمونه کار طراحی سایت, نمونه کار وبسایت"
     },
+    "project": {
+      "titleSuffix": "Jolly Panda Web"
+    },
     "projectDetail": {
       "title": "Project details — Jolly Panda Web",
       "description": "Details of a website built by Jolly Panda.",
@@ -189,6 +192,12 @@
       "subtitle": "Choose a website type and a plan, tell us a little about your project and send the request. We'll reply by email.",
       "primary": "Choose a package & send your request",
       "secondary": "See our work first"
+    },
+    "services": {
+      "eyebrow": "Our services",
+      "title": "Website design for every kind of business",
+      "subtitle": "Pick the type of website you need — each one has its own page with plans, prices, delivery times and answers to common questions.",
+      "link": "See plans & prices"
     }
   },
   "packages": {
@@ -232,6 +241,10 @@
       "en": "English brochure",
       "fa": "Persian brochure",
       "format": "PDF"
+    },
+    "services": {
+      "title": "Explore by website type",
+      "desc": "Each website type has its own page with details, delivery times and frequently asked questions."
     }
   },
   "form": {
@@ -289,37 +302,10 @@
       "siteLanguage": "English"
     }
   },
-  "projects": {
-    "hero": {
-      "eyebrow": "Our work",
-      "title": "Websites we've built",
-      "intro": "Search, or filter by website type, to find a project like yours."
-    },
-    "searchLabel": "Search projects",
-    "searchPlaceholder": "Search by name, description or technology…",
-    "filtersLabel": "Filter projects by website type",
-    "all": "All",
-    "countOne": "1 project",
-    "countOther": "{count} projects",
-    "empty": "No projects match your search yet.",
-    "emptyHint": "Try a different keyword or filter.",
-    "loading": "Loading projects…",
-    "error": "We couldn't load the projects right now.",
-    "viewDetails": "View details",
-    "visit": "Visit website",
-    "close": "Close",
-    "highlights": "Highlights",
-    "tech": "Technologies",
-    "cta": {
-      "eyebrow": "Want one like these?",
-      "title": "Let's build yours.",
-      "subtitle": "Pick a plan, send a few details, and we'll take it from there.",
-      "primary": "Choose a package",
-      "secondary": "Back to Home"
-    },
-    "other": "Other"
-  },
   "footer": {
+    "services": {
+      "title": "Website types"
+    },
     "tagline": "Websites designed and built with care by Jolly Panda Studio.",
     "nav": {
       "title": "Navigate"
@@ -331,7 +317,69 @@
     },
     "copyright": "© 2026 Jolly Panda Studio. All rights reserved."
   },
+  "services": {
+    "breadcrumb": "Breadcrumb",
+    "hero": {
+      "cta": "Choose a plan",
+      "from": "Starting from"
+    },
+    "plans": {
+      "title": "Plans and prices for {type} websites",
+      "subtitle": "Three plans — pick the one that fits, then send your request."
+    },
+    "included": {
+      "title": "Included in every plan",
+      "i1": "Responsive design for mobile and tablet",
+      "i2": "SSL certificate",
+      "i3": "Domain and hosting are charged separately"
+    },
+    "faq": {
+      "title": "Frequently asked questions about {type} websites",
+      "cost": {
+        "q": "How much does {a} {type} website cost?",
+        "a": "{A} {type} website starts from {economy} on the Economy plan, {special} on the Special plan and {custom} on the Custom plan. The final price is confirmed in a consultation.",
+        "aDiscount": "{A} {type} website starts from {economy} on the Economy plan, {special} on the Special plan and {custom} on the Custom plan, with the current discount already applied (regular prices: {economyWas}, {specialWas} and {customWas}). The final price is confirmed in a consultation."
+      },
+      "time": {
+        "q": "How long does it take to build {a} {type} website?",
+        "a": "The estimated delivery time is {economy} on the Economy plan, {special} on the Special plan and {custom} on the Custom plan. The exact schedule is confirmed in the contract."
+      },
+      "diff": {
+        "q": "What is the difference between the three plans?",
+        "line": "{plan}: {design}; {structure}; {support}."
+      },
+      "domain": {
+        "q": "Are domain and hosting included in the price?",
+        "a": "No. Domain and hosting costs are charged separately from the plans. Every plan includes responsive design for mobile and tablet and an SSL certificate."
+      },
+      "order": {
+        "q": "How do I order {a} {type} website?",
+        "a": "Choose a plan on the Packages page and send the request form. A confirmation email with a pre-contract arrives right away, the team replies after reviewing your request, and the final price is set in a consultation."
+      }
+    },
+    "related": {
+      "title": "Other website types"
+    },
+    "cta": {
+      "title": "Ready to order {a} {type} website?",
+      "text": "Choose a plan and send your request — a confirmation email with a pre-contract arrives right away."
+    },
+    "meta": {
+      "title": "{title} — Plans & Prices from {from} | Jolly Panda Web",
+      "description": "{tagline}. Three plans from {from}, delivered in {days}. Choose a plan and send your request online.",
+      "keywords": "{name} website design, {name} website price, website design plans, Jolly Panda"
+    },
+    "intro": {
+      "blog": "For writers, creators and brands that grow by publishing. A blog website gives your articles a fast, readable home that search engines can find, so every new post can bring readers to you.",
+      "portfolio": "For designers, developers, photographers, architects and freelancers. A portfolio website shows your best work in one place, builds trust before the first call and makes it easy for clients to contact you.",
+      "corporate": "For companies, offices and service providers. A corporate website introduces your business, explains your services and gives customers a professional place to check you out, ask questions and request a quote.",
+      "education": "For training centres, language schools, workshops and course creators. An educational website presents your courses and instructors and lets students enrol online instead of by phone.",
+      "news": "For news outlets, magazines and publishers that post every day. A news website is built for fast loading and clear categories, so readers find stories quickly and search engines can keep up with your publishing.",
+      "store": "For shops and brands that want to sell online. An online store website gives customers a product catalogue, a shopping cart and a payment gateway, so orders arrive without a phone call."
+    }
+  },
   "projectDetail": {
+    "viewAll": "All projects",
     "back": "Back to Portfolio",
     "notFound": {
       "title": "We couldn't find that project",
@@ -368,5 +416,35 @@
     "cta": {
       "button": "Choose a package"
     }
+  },
+  "projects": {
+    "hero": {
+      "eyebrow": "Our work",
+      "title": "Websites we've built",
+      "intro": "Search, or filter by website type, to find a project like yours."
+    },
+    "searchLabel": "Search projects",
+    "searchPlaceholder": "Search by name, description or technology…",
+    "filtersLabel": "Filter projects by website type",
+    "all": "All",
+    "countOne": "1 project",
+    "countOther": "{count} projects",
+    "empty": "No projects match your search yet.",
+    "emptyHint": "Try a different keyword or filter.",
+    "loading": "Loading projects…",
+    "error": "We couldn't load the projects right now.",
+    "viewDetails": "View details",
+    "visit": "Visit website",
+    "close": "Close",
+    "highlights": "Highlights",
+    "tech": "Technologies",
+    "cta": {
+      "eyebrow": "Want one like these?",
+      "title": "Let's build yours.",
+      "subtitle": "Pick a plan, send a few details, and we'll take it from there.",
+      "primary": "Choose a package",
+      "secondary": "Back to Home"
+    },
+    "other": "Other"
   }
 }

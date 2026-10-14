@@ -56,7 +56,7 @@
   }
 
   function card(p) {
-    var c = el("a", "project-card"); c.href = "project-detail.html?id=" + encodeURIComponent(p.id);
+    var c = el("a", "project-card"); c.href = "projects/" + encodeURIComponent(p.id) + ".html";    // static page of the project
     var media = el("div", "project-card__media");
     cover(p, media);
     media.appendChild(el("span", "project-card__badge", typeName(p.type)));

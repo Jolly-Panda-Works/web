@@ -3,13 +3,12 @@
 <head>
 {{> head}}
 </head>
-<body data-file="{{file}}" data-page="{{page}}" dir="{{dir}}">
+<body data-file="{{file}}" data-page="{{page}}" data-path="{{path}}" dir="{{dir}}">
 {{> header}}
 <main id="main">
-<div id="projectDetailRoot"></div>
+{{page_content}}
 </main>
 {{> footer}}
 {{> scripts}}
-<script defer="" src="{{root}}js/project-detail.js"></script>
 </body>
 </html>

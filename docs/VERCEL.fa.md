@@ -97,7 +97,8 @@
 
 1. در Vercel: **Settings ← Domains ← Add** و دامنه (مثلاً `web.jollypanda.ir`) را وارد کنید.
 2. Vercel رکورد DNS لازم را نشان می‌دهد؛ برای زیردامنه معمولاً یک رکورد CNAME است. همان را در پنل DNS دامنه بسازید.
-3. در Environment Variables مقدار `SITE_URL` را دقیقاً برابر آدرس نهایی بگذارید (مثلاً `https://web.jollypanda.ir`) و Redeploy کنید. این مقدار در canonical، sitemap و hreflang استفاده می‌شود.
+3. در Environment Variables مقدار `SITE_URL` را دقیقاً برابر آدرس نهایی بگذارید (مثلاً `https://web.jollypanda.ir`) و Redeploy کنید. این مقدار در canonical، sitemap و hreflang استفاده می‌شود. (اگر نگذارید، سایت آدرس دامنه اصلی Production را از خود Vercel می‌خواند؛ در لاگ build خطی با عنوان `Site address:` آدرس مورد استفاده را نشان می‌دهد.)
+4. راهنمای ثبت در گوگل و بینگ و کارهای دیده‌شدن: `docs/SEO.fa.md`.
 
 ## ۴. نرخ دلار و PDF قیمت (به‌صورت خودکار)
 

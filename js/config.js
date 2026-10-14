@@ -10,5 +10,13 @@ window.JP_CONFIG = {
     "studioTemplateId": "template_te8hqqm",
     "confirmTemplateId": "template_9bs4k5x"
   },
-  "signatureUrl": "https://web.jollypanda.ir/assets/signature/usef-farahmand.png"
+  "signatureUrl": "https://web.jollypanda.ir/assets/signature/usef-farahmand.png",
+  "services": {
+    "blog": "services/blog-website-design.html",
+    "portfolio": "services/portfolio-website-design.html",
+    "corporate": "services/corporate-website-design.html",
+    "education": "services/educational-website-design.html",
+    "news": "services/news-website-design.html",
+    "store": "services/online-store-design.html"
+  }
 };

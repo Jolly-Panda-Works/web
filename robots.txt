@@ -1,4 +1,38 @@
+# https://web.jollypanda.ir
 User-agent: *
 Allow: /
+
+# AI search / answer crawlers: keep them allowed
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Training-only crawlers are allowed too. To opt out of model training (this does NOT remove the site from
+# AI answers or search), remove the "#" in front of the lines below:
+# User-agent: GPTBot
+# Disallow: /
+# User-agent: ClaudeBot
+# Disallow: /
+# User-agent: CCBot
+# Disallow: /
+# User-agent: Google-Extended
+# Disallow: /
 
 Sitemap: https://web.jollypanda.ir/sitemap.xml
