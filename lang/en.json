@@ -38,6 +38,11 @@
       "title": "Project details — Jolly Panda Web",
       "description": "Details of a website built by Jolly Panda.",
       "keywords": "website project, case study"
+    },
+    "custom": {
+      "title": "Build your own website package — Jolly Panda Web",
+      "description": "Can't find a ready-made plan that fits? Pick the features your website needs, see an approximate price range and send your request. The final price is set in a meeting.",
+      "keywords": "custom website package, build your own website, custom web design quote, پکیج کاستوم طراحی سایت, قیمت طراحی سایت"
     }
   },
   "og": {
@@ -204,7 +209,7 @@
     "hero": {
       "eyebrow": "Packages",
       "title": "Pick the plan that fits your website",
-      "intro": "Six website types, three plans each. Select one, then send your request at the bottom of this page.",
+      "intro": "Six website types, three plans each — or build your own custom package. Select one, then send your request at the bottom of this page.",
       "imageAlt": "Jolly Panda mascot working on a laptop next to a plant and a coffee mug"
     },
     "compare": {
@@ -257,7 +262,13 @@
       "change": "Change selection",
       "type": "Website type",
       "plan": "Plan",
-      "price": "Starting price"
+      "price": "Starting price",
+      "requestType": "Request type",
+      "customType": "Custom package",
+      "features": "Features",
+      "options": "Options",
+      "estimate": "Approximate price",
+      "estimateNote": "Approximate range — the final price is set in our meeting."
     },
     "name": "Full name",
     "email": "Email",
@@ -280,7 +291,8 @@
       "consent": "Please accept to continue.",
       "network": "We couldn't reach the email service — your network may be blocking it. Please try again, or email us directly at {email}.",
       "noPackage": "Please select a package first.",
-      "send": "We couldn't send your request. Please try again, or email us directly at {email}."
+      "send": "We couldn't send your request. Please try again, or email us directly at {email}.",
+      "noFeatures": "Please pick at least one feature in the custom package builder first."
     },
     "ok": {
       "title": "Request sent!",
@@ -299,7 +311,11 @@
       "discountNote": "{pct}% discount applied to the regular price of {list}.",
       "rialNote": "Indicative Rial equivalent on the request date: {rial} IRR (1 USD = {rate} IRR). The payment currency and exchange rate are confirmed in the final contract.",
       "structureLabel": "Structure & pages",
-      "siteLanguage": "English"
+      "siteLanguage": "English",
+      "customRate": "Estimated in US dollars. The payment currency and exchange rate are confirmed in the final contract.",
+      "customSubjectStudio": "New custom package request {ref} — features: {n} · {range}",
+      "customSubjectClient": "Your custom package pre-contract {ref} — features: {n} · {range}",
+      "customToman": "Toman estimate at 1 USD = {rate} Toman"
     }
   },
   "footer": {
@@ -455,5 +471,48 @@
       "secondary": "Back to Home"
     },
     "other": "Other"
+  },
+  "custom": {
+    "cta": "Or build your own package",
+    "eyebrow": "Custom package",
+    "title": "Build your own package",
+    "subtitle": "Don't see your exact kind of website? Skip the plans and pick, one by one, the features your website needs. You'll see an approximate price range right away, and can send your request in one click.",
+    "imageAlt": "Jolly Panda mascot assembling website building blocks — buttons, a search bar and forms — next to a laptop",
+    "always": {
+      "title": "Always included",
+      "i1": "Responsive design (mobile and tablet)",
+      "i2": "SSL certificate",
+      "i3": "Contact form",
+      "i4": "Basic SEO"
+    },
+    "featuresTitle": "Pick your features",
+    "needs": "Needs: {names}",
+    "added": "Added automatically: {names}",
+    "summary": {
+      "title": "Your custom package",
+      "none": "Pick at least one feature to see an estimate.",
+      "count": "Features selected: {n}",
+      "estimate": "Approximate price",
+      "note": "This is an approximate range, not a fixed price. The final price is set in the meeting we schedule together.",
+      "noDiscount": "Discounts on the ready-made plans do not apply to custom packages.",
+      "rate": "Estimates are in US dollars.",
+      "continue": "Continue to the form",
+      "clear": "Clear selection",
+      "rateUsd": "No exchange rate is available right now, so the estimate is shown in US dollars."
+    },
+    "bar": {
+      "label": "Custom package",
+      "features": "Features: {n}"
+    },
+    "unit": {
+      "toman": "Toman",
+      "usd": "USD"
+    },
+    "back": "Back to packages",
+    "cta2": {
+      "title": "Didn't find a package that fits your work?",
+      "text": "It doesn't have to match one exactly. Build your own package with us: pick the features your website needs and see an approximate price range right away.",
+      "button": "Build your own package with us"
+    }
   }
 }

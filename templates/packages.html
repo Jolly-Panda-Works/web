@@ -16,6 +16,7 @@
 <p data-i18n="packages.hero.intro" data-reveal="">Intro</p>
 <p class="discount-banner" data-discount-banner="" data-reveal=""{{discount_hidden}}>{{static_discount_banner}}</p>
 <p class="rate-note" data-rate-note="" data-reveal="">{{static_rate_note}}</p>
+<p class="packages-hero__cta" data-reveal=""><a class="btn btn-secondary" href="{{base}}custom.html">{{icon:layout}}<span data-i18n="custom.cta">Or build your own package</span></a></p>
 </div>
 <div class="packages-hero__visual" data-reveal="">
 <span aria-hidden="true" class="how__blob"></span>
@@ -80,81 +81,21 @@
 </div>
 </section>
 
-<!-- ============ REQUEST FORM ============ -->
-<section class="section" id="request">
+<!-- ============ CUSTOM PACKAGE: link to its own page ============ -->
+<section class="section section--tight" id="custom-cta">
 <div class="container">
-<div class="section-heading section-heading--center" data-reveal="">
-<span class="eyebrow" data-i18n="form.eyebrow">Send your request</span>
-<h2 data-i18n="form.title">Tell us about your project</h2>
-<p data-i18n="form.subtitle">Subtitle</p>
+<div class="custom-cta" data-reveal="">
+<img alt="" class="custom-cta__mascot" decoding="async" height="160" loading="lazy" src="{{root}}assets/mascot/mascot-builder.webp" width="160"/>
+<div class="custom-cta__text">
+<h3 data-i18n="custom.cta2.title">Didn't find a package that fits your work?</h3>
+<p data-i18n="custom.cta2.text">Text</p>
 </div>
-
-<div class="request" data-reveal="">
-<aside class="summary-card" aria-live="polite" id="summaryCard">
-<h3 class="summary-card__title" data-i18n="form.summary.title">Your selection</h3>
-<p class="summary-card__none" data-i18n="form.summary.none" id="summaryNone">No package selected yet.</p>
-<dl class="summary-card__list" hidden="" id="summaryList">
-<div><dt data-i18n="form.summary.type">Website type</dt><dd id="sumType"></dd></div>
-<div><dt data-i18n="form.summary.plan">Plan</dt><dd id="sumPlan"></dd></div>
-<div><dt data-i18n="form.summary.price">Starting price</dt><dd id="sumPrice"></dd></div>
-</dl>
-<a class="summary-card__change" data-i18n="form.summary.change" href="#packages">Change selection</a>
-</aside>
-
-<form class="request-form" id="requestForm" novalidate="">
-<!-- honeypot: real visitors never see or fill this -->
-<div aria-hidden="true" class="hp"><label>Leave empty <input autocomplete="off" id="hp" name="website" tabindex="-1" type="text"/></label></div>
-
-<div class="field">
-<label for="f-name" data-i18n="form.name">Full name</label>
-<input autocomplete="name" id="f-name" maxlength="120" name="name" required="" type="text"/>
-<p class="field__error" hidden="" id="err-name"></p>
-</div>
-<div class="field">
-<label for="f-email" data-i18n="form.email">Email</label>
-<input autocomplete="email" dir="ltr" id="f-email" inputmode="email" maxlength="160" name="email" required="" type="email"/>
-<p class="field__error" hidden="" id="err-email"></p>
-</div>
-<div class="field-row">
-<div class="field">
-<label for="f-phone" data-i18n="form.phone">Phone or Telegram (optional)</label>
-<input autocomplete="tel" dir="ltr" id="f-phone" maxlength="60" name="phone" type="text"/>
-</div>
-<div class="field">
-<label for="f-business" data-i18n="form.business">Business or brand name (optional)</label>
-<input autocomplete="organization" id="f-business" maxlength="120" name="business" type="text"/>
-</div>
-</div>
-<div class="field">
-<label for="f-domain" data-i18n="form.domain.label">Do you already have a domain and hosting?</label>
-<select id="f-domain" name="domain">
-<option data-i18n="form.domain.unsure" value="unsure">Not sure</option>
-<option data-i18n="form.domain.yes" value="yes">Yes, I have both</option>
-<option data-i18n="form.domain.no" value="no">No, I need help with them</option>
-</select>
-</div>
-<div class="field">
-<label for="f-message" data-i18n="form.message">About your project</label>
-<textarea data-i18n-attr="placeholder:form.messagePlaceholder" id="f-message" maxlength="3000" name="message" placeholder="" required="" rows="5"></textarea>
-<p class="field__error" hidden="" id="err-message"></p>
-</div>
-<div class="field field--check">
-<label class="check"><input id="f-consent" name="consent" type="checkbox"/><span data-i18n="form.consent">Consent</span></label>
-<p class="field__error" hidden="" id="err-consent"></p>
-</div>
-<p class="form-status form-status--error" hidden="" id="formError" role="alert"></p>
-<button class="btn btn-primary btn--lg request-form__submit" id="submitBtn" type="submit"><span data-i18n="form.submit">Send request</span></button>
-</form>
-
-<div class="form-success" hidden="" id="formSuccess" role="status" tabindex="-1">
-<span class="form-success__icon">{{icon:check}}</span>
-<h3 data-i18n="form.ok.title">Request sent!</h3>
-<p id="successText"></p>
-<button class="btn btn-secondary" data-i18n="form.ok.another" id="anotherBtn" type="button">Send another request</button>
-</div>
+<a class="btn btn-primary btn--lg" href="{{base}}custom.html">{{icon:layout}}<span data-i18n="custom.cta2.button">Build your own package with us</span></a>
 </div>
 </div>
 </section>
+
+{{> request-form}}
 
 </main>
 

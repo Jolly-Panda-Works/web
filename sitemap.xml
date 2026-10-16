@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://web.jollypanda.ir/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/" />
@@ -12,7 +12,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/" />
@@ -21,7 +21,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/packages.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/packages.html" />
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/packages.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/packages.html" />
@@ -38,8 +38,26 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://web.jollypanda.ir/packages.html" />
   </url>
   <url>
+    <loc>https://web.jollypanda.ir/custom.html</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/custom.html" />
+    <xhtml:link rel="alternate" hreflang="fa" href="https://web.jollypanda.ir/fa/custom.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web.jollypanda.ir/custom.html" />
+  </url>
+  <url>
+    <loc>https://web.jollypanda.ir/fa/custom.html</loc>
+    <lastmod>2026-10-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/custom.html" />
+    <xhtml:link rel="alternate" hreflang="fa" href="https://web.jollypanda.ir/fa/custom.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://web.jollypanda.ir/custom.html" />
+  </url>
+  <url>
     <loc>https://web.jollypanda.ir/projects.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects.html" />
@@ -48,7 +66,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/projects.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects.html" />
@@ -57,7 +75,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/services/blog-website-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/blog-website-design.html" />
@@ -66,7 +84,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/services/blog-website-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/blog-website-design.html" />
@@ -75,7 +93,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/services/portfolio-website-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/portfolio-website-design.html" />
@@ -84,7 +102,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/services/portfolio-website-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/portfolio-website-design.html" />
@@ -93,7 +111,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/services/corporate-website-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/corporate-website-design.html" />
@@ -102,7 +120,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/services/corporate-website-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/corporate-website-design.html" />
@@ -111,7 +129,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/services/educational-website-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/educational-website-design.html" />
@@ -120,7 +138,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/services/educational-website-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/educational-website-design.html" />
@@ -129,7 +147,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/services/news-website-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/news-website-design.html" />
@@ -138,7 +156,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/services/news-website-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/news-website-design.html" />
@@ -147,7 +165,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/services/online-store-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/online-store-design.html" />
@@ -156,7 +174,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/services/online-store-design.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/services/online-store-design.html" />
@@ -165,7 +183,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/projects/dopamall.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/dopamall.html" />
@@ -174,7 +192,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/projects/dopamall.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/dopamall.html" />
@@ -183,7 +201,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/projects/useff-portfolio.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/useff-portfolio.html" />
@@ -192,7 +210,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/projects/useff-portfolio.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/useff-portfolio.html" />
@@ -201,7 +219,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/projects/abolfazl-nezami.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/abolfazl-nezami.html" />
@@ -210,7 +228,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/projects/abolfazl-nezami.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/abolfazl-nezami.html" />
@@ -219,7 +237,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/projects/mohammadjavad-gholizade.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/mohammadjavad-gholizade.html" />
@@ -228,7 +246,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/projects/mohammadjavad-gholizade.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/mohammadjavad-gholizade.html" />
@@ -237,7 +255,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/projects/mojtaba-mofidinejad.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/mojtaba-mofidinejad.html" />
@@ -246,7 +264,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/projects/mojtaba-mofidinejad.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/mojtaba-mofidinejad.html" />
@@ -255,7 +273,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/projects/rasoul-sajjadi.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/rasoul-sajjadi.html" />
@@ -264,7 +282,7 @@
   </url>
   <url>
     <loc>https://web.jollypanda.ir/fa/projects/rasoul-sajjadi.html</loc>
-    <lastmod>2026-10-06</lastmod>
+    <lastmod>2026-10-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://web.jollypanda.ir/projects/rasoul-sajjadi.html" />

@@ -94,7 +94,7 @@
         "@id": "https://web.jollypanda.ir/#website"
       },
       "inLanguage": "en",
-      "dateModified": "2026-10-06T12:37:34.183Z"
+      "dateModified": "2026-10-13T21:25:50.831Z"
     },
     {
       "@type": "Service",
@@ -311,9 +311,10 @@
 <div class="packages-hero__text">
 <span class="eyebrow page-hero__eyebrow" data-i18n="packages.hero.eyebrow">Packages</span>
 <h1 data-i18n="packages.hero.title" data-reveal="">Pick the plan that fits your website</h1>
-<p data-i18n="packages.hero.intro" data-reveal="">Six website types, three plans each. Select one, then send your request at the bottom of this page.</p>
+<p data-i18n="packages.hero.intro" data-reveal="">Six website types, three plans each — or build your own custom package. Select one, then send your request at the bottom of this page.</p>
 <p class="discount-banner" data-discount-banner="" data-reveal=""><span class="discount-chip">10% off</span><span>10% discount on all plans</span></p>
-<p class="rate-note" data-rate-note="" data-reveal=""><span class="rate-note__dot" aria-hidden="true"></span><span>Prices last updated: <strong>6 October 2026 at 16:07 (Tehran time)</strong></span></p>
+<p class="rate-note" data-rate-note="" data-reveal=""><span class="rate-note__dot" aria-hidden="true"></span><span>Prices last updated: <strong>14 October 2026 at 00:55 (Tehran time)</strong></span></p>
+<p class="packages-hero__cta" data-reveal=""><a class="btn btn-secondary" href="custom.html"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg><span data-i18n="custom.cta">Or build your own package</span></a></p>
 </div>
 <div class="packages-hero__visual" data-reveal="">
 <span aria-hidden="true" class="how__blob"></span>
@@ -378,6 +379,20 @@
 </div>
 </section>
 
+<!-- ============ CUSTOM PACKAGE: link to its own page ============ -->
+<section class="section section--tight" id="custom-cta">
+<div class="container">
+<div class="custom-cta" data-reveal="">
+<img alt="" class="custom-cta__mascot" decoding="async" height="160" loading="lazy" src="assets/mascot/mascot-builder.webp" width="160"/>
+<div class="custom-cta__text">
+<h3 data-i18n="custom.cta2.title">Didn't find a package that fits your work?</h3>
+<p data-i18n="custom.cta2.text">It doesn't have to match one exactly. Build your own package with us: pick the features your website needs and see an approximate price range right away.</p>
+</div>
+<a class="btn btn-primary btn--lg" href="custom.html"><svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg><span data-i18n="custom.cta2.button">Build your own package with us</span></a>
+</div>
+</div>
+</section>
+
 <!-- ============ REQUEST FORM ============ -->
 <section class="section" id="request">
 <div class="container">
@@ -396,7 +411,14 @@
 <div><dt data-i18n="form.summary.plan">Plan</dt><dd id="sumPlan"></dd></div>
 <div><dt data-i18n="form.summary.price">Starting price</dt><dd id="sumPrice"></dd></div>
 </dl>
-<a class="summary-card__change" data-i18n="form.summary.change" href="#packages">Change selection</a>
+<dl class="summary-card__list" hidden="" id="summaryCustom">
+<div><dt data-i18n="form.summary.requestType">Request type</dt><dd data-i18n="form.summary.customType">Custom package</dd></div>
+<div><dt data-i18n="form.summary.features">Features</dt><dd id="sumCFeatures"></dd></div>
+<div><dt data-i18n="form.summary.options">Options</dt><dd id="sumCOptions"></dd></div>
+<div><dt data-i18n="form.summary.estimate">Approximate price</dt><dd id="sumCPrice"></dd></div>
+</dl>
+<p class="summary-card__hint" hidden="" id="sumCNote" data-i18n="form.summary.estimateNote">Approximate range — the final price is set in our meeting.</p>
+<a class="summary-card__change" data-i18n="form.summary.change" href="#packages" id="summaryChange">Change selection</a>
 </aside>
 
 <form class="request-form" id="requestForm" novalidate="">
@@ -453,6 +475,7 @@
 </div>
 </div>
 </section>
+
 
 </main>
 

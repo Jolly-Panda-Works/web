@@ -7,6 +7,10 @@ The request form sends **two emails** through [EmailJS](https://www.emailjs.com/
 | `studio-notification.html` | the studio inbox | the full request (always English) |
 | `customer-confirmation-precontract.html` | visitors of the **English** site | confirmation + pre-contract, **fully in English** |
 | `customer-confirmation-precontract.fa.html` | visitors of the **Persian** site | the same pre-contract **in Persian** (right-to-left, Jalali date) |
+| `studio-notification-custom.html` / `.fa.html` | the studio inbox | a **custom package** request, in the language of the site the visitor used |
+| `customer-confirmation-custom.html` / `.fa.html` | the visitor | the **custom package** pre-contract (selected options and features, approximate price range, no discount), in English or Persian |
+
+Custom package requests always use the single generic template below (`{{{message_html}}}`); the lists of options and features are built by `js/form.js` and inserted through `{{{features_html}}}` (three braces = ready-made, already-escaped HTML). Persian visitors see the range in Toman, English visitors in US dollars.
 
 ## Setup with ONE EmailJS template (recommended)
 

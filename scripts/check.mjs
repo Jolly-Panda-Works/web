@@ -64,16 +64,40 @@ for (const p of json("data/projects.json")) {
   for (const g of p.gallery || []) if (!fs.existsSync(path.join(ROOT, g.src))) err(`project ${p.id}: gallery image not found: ${g.src}`);
 }
 
+// 2b. custom package catalog (data/custom.json)
+const custom = json("data/custom.json");
+if (!(custom.baseUsd > 0)) err("data/custom.json: baseUsd must be a positive number");
+const rg = custom.range || {};
+if (!(rg.low > 0 && rg.low < 1 && rg.high > 1 && rg.roundUsd > 0 && rg.roundToman > 0)) err("data/custom.json: range needs low (<1), high (>1), roundUsd and roundToman");
+const featIds = new Set(custom.groups.flatMap((g) => g.features.map((f) => f.id)));
+const customSeen = new Set();
+for (const o of custom.options || []) {
+  biling(o.label, `custom option ${o.id}`);
+  if (!o.choices?.length || o.choices[0].usd !== 0) err(`custom option ${o.id}: needs choices and the first (default) choice must cost 0`);
+  for (const c of o.choices || []) { biling(c.label, `custom option ${o.id}/${c.id}`); if (!(c.usd >= 0)) err(`custom option ${o.id}/${c.id}: invalid usd`); }
+}
+for (const g of custom.groups) {
+  biling(g.label, `custom group ${g.id}`);
+  for (const f of g.features) {
+    if (customSeen.has(f.id)) err(`custom feature id used twice: ${f.id}`); customSeen.add(f.id);
+    biling(f.name, `custom feature ${f.id} name`); biling(f.desc, `custom feature ${f.id} desc`);
+    if (!(f.usd > 0)) err(`custom feature ${f.id}: invalid usd`);
+    for (const r of f.requires || []) if (!featIds.has(r) || r === f.id) err(`custom feature ${f.id}: unknown requirement "${r}"`);
+  }
+}
+
 // Persian text must use the Latin brand name, never «جولی پاندا»
-const faText = fs.readFileSync(path.join(ROOT, "lang/fa.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/projects.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/plans.json"), "utf8");
+const faText = fs.readFileSync(path.join(ROOT, "lang/fa.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/projects.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/plans.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/custom.json"), "utf8");
 if (/جولی[\s\u200c]*پاندا/.test(faText)) err("Persian text contains «جولی پاندا» — write «استودیو Jolly Panda» instead");
 
 // e-mail templates: the English pre-contract must contain no Persian, the Persian one must use the Latin brand name
 const mail = (f) => fs.readFileSync(path.join(ROOT, "email-templates", f), "utf8");
-for (const f of ["customer-confirmation-precontract.html", "studio-notification.html"]) {
+for (const f of ["customer-confirmation-precontract.html", "studio-notification.html", "customer-confirmation-custom.html", "studio-notification-custom.html"]) {
   if (/[\u0600-\u06FF]/.test(mail(f))) err(`email-templates/${f} contains Persian text — the English e-mails must be fully English`);
 }
-if (/جولی[\s\u200c]*پاندا/.test(mail("customer-confirmation-precontract.fa.html"))) err("email-templates/customer-confirmation-precontract.fa.html contains «جولی پاندا» — write «استودیو Jolly Panda»");
+for (const f of ["customer-confirmation-precontract.fa.html", "customer-confirmation-custom.fa.html", "studio-notification-custom.fa.html"]) {
+  if (/جولی[\s\u200c]*پاندا/.test(mail(f))) err(`email-templates/${f} contains «جولی پاندا» — write «استودیو Jolly Panda»`);
+}
 
 // page addresses must be URL-safe and unique (services/<slug>.html, projects/<id>.html)
 const slugs = new Set();

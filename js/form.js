@@ -39,7 +39,13 @@
     return ok(e.serviceId) && ok(e.publicKey) && (ok(e.templateId) || (ok(e.studioTemplateId) && ok(e.confirmTemplateId)));
   }
   var esc = function (s) { return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); };
-  function fill(tpl, params) { return tpl.replace(/\{\{(\w+)\}\}/g, function (m, k) { return esc(params[k]); }); }
+  // {{{name}}} = ready-made HTML built by this script (already escaped); {{name}} = plain text, escaped here
+  function fill(tpl, params) {
+    return tpl
+      .replace(/\{\{\{(\w+)\}\}\}/g, function (m, k) { return params[k] == null ? "" : params[k]; })
+      .replace(/\{\{(\w+)\}\}/g, function (m, k) { return esc(params[k]); });
+  }
+  function customActive() { return JP.mode === "custom" && !!JP.custom && JP.custom.count() > 0; }
   function faTemplateReady() {
     var id = (cfg.email || {}).confirmTemplateIdFa;
     return JP.lang === "fa" && !!id && String(id).indexOf("YOUR_") !== 0;
@@ -50,8 +56,20 @@
 
   /* ---------- summary card ---------- */
   function paintSummary() {
-    var none = $("summaryNone"), list = $("summaryList");
+    var none = $("summaryNone"), list = $("summaryList"), cust = $("summaryCustom"), note = $("sumCNote");
     if (!none || !list) return;
+    var chg = $("summaryChange");
+    if (customActive() && data) {                       // custom package request
+      $("sumCFeatures").textContent = JP.pricing.number(JP.custom.count());
+      $("sumCOptions").textContent = JP.custom.choices().map(function (c) { return JP.pick(c.choice.label); }).join(" · ");
+      $("sumCPrice").textContent = JP.custom.rangeText();
+      none.hidden = true; list.hidden = true; cust.hidden = false; note.hidden = false;
+      if (chg) chg.setAttribute("href", "#custom");
+      return;
+    }
+    if (cust) cust.hidden = true;
+    if (note) note.hidden = true;
+    if (chg) chg.setAttribute("href", "#packages");
     if (!JP.selection || !data) { none.hidden = false; list.hidden = true; return; }
     var ty = typeById(JP.selection.type), pl = planById(JP.selection.plan);
     $("sumType").textContent = JP.pick(ty.name);
@@ -192,6 +210,102 @@
       "&body=" + encodeURIComponent(lines.join("\n"));
   }
 
+  /* ---------- custom package: email content ----------
+     Both emails of a custom request are written in the language of the page the visitor used
+     (JP.dict is that language), so every label comes from JP.t / the bilingual catalog. */
+  function customFeaturesHtml() {
+    var fa = JP.lang === "fa";
+    var dir = fa ? "rtl" : "ltr", align = fa ? "right" : "left", pad = fa ? "padding-right:20px;padding-left:0;" : "padding-left:20px;";
+    var h = '<table role="presentation" dir="' + dir + '" width="100%" cellspacing="0" cellpadding="0" style="font-size:14px;line-height:1.7;">';
+    JP.custom.choices().forEach(function (c) {
+      h += '<tr><td style="padding:4px 0;width:34%;color:#9c8078;vertical-align:top;text-align:' + align + ';">' + esc(JP.pick(c.option.label)) +
+        '</td><td style="padding:4px 0;text-align:' + align + ';">' + esc(JP.pick(c.choice.label)) + '</td></tr>';
+    });
+    h += "</table>";
+    var picked = JP.custom.features();
+    JP.custom.groups().forEach(function (g) {
+      var inGroup = picked.filter(function (e) { return e.group.id === g.id; });
+      if (!inGroup.length) return;
+      h += '<div dir="' + dir + '" style="margin-top:12px;font-size:13px;font-weight:bold;color:#6b504b;text-align:' + align + ';">' + esc(JP.pick(g.label)) + "</div>";
+      h += '<ul dir="' + dir + '" style="margin:4px 0 0;' + pad + 'font-size:14px;line-height:1.8;text-align:' + align + ';">';
+      inGroup.forEach(function (e) { h += "<li>" + esc(JP.pick(e.feature.name)) + "</li>"; });
+      h += "</ul>";
+    });
+    return h;
+  }
+
+  function buildCustomParams(ref) {
+    var fa = JP.lang === "fa";
+    var email = $("f-email").value.trim(), name = $("f-name").value.trim();
+    var now = new Date();
+    var dateText = fa
+      ? new Intl.DateTimeFormat("fa-IR-u-ca-persian", { dateStyle: "long", timeZone: "Asia/Tehran" }).format(now)
+      : new Intl.DateTimeFormat("en-GB", { dateStyle: "long", timeZone: "Asia/Tehran" }).format(now);
+    var nf = new Intl.NumberFormat(fa ? "fa-IR" : "en-US");
+    var toman = JP.custom.rate();                        // Toman per USD, or null
+    var rateNote = fa && toman ? JP.t("form.mail.customRate", { rate: nf.format(Math.round(toman)) }) : (fa ? "" : JP.t("form.mail.customRate"));
+    return {
+      reference: ref,
+      request_date: dateText,
+      site_language: fa ? "فارسی" : "English",
+      name: name, email: email, to_email: email, to_name: name,
+      reply_to: cfg.contactEmail || "",
+      studio_email: cfg.contactEmail || "",
+      signature_url: cfg.signatureUrl || "",
+      phone: $("f-phone").value.trim() || "-",
+      business: $("f-business").value.trim() || "-",
+      domain_status: JP.t("form.domainLabels." + $("f-domain").value),
+      project_message: $("f-message").value.trim(),
+      features_count: nf.format(JP.custom.count()),
+      features_html: customFeaturesHtml(),                // raw HTML: used as {{{features_html}}}
+      estimate_range: JP.custom.rangeText(),              // Toman range (Persian, with a rate) or USD range
+      estimate_usd: JP.custom.usdText(),                  // always the dollar range
+      estimate_rate_note: rateNote,
+    };
+  }
+
+  function customMailto(p) {
+    var lines = [p.reference, "", p.name + " <" + p.email + ">", p.phone, p.business, p.domain_status, "", p.project_message, "", p.estimate_range + (JP.lang === "fa" ? " (" + p.estimate_usd + ")" : "")];
+    JP.custom.choices().forEach(function (c) { lines.push(JP.pick(c.option.label) + ": " + JP.pick(c.choice.label)); });
+    JP.custom.features().forEach(function (e) { lines.push("- " + JP.pick(e.feature.name)); });
+    window.location.href = "mailto:" + (cfg.contactEmail || "") + "?subject=" +
+      encodeURIComponent(JP.t("form.mail.customSubjectStudio", { ref: p.reference, n: p.features_count, range: p.estimate_range })) +
+      "&body=" + encodeURIComponent(lines.join("\n"));
+  }
+
+  /** Custom package: two emails in the visitor's language — the request to the studio and the pre-contract to the visitor.
+      Needs the single generic EmailJS template (templateId, body {{{message_html}}}); without it the mail app opens. */
+  function submitCustom() {
+    if (!JP.custom || JP.custom.count() === 0) {
+      showError(JP.t("form.err.noFeatures"));
+      var cb = $("custom"); if (cb) cb.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    var ref = reference(), p = buildCustomParams(ref), L = JP.lang === "fa" ? "fa" : "en";
+    if (!(isConfigured() && singleMode())) {
+      console.warn("[form.js] Custom packages need the single EmailJS template (EMAILJS_TEMPLATE_ID, body {{{message_html}}}) — falling back to the mail app.");
+      customMailto(p);
+      showSuccess(JP.t("form.ok.fallback", { email: cfg.contactEmail }));
+      return;
+    }
+    var TPL = window.JP_EMAIL_TEMPLATES, contact = cfg.contactEmail || "", id = cfg.email.templateId;
+    // no "/", "&" or quotes in subjects (EmailJS HTML-escapes them if the Subject field uses {{subject}} instead of {{{subject}}})
+    var vars = { ref: ref, n: p.features_count, range: p.estimate_range };
+    var studioMail = { to_email: contact, from_name: "Jolly Panda Web", reply_to: p.email, subject: JP.t("form.mail.customSubjectStudio", vars), message_html: fill(TPL["studio_custom_" + L], p) };
+    var clientMail = { to_email: p.email, from_name: "Jolly Panda Studio", reply_to: contact, subject: JP.t("form.mail.customSubjectClient", vars), message_html: fill(TPL["customer_custom_" + L], p) };
+    console.info("[form.js] custom package: sending the request to " + contact + " and the pre-contract to " + p.email + " (" + L + ")");
+    setBusy(true);
+    sendEmailJS(id, studioMail)
+      .then(function () { return delay(1200); })
+      .then(function () { return sendEmailJS(id, clientMail).then(function () { return true; }, function (e) { console.warn("[form.js] confirmation failed", e); return false; }); })
+      .then(function (confirmed) { showSuccess(JP.t(confirmed ? "form.ok.text" : "form.ok.textNoConfirm", { email: p.email })); })
+      .catch(function (e) {
+        console.error("[form.js] EmailJS request failed:", e && e.message ? e.message : e);
+        showError(JP.t(e && e.network ? "form.err.network" : "form.err.send", { email: cfg.contactEmail }));
+      })
+      .then(function () { setBusy(false); });
+  }
+
   /* ---------- UI states ---------- */
   function showError(msg) { var b = $("formError"); b.textContent = msg; b.hidden = false; }
   function hideError() { $("formError").hidden = true; }
@@ -213,6 +327,7 @@
     hideError();
     if ($("hp").value) { showSuccess(JP.t("form.ok.text", { email: $("f-email").value.trim() })); return; } // bot
     if (!validate()) return;
+    if (JP.mode === "custom" && (customActive() || !JP.selection)) { submitCustom(); return; }
     if (!JP.selection) {
       showError(JP.t("form.err.noPackage"));
       var pk = $("packages"); if (pk) pk.scrollIntoView({ behavior: "smooth" });
@@ -275,6 +390,7 @@
       paintSummary();
     });
     document.addEventListener("jp:selection", paintSummary);
+    document.addEventListener("jp:custom", paintSummary);
     form.addEventListener("submit", onSubmit);
     ["name", "email", "message"].forEach(function (f) {
       $("f-" + f).addEventListener("input", function () { setError(f); });

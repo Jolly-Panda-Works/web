@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html data-root="{{root}}" dir="{{dir}}" lang="{{lang}}">
+<head>
+{{> head}}
+</head>
+<body data-file="{{file}}" data-page="{{page}}" data-path="{{path}}" dir="{{dir}}">
+{{> header}}
+<main id="main">
+
+<!-- ============ HERO (mascot builder) ============ -->
+<section class="page-hero page-hero--packages">
+<div class="container">
+<a class="custom-back" href="{{base}}packages.html">{{dir_icon}}<span data-i18n="custom.back">Back to packages</span></a>
+<div class="custom-intro" data-reveal="">
+<div class="custom-intro__text">
+<span class="eyebrow" data-i18n="custom.eyebrow">Custom package</span>
+<h1 data-i18n="custom.title">Build your own package</h1>
+<p data-i18n="custom.subtitle">Subtitle</p>
+<div class="custom-always">
+<h3 data-i18n="custom.always.title">Always included</h3>
+<ul>
+<li>{{icon:check}}<span data-i18n="custom.always.i1">i</span></li>
+<li>{{icon:check}}<span data-i18n="custom.always.i2">i</span></li>
+<li>{{icon:check}}<span data-i18n="custom.always.i3">i</span></li>
+<li>{{icon:check}}<span data-i18n="custom.always.i4">i</span></li>
+</ul>
+</div>
+</div>
+<div class="custom-intro__visual">
+<span aria-hidden="true" class="how__blob"></span>
+<img class="custom-intro__mascot" data-i18n-attr="alt:custom.imageAlt" alt="" decoding="async" fetchpriority="high" height="960" src="{{root}}assets/mascot/mascot-builder.webp" width="960"/>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ CUSTOM PACKAGE BUILDER ============ -->
+<section class="section section--tight" id="custom">
+<div class="container">
+<div class="custom-builder">
+<div class="custom-builder__main" id="customMain"><!-- filled by js/custom.js --></div>
+<aside class="custom-summary" id="customSummary" aria-live="polite">
+<h3 class="custom-summary__title" data-i18n="custom.summary.title">Your custom package</h3>
+<p class="custom-summary__none" data-i18n="custom.summary.none" id="customNone">Pick at least one feature to see an estimate.</p>
+<div class="custom-summary__body" hidden="" id="customBody">
+<p class="custom-summary__count" id="customCount"></p>
+<ul class="custom-summary__list" id="customList"></ul>
+<div class="custom-summary__price">
+<span class="custom-summary__price-label" data-i18n="custom.summary.estimate">Approximate price</span>
+<strong class="custom-summary__price-value" id="customPrice"></strong>
+</div>
+<p class="custom-summary__note" data-i18n="custom.summary.note">Note</p>
+<p class="custom-summary__note" data-i18n="custom.summary.noDiscount">No discount</p>
+<p class="custom-summary__note" data-i18n="custom.summary.rate" id="customRateNote">Rate</p>
+<p class="rate-note" data-rate-note=""></p>
+<div class="custom-summary__actions">
+<a class="btn btn-primary" href="#request"><span data-i18n="custom.summary.continue">Continue to the form</span></a>
+<button class="btn btn-secondary" data-i18n="custom.summary.clear" id="customClear" type="button">Clear selection</button>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</section>
+
+{{> request-form}}
+
+</main>
+
+{{> footer}}
+{{> scripts}}
+<script defer="" src="{{root}}js/pricing.js"></script>
+<script defer="" src="{{root}}js/custom.js"></script>
+<script defer="" src="{{root}}js/email-templates.js"></script>
+<script defer="" src="{{root}}js/form.js"></script>
+</body>
+</html>

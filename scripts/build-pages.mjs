@@ -90,6 +90,7 @@ const dirIcon = () => `<span aria-hidden="true" class="dir-icon"><svg class="dir
 const pageSpecs = [
   { key: "home", kind: "home", path: "index.html", template: "index.html" },
   { key: "packages", kind: "packages", path: "packages.html", template: "packages.html" },
+  { key: "custom", kind: "custom", path: "custom.html", template: "custom.html" },
   { key: "projects", kind: "projects", path: "projects.html", template: "projects.html" },
   ...plans.types.map((ty) => ({ key: "service:" + ty.id, kind: "service", path: servicePath(ty), template: "service.html", ty })),
   ...projects.map((pr) => ({ key: "project:" + pr.id, kind: "project", path: `projects/${pr.id}.html`, template: "project.html", pr })),
@@ -154,6 +155,8 @@ function jsonLd(spec, lang) {
       hasOfferCatalog: { "@type": "OfferCatalog", name: meta.title, itemListElement: plans.types.flatMap((ty) => offerNodes(ty, lang)) },
     });
     graph.push(crumb([home, pk]));
+  } else if (spec.kind === "custom") {
+    graph.push(crumb([home, pk, [meta.title, url]]));
   } else if (spec.kind === "service") {
     const ty = spec.ty, offers = offerNodes(ty, lang), prices = offers.map((o) => o.price);
     graph.push({
@@ -196,7 +199,7 @@ function render(spec, lang) {
   const base = kind === "notfound" ? "/" : "../".repeat(depth(spec));                 // path to the root of THIS language's pages
   const rootRel = kind === "notfound" ? "/" : (lang === "fa" ? "../" : "") + base;    // path to the site root (assets, js, css, data)
   const robots = kind === "notfound" ? "noindex, follow" : "index, follow, max-image-preview:large";
-  const navActive = { home: kind === "home", packages: kind === "packages" || kind === "service", projects: kind === "projects" || kind === "project" };
+  const navActive = { home: kind === "home", packages: kind === "packages" || kind === "service" || kind === "custom", projects: kind === "projects" || kind === "project" };
   const banner = shop.discountBanner(lang);
   const vars = {
     lang, dir: dict.meta.dir, root: rootRel, base, file: path.basename(spec.path), path: spec.path, page: kind,
@@ -281,7 +284,7 @@ for (const dir of ["services", "projects", "fa/services", "fa/projects"]) {
   for (const f of fs.readdirSync(d)) if (f.endsWith(".html") && !keep.has(`${dir}/${f}`)) fs.rmSync(path.join(d, f));
 }
 
-// The three e-mail bodies, embedded for the browser: with the single EmailJS template (templateId) the page
+// The seven e-mail bodies (3 for ready-made plans + 4 for custom packages), embedded for the browser: with the single EmailJS template (templateId) the page
 // fills them in and sends the finished HTML as {{{message_html}}}.
 const mailFile = (f) => fs.readFileSync(p("email-templates", f), "utf8");
 write("js/email-templates.js",
@@ -290,6 +293,11 @@ window.JP_EMAIL_TEMPLATES = ${JSON.stringify({
   studio: mailFile("studio-notification.html"),
   customer_en: mailFile("customer-confirmation-precontract.html"),
   customer_fa: mailFile("customer-confirmation-precontract.fa.html"),
+  // custom package ("build your own"): both mails follow the language of the page
+  studio_custom_en: mailFile("studio-notification-custom.html"),
+  studio_custom_fa: mailFile("studio-notification-custom.fa.html"),
+  customer_custom_en: mailFile("customer-confirmation-custom.html"),
+  customer_custom_fa: mailFile("customer-confirmation-custom.fa.html"),
 })};
 `);
 
@@ -314,7 +322,7 @@ window.JP_CONFIG = ${JSON.stringify({
 // sitemap: every page, in both languages, with hreflang alternates
 const urls = [];
 for (const spec of pageSpecs) for (const lang of LANGS) {
-  const priority = spec.kind === "home" ? "1.0" : spec.kind === "service" || spec.kind === "packages" ? "0.9" : spec.kind === "projects" ? "0.7" : "0.6";
+  const priority = spec.kind === "home" ? "1.0" : spec.kind === "service" || spec.kind === "packages" ? "0.9" : spec.kind === "custom" ? "0.8" : spec.kind === "projects" ? "0.7" : "0.6";
   const freq = spec.kind === "service" || spec.kind === "packages" || spec.kind === "home" ? "weekly" : "monthly";
   urls.push(`  <url>
     <loc>${urlOf(spec, lang)}</loc>

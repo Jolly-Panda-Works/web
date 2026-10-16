@@ -14,6 +14,8 @@
   var data = null;
   var activeType = null;
   JP.selection = null;
+  JP.mode = JP.mode || "plan";   // "plan" = a ready-made plan is the request, "custom" = the custom package builder (js/custom.js)
+  function planActive() { return !!JP.selection && JP.mode !== "custom"; }
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -41,6 +43,7 @@
 
   function select(typeId, planId, opts) {
     JP.selection = { type: typeId, plan: planId };
+    JP.mode = "plan";
     save();
     if (!opts || !opts.silent) { activeType = typeId; }
     paintSelection();
@@ -56,18 +59,27 @@
     return JP.pick(ty.name) + " — " + JP.pick(pl.name) + " — " + JP.pricing.plain(usd, data, JP.pricing.pct(ty, pl, data));
   }
 
+  /** Text of the floating bar: the selected plan, or the custom package (feature count + approximate range). */
+  function barLabel() {
+    if (JP.mode === "custom" && JP.custom && JP.custom.count() > 0) {
+      return JP.t("custom.bar.label") + " — " + JP.t("custom.bar.features", { n: JP.pricing.number(JP.custom.count()) }) + " — " + JP.custom.rangeText();
+    }
+    return planActive() ? selectionLabel() : "";
+  }
+
   function paintSelection() {
     document.querySelectorAll(".price-cell").forEach(function (b) {
-      var on = JP.selection && b.dataset.type === JP.selection.type && b.dataset.plan === JP.selection.plan;
+      var on = planActive() && b.dataset.type === JP.selection.type && b.dataset.plan === JP.selection.plan;
       b.classList.toggle("is-selected", !!on);
       b.setAttribute("aria-pressed", on ? "true" : "false");
     });
     var bar = document.getElementById("selectionBar");
     var text = document.getElementById("barText");
-    document.body.classList.toggle("has-selection", !!JP.selection);
+    var label = barLabel();
+    document.body.classList.toggle("has-selection", !!label);
     if (bar && text) {
-      bar.hidden = !JP.selection || barSuppressed;
-      text.textContent = selectionLabel();
+      bar.hidden = !label || barSuppressed;
+      text.textContent = label;
     }
   }
 
@@ -139,7 +151,7 @@
     data.plans.plans.forEach(function (pl) {
       var row = ty.rows[pl.id];
       var highlight = pl.id === data.plans.highlightPlan;
-      var selected = JP.selection && JP.selection.type === ty.id && JP.selection.plan === pl.id;
+      var selected = planActive() && JP.selection.type === ty.id && JP.selection.plan === pl.id;
       var card = el("article", "plan-card" + (highlight ? " plan-card--highlight" : "") + (selected ? " is-selected" : ""));
       if (highlight && pl.badge) card.appendChild(el("span", "plan-card__badge", JP.pick(pl.badge)));
       card.appendChild(el("h4", "plan-card__name", JP.pick(pl.name)));
@@ -167,16 +179,21 @@
     });
   }
 
-  /* hide the floating bar while the form itself is on screen */
+  /* hide the floating bar while the form or the custom builder is on screen (both have their own continue button) */
   var barSuppressed = false;
   function watchForm() {
-    var form = document.getElementById("request");
-    if (!form || !("IntersectionObserver" in window)) return;
-    new IntersectionObserver(function (entries) {
-      barSuppressed = entries[0].isIntersecting;
-      var bar = document.getElementById("selectionBar");
-      if (bar) bar.hidden = !JP.selection || barSuppressed;
-    }, { threshold: 0.15 }).observe(form);
+    if (!("IntersectionObserver" in window)) return;
+    var seen = {};
+    ["request", "custom"].forEach(function (id) {
+      var node = document.getElementById(id);
+      if (!node) return;
+      new IntersectionObserver(function (entries) {
+        seen[id] = entries[0].isIntersecting;
+        barSuppressed = !!(seen.request || seen.custom);
+        var bar = document.getElementById("selectionBar");
+        if (bar) bar.hidden = !barLabel() || barSuppressed;
+      }, { threshold: 0.15 }).observe(node);
+    });
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -193,6 +210,7 @@
       JP.pricing.fillNotes();
       JP.pricing.fillBanners();
       document.dispatchEvent(new CustomEvent("jp:packages-ready", { detail: { data: data } }));
+      document.addEventListener("jp:custom", function () { paintSelection(); renderDetails(); });
       if (pre) document.dispatchEvent(new CustomEvent("jp:selection", { detail: JP.selection }));
       if (window.JollyPandaAnimations) window.JollyPandaAnimations.observe(document.querySelectorAll("#priceTable"));
     }).catch(function (e) {

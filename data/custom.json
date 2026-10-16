@@ -1,0 +1,626 @@
+{
+ "note": "Approximate-price catalog for the custom package builder (js/custom.js). usd = internal estimate points, never shown per feature; the visitor sees only a range. No discount applies to custom packages.",
+ "baseUsd": 10,
+ "range": {
+  "low": 0.9,
+  "high": 1.25,
+  "roundUsd": 5,
+  "roundToman": 50000
+ },
+ "options": [
+  {
+   "id": "pages",
+   "label": {
+    "en": "Pages & structure",
+    "fa": "ساختار و صفحات"
+   },
+   "choices": [
+    {
+     "id": "p5",
+     "usd": 0,
+     "label": {
+      "en": "Up to 5 pages",
+      "fa": "تا ۵ صفحه"
+     }
+    },
+    {
+     "id": "p10",
+     "usd": 15,
+     "label": {
+      "en": "Up to 10 pages",
+      "fa": "تا ۱۰ صفحه"
+     }
+    },
+    {
+     "id": "p20",
+     "usd": 40,
+     "label": {
+      "en": "Up to 20 pages",
+      "fa": "تا ۲۰ صفحه"
+     }
+    },
+    {
+     "id": "pmore",
+     "usd": 90,
+     "label": {
+      "en": "More than 20 pages (based on the project)",
+      "fa": "بیش از ۲۰ صفحه (بر اساس پروژه)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "design",
+   "label": {
+    "en": "Design",
+    "fa": "طراحی"
+   },
+   "choices": [
+    {
+     "id": "tpl",
+     "usd": 0,
+     "label": {
+      "en": "Ready-made template with customization",
+      "fa": "قالب آماده با شخصی‌سازی"
+     }
+    },
+    {
+     "id": "ui",
+     "usd": 30,
+     "label": {
+      "en": "Custom UI design",
+      "fa": "طراحی اختصاصی رابط کاربری"
+     }
+    },
+    {
+     "id": "full",
+     "usd": 75,
+     "label": {
+      "en": "Fully custom design + animation",
+      "fa": "طراحی کاملاً اختصاصی + انیمیشن"
+     }
+    }
+   ]
+  },
+  {
+   "id": "seo",
+   "label": {
+    "en": "SEO & speed",
+    "fa": "سئو و سرعت"
+   },
+   "choices": [
+    {
+     "id": "basic",
+     "usd": 0,
+     "label": {
+      "en": "Basic SEO",
+      "fa": "سئوی پایه"
+     }
+    },
+    {
+     "id": "tech",
+     "usd": 15,
+     "label": {
+      "en": "Technical SEO + speed optimization",
+      "fa": "سئوی فنی + بهینه‌سازی سرعت"
+     }
+    },
+    {
+     "id": "full",
+     "usd": 35,
+     "label": {
+      "en": "Full SEO + sitemap and schema",
+      "fa": "سئوی کامل + نقشه سایت و اسکیما"
+     }
+    }
+   ]
+  },
+  {
+   "id": "support",
+   "label": {
+    "en": "Support",
+    "fa": "پشتیبانی"
+   },
+   "choices": [
+    {
+     "id": "s1",
+     "usd": 0,
+     "label": {
+      "en": "1 month of support",
+      "fa": "۱ ماه پشتیبانی"
+     }
+    },
+    {
+     "id": "s3",
+     "usd": 10,
+     "label": {
+      "en": "3 months of support",
+      "fa": "۳ ماه پشتیبانی"
+     }
+    },
+    {
+     "id": "s6",
+     "usd": 30,
+     "label": {
+      "en": "6 months of priority support",
+      "fa": "۶ ماه پشتیبانی اولویت‌دار"
+     }
+    }
+   ]
+  }
+ ],
+ "groups": [
+  {
+   "id": "content",
+   "label": {
+    "en": "Content & publishing",
+    "fa": "محتوا و انتشار"
+   },
+   "features": [
+    {
+     "id": "blog",
+     "usd": 12,
+     "name": {
+      "en": "Blog & articles",
+      "fa": "وبلاگ و مقالات"
+     },
+     "desc": {
+      "en": "Article pages with categories, tags and author pages",
+      "fa": "صفحات مقاله با دسته‌بندی، برچسب و صفحه نویسنده"
+     }
+    },
+    {
+     "id": "news",
+     "usd": 40,
+     "name": {
+      "en": "News section with editorial workflow",
+      "fa": "بخش خبر با گردش کار سردبیری"
+     },
+     "desc": {
+      "en": "Several editors, scheduled publishing, breaking news and sections",
+      "fa": "چند ویراستار، زمان‌بندی انتشار، اخبار فوری و بخش‌بندی"
+     }
+    },
+    {
+     "id": "gallery",
+     "usd": 10,
+     "name": {
+      "en": "Gallery & portfolio",
+      "fa": "گالری و نمونه‌کار"
+     },
+     "desc": {
+      "en": "Show projects and images with category filters",
+      "fa": "نمایش پروژه‌ها و تصاویر با فیلتر دسته‌بندی"
+     }
+    },
+    {
+     "id": "video",
+     "usd": 15,
+     "name": {
+      "en": "Video & podcast pages",
+      "fa": "ویدیو و پادکست"
+     },
+     "desc": {
+      "en": "Embedded or hosted video and audio players",
+      "fa": "پخش‌کننده ویدیو و صوت (امبد یا میزبانی‌شده)"
+     }
+    },
+    {
+     "id": "faq",
+     "usd": 8,
+     "name": {
+      "en": "FAQ & help center",
+      "fa": "سؤالات متداول و مرکز راهنما"
+     },
+     "desc": {
+      "en": "Categorised questions and answers with search",
+      "fa": "پرسش و پاسخ دسته‌بندی‌شده با جستجو"
+     }
+    },
+    {
+     "id": "newsletter",
+     "usd": 10,
+     "name": {
+      "en": "Newsletter & email list",
+      "fa": "خبرنامه و لیست ایمیل"
+     },
+     "desc": {
+      "en": "Sign-up form and subscriber collection",
+      "fa": "فرم عضویت و جمع‌آوری ایمیل مخاطبان"
+     }
+    }
+   ]
+  },
+  {
+   "id": "users",
+   "label": {
+    "en": "Users & interaction",
+    "fa": "کاربران و تعامل"
+   },
+   "features": [
+    {
+     "id": "accounts",
+     "usd": 30,
+     "name": {
+      "en": "User sign-up & login",
+      "fa": "ثبت‌نام و ورود کاربران"
+     },
+     "desc": {
+      "en": "User panel, profile and password recovery",
+      "fa": "پنل کاربری، پروفایل و بازیابی رمز عبور"
+     }
+    },
+    {
+     "id": "membership",
+     "usd": 45,
+     "name": {
+      "en": "Membership & subscriptions",
+      "fa": "عضویت و اشتراک"
+     },
+     "desc": {
+      "en": "Membership levels, premium content and paid subscriptions",
+      "fa": "سطوح عضویت، محتوای ویژه و پرداخت اشتراک"
+     },
+     "requires": [
+      "accounts"
+     ]
+    },
+    {
+     "id": "comments",
+     "usd": 8,
+     "name": {
+      "en": "Comments & ratings",
+      "fa": "نظرات و امتیازدهی"
+     },
+     "desc": {
+      "en": "Comments, replies and ratings with moderation",
+      "fa": "ثبت نظر، پاسخ و امتیاز همراه با مدیریت"
+     }
+    },
+    {
+     "id": "search",
+     "usd": 12,
+     "name": {
+      "en": "Advanced search & filters",
+      "fa": "جستجو و فیلتر پیشرفته"
+     },
+     "desc": {
+      "en": "Fast search with filters and sorting",
+      "fa": "جستجوی سریع با فیلتر و مرتب‌سازی"
+     }
+    },
+    {
+     "id": "chat",
+     "usd": 10,
+     "name": {
+      "en": "Live chat & messaging",
+      "fa": "چت زنده و پیام‌رسان"
+     },
+     "desc": {
+      "en": "Chat widget or links to Telegram / WhatsApp",
+      "fa": "ابزارک گفتگو یا اتصال به تلگرام و واتس‌اپ"
+     }
+    },
+    {
+     "id": "booking",
+     "usd": 35,
+     "name": {
+      "en": "Online booking & appointments",
+      "fa": "رزرو و نوبت‌دهی آنلاین"
+     },
+     "desc": {
+      "en": "Calendar, time slots and reminders",
+      "fa": "تقویم، انتخاب زمان و یادآوری"
+     }
+    },
+    {
+     "id": "forum",
+     "usd": 60,
+     "name": {
+      "en": "Community forum",
+      "fa": "انجمن و جامعه کاربری"
+     },
+     "desc": {
+      "en": "Topics, replies, moderation and user reputation",
+      "fa": "موضوع، پاسخ، مدیریت و اعتبار کاربران"
+     },
+     "requires": [
+      "accounts"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "store",
+   "label": {
+    "en": "Online store",
+    "fa": "فروشگاه آنلاین"
+   },
+   "features": [
+    {
+     "id": "catalog",
+     "usd": 25,
+     "name": {
+      "en": "Product catalog",
+      "fa": "کاتالوگ محصولات"
+     },
+     "desc": {
+      "en": "Categories, attributes, galleries and product pages",
+      "fa": "دسته‌بندی، ویژگی‌ها، گالری و صفحه محصول"
+     }
+    },
+    {
+     "id": "cart",
+     "usd": 55,
+     "name": {
+      "en": "Shopping cart & checkout",
+      "fa": "سبد خرید و تسویه‌حساب"
+     },
+     "desc": {
+      "en": "Cart, order placement and invoices",
+      "fa": "سبد، ثبت سفارش و فاکتور"
+     },
+     "requires": [
+      "catalog"
+     ]
+    },
+    {
+     "id": "payment",
+     "usd": 25,
+     "name": {
+      "en": "Online payment gateway",
+      "fa": "اتصال به درگاه پرداخت آنلاین"
+     },
+     "desc": {
+      "en": "Secure payment through your payment gateway",
+      "fa": "پرداخت امن از طریق درگاه پرداخت"
+     },
+     "requires": [
+      "cart"
+     ]
+    },
+    {
+     "id": "coupons",
+     "usd": 12,
+     "name": {
+      "en": "Discount codes & promotions",
+      "fa": "کد تخفیف و پروموشن"
+     },
+     "desc": {
+      "en": "Coupons, special sales and timed offers",
+      "fa": "کد تخفیف، فروش ویژه و پیشنهادهای زمان‌دار"
+     },
+     "requires": [
+      "cart"
+     ]
+    },
+    {
+     "id": "orders",
+     "usd": 45,
+     "name": {
+      "en": "Order & inventory panel",
+      "fa": "پنل مدیریت سفارش و موجودی"
+     },
+     "desc": {
+      "en": "Order tracking, stock and sales reports",
+      "fa": "پیگیری سفارش‌ها، انبار و گزارش فروش"
+     },
+     "requires": [
+      "cart"
+     ]
+    },
+    {
+     "id": "shipping",
+     "usd": 25,
+     "name": {
+      "en": "Shipping & order tracking",
+      "fa": "ارسال و رهگیری سفارش"
+     },
+     "desc": {
+      "en": "Shipping methods, costs and tracking codes",
+      "fa": "روش‌های ارسال، هزینه و کد رهگیری"
+     },
+     "requires": [
+      "cart"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "education",
+   "label": {
+    "en": "Education & courses",
+    "fa": "آموزش و دوره"
+   },
+   "features": [
+    {
+     "id": "courses",
+     "usd": 50,
+     "name": {
+      "en": "Course catalog & lessons",
+      "fa": "کاتالوگ دوره و درس‌ها"
+     },
+     "desc": {
+      "en": "Courses, sections, video lessons and attachments",
+      "fa": "دوره، فصل، درس ویدیویی و فایل‌های همراه"
+     }
+    },
+    {
+     "id": "student",
+     "usd": 40,
+     "name": {
+      "en": "Student panel & progress",
+      "fa": "پنل دانشجو و پیشرفت تحصیلی"
+     },
+     "desc": {
+      "en": "My courses, progress and resume from the last lesson",
+      "fa": "دوره‌های من، درصد پیشرفت و ادامه از آخرین درس"
+     },
+     "requires": [
+      "accounts",
+      "courses"
+     ]
+    },
+    {
+     "id": "exams",
+     "usd": 40,
+     "name": {
+      "en": "Online quizzes & exams",
+      "fa": "آزمون و کوییز آنلاین"
+     },
+     "desc": {
+      "en": "Question bank, timer and automatic grading",
+      "fa": "بانک سؤال، زمان‌سنج و نمره‌دهی خودکار"
+     },
+     "requires": [
+      "accounts"
+     ]
+    },
+    {
+     "id": "certs",
+     "usd": 15,
+     "name": {
+      "en": "Certificates",
+      "fa": "صدور گواهی‌نامه"
+     },
+     "desc": {
+      "en": "Automatic certificate when a course is finished",
+      "fa": "گواهی خودکار پس از پایان دوره"
+     },
+     "requires": [
+      "courses"
+     ]
+    },
+    {
+     "id": "live",
+     "usd": 30,
+     "name": {
+      "en": "Live classes & webinars",
+      "fa": "کلاس زنده و وبینار"
+     },
+     "desc": {
+      "en": "Integration with an online-class service",
+      "fa": "اتصال به سرویس برگزاری کلاس آنلاین"
+     }
+    }
+   ]
+  },
+  {
+   "id": "admin",
+   "label": {
+    "en": "Management & integrations",
+    "fa": "مدیریت و اتصال‌ها"
+   },
+   "features": [
+    {
+     "id": "cms",
+     "usd": 30,
+     "name": {
+      "en": "Admin panel (content management)",
+      "fa": "پنل مدیریت محتوا"
+     },
+     "desc": {
+      "en": "Edit pages, texts and images without a developer",
+      "fa": "ویرایش صفحات، متن و تصاویر بدون نیاز به برنامه‌نویس"
+     }
+    },
+    {
+     "id": "forms",
+     "usd": 15,
+     "name": {
+      "en": "Advanced forms",
+      "fa": "فرم‌های پیشرفته"
+     },
+     "desc": {
+      "en": "Multi-step forms, file upload and email delivery",
+      "fa": "فرم چندمرحله‌ای، آپلود فایل و ارسال ایمیل"
+     }
+    },
+    {
+     "id": "map",
+     "usd": 6,
+     "name": {
+      "en": "Map & branch locator",
+      "fa": "نقشه و نمایش شعب"
+     },
+     "desc": {
+      "en": "Interactive map with addresses and directions",
+      "fa": "نقشه تعاملی با آدرس و مسیریابی"
+     }
+    },
+    {
+     "id": "multilang",
+     "usd": 25,
+     "name": {
+      "en": "Multi-language (e.g. Persian + English)",
+      "fa": "چندزبانه (مثلاً فارسی و انگلیسی)"
+     },
+     "desc": {
+      "en": "Right-to-left and left-to-right versions with a language switch",
+      "fa": "نسخه راست‌به‌چپ و چپ‌به‌راست با تغییر زبان"
+     }
+    },
+    {
+     "id": "notify",
+     "usd": 12,
+     "name": {
+      "en": "SMS & email notifications",
+      "fa": "اعلان پیامکی و ایمیلی"
+     },
+     "desc": {
+      "en": "Automatic SMS and email for important events",
+      "fa": "ارسال خودکار پیامک و ایمیل برای رویدادهای مهم"
+     }
+    },
+    {
+     "id": "crm",
+     "usd": 20,
+     "name": {
+      "en": "CRM, email-marketing & social integrations",
+      "fa": "اتصال به CRM، ایمیل‌مارکتینگ و شبکه‌های اجتماعی"
+     },
+     "desc": {
+      "en": "Connect your marketing and customer-management tools",
+      "fa": "اتصال به ابزارهای بازاریابی و مدیریت مشتری"
+     }
+    },
+    {
+     "id": "analytics",
+     "usd": 15,
+     "name": {
+      "en": "Analytics & reporting dashboard",
+      "fa": "آمار و داشبورد گزارش"
+     },
+     "desc": {
+      "en": "Visits and user-behaviour statistics",
+      "fa": "آمار بازدید و رفتار کاربران"
+     }
+    },
+    {
+     "id": "pwa",
+     "usd": 20,
+     "name": {
+      "en": "Installable web-app experience (PWA)",
+      "fa": "تجربه وب‌اپ نصب‌شدنی (PWA)"
+     },
+     "desc": {
+      "en": "Install on the phone, offline mode and notifications",
+      "fa": "نصب روی موبایل، حالت آفلاین و اعلان"
+     }
+    },
+    {
+     "id": "api",
+     "usd": 60,
+     "name": {
+      "en": "Custom back-end & API",
+      "fa": "بک‌اند و API اختصاصی"
+     },
+     "desc": {
+      "en": "Database, API and custom business logic",
+      "fa": "پایگاه داده، API و منطق سفارشی"
+     }
+    }
+   ]
+  }
+ ]
+}
