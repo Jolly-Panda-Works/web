@@ -12,6 +12,36 @@
    data/rate.json has a rate, otherwise dollars.
    ========================================================================== */
 
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const SITE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
+/** Pixel size of a local PNG / JPEG / WebP (read from the file header), or null. Used for width/height attributes (no layout shift) and og:image sizes. */
+export function imageSize(rel) {
+  try {
+    if (!rel || /^https?:\/\//i.test(rel)) return null;
+    const b = fs.readFileSync(path.join(SITE_ROOT, rel));
+    if (b.length > 24 && b.toString("ascii", 1, 4) === "PNG") return { w: b.readUInt32BE(16), h: b.readUInt32BE(20) };
+    if (b.length > 30 && b.toString("ascii", 0, 4) === "RIFF" && b.toString("ascii", 8, 12) === "WEBP") {
+      const k = b.toString("ascii", 12, 16);
+      if (k === "VP8X") return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3) };
+      if (k === "VP8 ") return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+      if (k === "VP8L") { const v = b.readUInt32LE(21); return { w: (v & 0x3fff) + 1, h: ((v >> 14) & 0x3fff) + 1 }; }
+    }
+    if (b[0] === 0xff && b[1] === 0xd8) {
+      for (let i = 2; i < b.length - 9;) {
+        if (b[i] !== 0xff) { i++; continue; }
+        const m = b[i + 1];
+        if (m >= 0xc0 && m <= 0xcf && m !== 0xc4 && m !== 0xc8 && m !== 0xcc) return { h: b.readUInt16BE(i + 5), w: b.readUInt16BE(i + 7) };
+        i += 2 + b.readUInt16BE(i + 2);
+      }
+    }
+  } catch { /* file not present: no size */ }
+  return null;
+}
+const sizeAttrs = (rel) => { const s = imageSize(rel); return s ? ` height="${s.h}" width="${s.w}"` : ""; };
+
 export const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 export const fmt = (str, vars = {}) => String(str).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? vars[k] : m));
 const getPath = (o, k) => k.split(".").reduce((a, x) => (a && typeof a === "object" ? a[x] : undefined), o);
@@ -228,7 +258,7 @@ ${faqHtml(items)}
 </div></section>
 <section class="section" id="cta"><div class="container"><div class="cta" data-reveal="">
 <h2>${esc(t(lang, "services.cta.title", tv))}</h2><p>${esc(t(lang, "services.cta.text"))}</p>
-<div class="cta__actions"><a class="btn btn-primary btn--lg" href="${base}packages.html?type=${ty.id}#packages"><span>${esc(t(lang, "services.hero.cta"))}</span>${dirIcon()}</a></div>
+<div class="cta__actions"><a class="btn btn-primary btn--lg" href="${base}packages.html?type=${ty.id}#packages"><span>${esc(t(lang, "services.hero.cta"))}</span>${dirIcon()}</a><a class="btn btn-secondary btn--lg" href="${base}custom.html"><span>${esc(t(lang, "custom.cta"))}</span></a></div>
 </div></div></section>`;
   }
   const checkIcon = () => '<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg>';
@@ -241,7 +271,7 @@ ${faqHtml(items)}
   function projectCards(lang, rootRel) {
     return projects.map((p) => {
       const title = pick(p.title, lang);
-      const cover = p.image ? `<img alt="${esc(title)}" decoding="async" loading="lazy" src="${esc(imgSrc(p.image, rootRel))}"/>` : placeholder(p);
+      const cover = p.image ? `<img alt="${esc(title)}" decoding="async"${sizeAttrs(p.image)} loading="lazy" src="${esc(imgSrc(p.image, rootRel))}"/>` : placeholder(p);
       const tags = (p.tags || []).slice(0, 4).map((x) => `<span class="tag">${esc(x)}</span>`).join("");
       return `<a class="project-card" href="projects/${esc(p.id)}.html"><div class="project-card__media${p.image ? "" : " project-card__media--ph"}">${cover}<span class="project-card__badge">${esc(typeName(p.type, lang))}</span></div>` +
         `<div class="project-card__body"><h3 class="project-card__title">${esc(title)}</h3><p class="project-card__desc">${esc(pick(p.shortDescription, lang))}</p><div class="project-card__tags">${tags}</div>` +
@@ -278,7 +308,7 @@ ${faqHtml(items)}
       shareBtn("linkedin", `https://www.linkedin.com/sharing/share-offsite/?url=${enc(url)}`, t(lang, "projectDetail.share.linkedin"), '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 8.5H3.56V20h3.38V8.5zM5.25 3.5a1.96 1.96 0 100 3.92 1.96 1.96 0 000-3.92zM20.44 20h-3.37v-5.6c0-1.34-.02-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96V20H9.68V8.5h3.24v1.57h.05c.45-.86 1.56-1.76 3.2-1.76 3.43 0 4.06 2.25 4.06 5.18V20z"/></svg>') + "</div>";
 
     const hasImg = !!p.image;
-    const cover = hasImg ? `<img alt="" class="project-hero__cover-img" draggable="false" src="${esc(imgSrc(p.image, rootRel))}"/>` : `<div aria-hidden="true" class="project-hero__ph">${placeholder(p)}</div>`;
+    const cover = hasImg ? `<img alt="" class="project-hero__cover-img" draggable="false"${sizeAttrs(p.image)} src="${esc(imgSrc(p.image, rootRel))}"/>` : `<div aria-hidden="true" class="project-hero__ph">${placeholder(p)}</div>`;
     const hero = `<div class="project-hero${hasImg ? "" : " project-hero--ph"}">${cover}<div class="project-hero__scrim"></div>` +
       `<a class="project-hero__back" href="${base}projects.html">${dirIcon(true, true)}<span>${esc(t(lang, "projectDetail.back"))}</span></a>` +
       `<div class="project-hero__overlay"><div class="container"><div data-reveal=""><div class="project-hero__identity"><div><div class="project-hero__meta"><span class="eyebrow">${esc(typeLabel)}</span>${p.year ? `<span class="project-card__year">${esc(p.year)}</span>` : ""}</div>` +
@@ -288,10 +318,10 @@ ${faqHtml(items)}
     const body = `<section class="section section--tight"><div class="container"><div class="project-detail__grid"><div class="project-detail__body" data-reveal="">${paragraphs}</div><div class="project-detail__aside">${highlights}${tags}</div></div></div></section>`;
     const gallery = p.gallery && p.gallery.length
       ? `<section class="section section--tight project-gallery"><div class="container"><h2>${esc(t(lang, "projectDetail.gallery.galleryTitle"))}</h2><div class="project-gallery__scroll">` +
-        p.gallery.map((g) => `<a class="gallery-frame" href="${esc(imgSrc(g.src, rootRel))}" rel="noopener" target="_blank"><img alt="${esc(pick(g.caption, lang))}" loading="lazy" src="${esc(imgSrc(g.src, rootRel))}"/></a>`).join("") + "</div></div></section>"
+        p.gallery.map((g) => `<a class="gallery-frame" href="${esc(imgSrc(g.src, rootRel))}" rel="noopener" target="_blank"><img alt="${esc(pick(g.caption, lang))}"${sizeAttrs(g.src)} loading="lazy" src="${esc(imgSrc(g.src, rootRel))}"/></a>`).join("") + "</div></div></section>"
       : "";
     const hasLinks = links.length > 0;
-    const dlImg = hasImg ? `<div class="project-download__image" data-reveal=""><img alt="${esc(title)}" draggable="false" src="${esc(imgSrc(p.image, rootRel))}"/></div>` : `<div class="project-download__image project-download__image--ph" data-reveal="">${placeholder(p)}</div>`;
+    const dlImg = hasImg ? `<div class="project-download__image" data-reveal=""><img alt="${esc(title)}" draggable="false"${sizeAttrs(p.image)} src="${esc(imgSrc(p.image, rootRel))}"/></div>` : `<div class="project-download__image project-download__image--ph" data-reveal="">${placeholder(p)}</div>`;
     const download = `<section class="section project-download"><div class="container"><div class="project-download__grid"><div class="project-download__content" data-reveal=""><h2>${esc(t(lang, "projectDetail.download.title"))}</h2><p>${esc(t(lang, hasLinks ? "projectDetail.download.desc" : "projectDetail.download.descFallback"))}</p>` +
       `${hasLinks ? `<div class="project-download__links">${actions(false)}</div>` : ""}<div class="project-download__secondary"><a class="btn btn-primary" href="${base}packages.html#packages" style="color:#fff">${esc(t(lang, "projectDetail.cta.button"))}</a><a href="${base}projects.html">${esc(t(lang, "projectDetail.viewAll"))}</a></div></div>${dlImg}</div></div></section>`;
     return hero + body + gallery + download;

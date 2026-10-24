@@ -14,7 +14,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { createShop, esc, servicePath } from "./lib/static.mjs";
+import { createShop, esc, imageSize, servicePath } from "./lib/static.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const p = (...a) => path.join(ROOT, ...a);
@@ -134,6 +134,15 @@ function offerNodes(ty, lang) {
     };
   });
 }
+/** og:image / twitter:image: the site-wide card, or the project's own cover when it is big enough for a link preview. */
+function ogImageVars(spec, lang, dict) {
+  const def = { og_image: `${SITE}/assets/social/og-image.png`, og_image_w: "1200", og_image_h: "630", og_image_alt: esc(dict.og.alt) };
+  if (spec.kind !== "project" || !spec.pr.image) return def;
+  const size = imageSize(spec.pr.image);
+  if (!size || size.w < 600 || size.h < 315) return def;
+  const url = /^https?:\/\//i.test(spec.pr.image) ? spec.pr.image : `${SITE}/${encodeURI(spec.pr.image)}`;
+  return { og_image: url, og_image_w: String(size.w), og_image_h: String(size.h), og_image_alt: esc(spec.pr.title[lang] || spec.pr.title.en) };
+}
 function jsonLd(spec, lang) {
   const dict = dicts[lang], meta = metaOf(spec, lang), url = urlOf(spec, lang);
   const graph = [
@@ -156,6 +165,10 @@ function jsonLd(spec, lang) {
     });
     graph.push(crumb([home, pk]));
   } else if (spec.kind === "custom") {
+    graph.push({
+      "@type": "Service", "@id": url + "#service", name: meta.title, description: meta.description, serviceType: "Custom website design and development",
+      provider: { "@id": `${SITE}/#organization` }, inLanguage: lang, isRelatedTo: { "@id": `${SITE}/#web-design` },
+    });
     graph.push(crumb([home, pk, [meta.title, url]]));
   } else if (spec.kind === "service") {
     const ty = spec.ty, offers = offerNodes(ty, lang), prices = offers.map((o) => o.price);
@@ -212,6 +225,7 @@ function render(spec, lang) {
     en_active: lang === "en" ? " is-active" : "", fa_active: lang === "fa" ? " is-active" : "",
     en_pressed: lang === "en" ? "true" : "false", fa_pressed: lang === "fa" ? "true" : "false",
     telegram: cfg.social.telegram, linkedin: cfg.social.linkedin, github: cfg.social.github,
+    ...ogImageVars(spec, lang, dict),
     contact_email: cfg.contactEmail, jsonld: kind === "notfound" ? "" : jsonLd(spec, lang), dir_icon: dirIcon(),
     // pre-rendered content (same markup as the browser scripts draw)
     verification_meta: [

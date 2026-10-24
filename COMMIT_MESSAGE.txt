@@ -1,1 +1,9 @@
-fix(deploy): publish custom.html (add it to the files copied into _site)
+feat(seo): per-page og:image, image sizes, custom-page schema, internal links, shorter descriptions
+
+- project pages use their own cover as og:image/twitter:image (when >= 600x315);
+  other pages keep the site card (head.html now takes og_image vars)
+- width/height written on project images from the real file size (no layout shift)
+- custom.html gets a Service JSON-LD node
+- internal links to the custom package page: footer (all pages) and the
+  call-to-action band of every website-type page
+- home (EN/FA) and custom (EN) meta descriptions shortened to <= 160 chars
