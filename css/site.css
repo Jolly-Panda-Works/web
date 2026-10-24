@@ -507,3 +507,12 @@ html[lang="fa"] .service-card__from { letter-spacing: 0; text-transform: none; }
   .custom-cta { grid-template-columns: auto 1fr auto; text-align: start; justify-items: stretch; }
   .custom-cta .btn { align-self: center; }
 }
+
+/* mobile fixes: the CTA grid must not grow wider than the screen */
+.custom-cta { grid-template-columns: minmax(0, 1fr); box-sizing: border-box; width: 100%; padding: var(--space-md); }
+.custom-cta > * { min-width: 0; max-width: 100%; }
+.custom-cta .btn { max-width: 100%; white-space: normal; text-align: center; justify-content: center; }
+@media (min-width: 800px) {
+  .custom-cta { grid-template-columns: auto minmax(0, 1fr) auto; padding: var(--space-lg); }
+  .custom-cta .btn { white-space: nowrap; }
+}

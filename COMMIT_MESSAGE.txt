@@ -1,13 +1,5 @@
-feat(custom): separate "build your own package" page with approximate price range
+fix(custom): stop the custom-package CTA band overflowing on mobile
 
-- New page custom.html (+ fa/custom.html): hero with the new mascot, feature
-  builder (data/custom.json: 4 options + 33 features, dependencies auto-added)
-  and the request form
-- Packages page: call-to-action band + hero button linking to the new page
-  ("Didn't find a package that fits your work? Build your own with us")
-- Approximate range, no discount: USD in English, Toman in Persian
-  (USD x rate / 10); final price is set in the meeting
-- Request form moved to templates/partials/request-form.html (shared)
-- Emails: custom studio notice + pre-contract, EN/FA by site language, sent
-  through the single generic EmailJS template
-- check.mjs validates data/custom.json and the new templates; docs updated
+- .custom-cta grid now uses minmax(0, 1fr) and wrapping button text, so the
+  band no longer grows wider than the screen on narrow viewports
+- checked every page (EN + FA) at 320 / 360 / 390 px: no horizontal overflow
