@@ -1,5 +1,1 @@
-fix(custom): stop the custom-package CTA band overflowing on mobile
-
-- .custom-cta grid now uses minmax(0, 1fr) and wrapping button text, so the
-  band no longer grows wider than the screen on narrow viewports
-- checked every page (EN + FA) at 320 / 360 / 390 px: no horizontal overflow
+fix(deploy): publish custom.html (add it to the files copied into _site)

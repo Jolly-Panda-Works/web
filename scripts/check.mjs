@@ -119,6 +119,33 @@ const cfg = json("site.config.json");
 for (const k of ["siteUrl", "mainSiteUrl", "contactEmail"]) if (!cfg[k]) err(`site.config.json: missing ${k}`);
 if (!/^https?:\/\//.test(cfg.siteUrl || "")) err("site.config.json: siteUrl must start with https://");
 
+// 6. generated pages: every page is in the sitemap, every <img> has an alt attribute, and content images have a non-empty alt
+{
+  const walk = (dir) => fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
+    const f = path.join(dir, d.name);
+    if (d.isDirectory()) return ["assets", "css", "js", "data", "lang", "scripts", "templates", "email-templates", "node_modules", "_site"].includes(d.name) || d.name.startsWith(".") ? [] : walk(f);
+    return d.name.endsWith(".html") ? [f] : [];
+  });
+  const sitemapPath = path.join(ROOT, "sitemap.xml");
+  const sitemap = fs.existsSync(sitemapPath) ? fs.readFileSync(sitemapPath, "utf8") : "";
+  for (const f of walk(ROOT)) {
+    const rel = path.relative(ROOT, f).split(path.sep).join("/");
+    if (rel === "404.html" || /^google[\w-]+\.html$/.test(rel)) continue;
+    const html = fs.readFileSync(f, "utf8");
+    if (sitemap) {
+      const tail = rel === "index.html" ? "/" : rel === "fa/index.html" ? "/fa/" : "/" + rel;
+      if (!sitemap.includes(tail + "</loc>")) err(`${rel}: not listed in sitemap.xml (run node scripts/build-pages.mjs)`);
+    }
+    for (const m of html.matchAll(/<img\b[^>]*>/g)) {
+      const tag = m[0];
+      const alt = /\balt="([^"]*)"/.exec(tag);
+      if (!alt) { err(`${rel}: <img> without an alt attribute: ${tag.slice(0, 90)}`); continue; }
+      const decorative = /class="(brand__mark|site-footer__mark|project-hero__cover-img)"/.test(tag);
+      if (!alt[1].trim() && !decorative) err(`${rel}: content image has an empty alt: ${tag.slice(0, 90)}`);
+    }
+  }
+}
+
 if (errors.length) {
   console.error("\nCheck failed:\n" + errors.map((e) => "  ✗ " + e).join("\n") + "\n");
   process.exit(1);
