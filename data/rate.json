@@ -1,12 +1,12 @@
 {
   "base": "USD",
   "currency": "IRR",
-  "rateRial": 2720000,
+  "rateRial": 2732000,
   "item": "usd_sell",
   "sourceUnit": "toman",
-  "sourceValue": "272000",
-  "sourceTimestamp": 1793640606,
-  "sourceDateJalali": "1405-08-11 21:00:06",
-  "fetchedAt": "2026-11-02T23:38:56.629Z",
+  "sourceValue": "273200",
+  "sourceTimestamp": 1793726916,
+  "sourceDateJalali": "1405-08-12 20:58:36",
+  "fetchedAt": "2026-11-03T21:53:29.145Z",
   "source": "navasan.tech"
 }
