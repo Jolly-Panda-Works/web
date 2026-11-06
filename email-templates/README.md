@@ -49,3 +49,7 @@ For the studio notice and the English pre-contract, website type, plan, scope an
 The studio's signature block in the pre-contract shows **Usef Farahmand — Co-founder**, the request date and a signature image. The image is `assets/signature/usef-farahmand.png` (PNG, transparent background, dark ink, about 600×200 px). E-mail clients need a public link, so the file is served from the website (`{{signature_url}}`) — which means anyone who knows the URL can download it. Until the file exists, a transparent 1-pixel image is used and the block shows the name, title and date only.
 
 > The pre-contract text is a general-purpose template (non-binding summary + blanks to complete). Have it reviewed by whoever handles your contracts before you rely on it.
+
+## Shared studio branding
+
+All seven templates use the same table-based, inline-styled layout as the main site’s `src/lib/email.mjs`: cream header, studio logo, panda badge, dark border and yellow footer. Logo and badge images use absolute HTTPS URLs on `jollypanda.ir` so email clients can load them. Keep the localized direction, placeholders, pre-contract wording and signature blocks when editing; rebuild `js/email-templates.js` with `npm run build`.
