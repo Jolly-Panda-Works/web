@@ -1,12 +1,12 @@
 {
   "name": "Jolly Panda Web",
   "short_name": "Jolly Panda Web",
-  "description": "Do you really need a website? Find out why, what happens without one, and pick a Jolly Panda plan for a blog, portfolio, corporate, educational, news or online-store website.",
+  "description": "Do you really need a website? Find out what happens without one and pick a Jolly Panda plan for a blog, portfolio, store or business site.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "theme_color": "#fdfaf5",
-  "background_color": "#fdfaf5",
+  "theme_color": "#fffaf3",
+  "background_color": "#fffaf3",
   "lang": "en",
   "dir": "ltr",
   "icons": [

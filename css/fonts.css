@@ -1,0 +1,20 @@
+/* ==========================================================================
+   Jolly Panda Studio — Design tokens
+   Colors are sampled from the official mascot artwork:
+     Panda Orange #f0852e (hoodie) · Ember #be5a29 (hoodie shadow)
+     Bamboo Yellow #fcdd4e (badge backdrop) · Blush #ebbeb1 (cheeks)
+     Panda Ink #2b1d1b (fur outline) · Warm Cream (fur)
+   Breakpoints (use in media queries — custom properties can't be used there):
+     --bp-sm 640px · --bp-md 768px · --bp-lg 1024px · --bp-xl 1280px
+   ========================================================================== */
+
+@font-face { font-family: "Inter"; src: url(../assets/fonts/inter-latin.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Bricolage"; src: url(../assets/fonts/bricolage-latin.woff2) format("woff2"); font-weight: 200 800; font-display: swap; }
+/* Mikhak (Amin Abedi, SIL OFL 1.1) — Persian text face. Variable: wght 100–900. */
+@font-face { font-family: "Mikhak"; src: url(../assets/fonts/mikhak-vf.woff2) format("woff2"); font-weight: 100 900; font-display: swap; }
+
+/* Rooyin (SIL OFL 1.1, Fontiran) — display face for large decorative Persian words. */
+@font-face { font-family: "Rooyin"; src: url(../assets/fonts/rooyin-bold.woff2) format("woff2"); font-weight: 700; font-display: swap; }
+
+/* Supplied CS Genista Semipixel — English decorative lettering. */
+@font-face { font-family: "CS Genista Semipixel"; src: url(../assets/fonts/cs-genista-semipixel-regular-demo.otf) format("opentype"); font-style: normal; font-weight: 400; font-display: swap; }

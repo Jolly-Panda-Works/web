@@ -213,7 +213,7 @@ export function createShop({ plans, rate, dicts, projects }) {
       { q: t(lang, "services.faq.order.q", v), a: t(lang, "services.faq.order.a") },
     ];
   }
-  const faqHtml = (items) => `<div class="faq">${items.map((i) => `<div class="faq__item"><h3>${esc(i.q)}</h3><p>${esc(i.a)}</p></div>`).join("")}</div>`;
+  const faqHtml = (items) => `<div class="faq__list">${items.map((i, index) => `<details class="faq__item"${index === 0 ? " open" : ""}><summary><h3 class="faq__q">${esc(i.q)}</h3><span class="faq__icon" aria-hidden="true"></span></summary><div class="faq__a">${esc(i.a)}</div></details>`).join("")}</div>`;
 
   function serviceMeta(ty, lang) {
     const name = pick(ty.name, lang), from = show(cheapest(ty).now, lang);
@@ -309,12 +309,7 @@ ${faqHtml(items)}
 
     const hasImg = !!p.image;
     const cover = hasImg ? `<img alt="" class="project-hero__cover-img" draggable="false"${sizeAttrs(p.image)} src="${esc(imgSrc(p.image, rootRel))}"/>` : `<div aria-hidden="true" class="project-hero__ph">${placeholder(p)}</div>`;
-    const hero = `<div class="project-hero${hasImg ? "" : " project-hero--ph"}">${cover}<div class="project-hero__scrim"></div>` +
-      `<a class="project-hero__back" href="${base}projects.html">${dirIcon(true, true)}<span>${esc(t(lang, "projectDetail.back"))}</span></a>` +
-      `<div class="project-hero__overlay"><div class="container"><div data-reveal=""><div class="project-hero__identity"><div><div class="project-hero__meta"><span class="eyebrow">${esc(typeLabel)}</span>${p.year ? `<span class="project-card__year">${esc(p.year)}</span>` : ""}</div>` +
-      `<h1 class="project-hero__title">${esc(title)}</h1></div></div><p class="project-hero__desc">${esc(shortDesc)}</p>` +
-      `<div class="project-hero__actions-row"><div class="project-hero__links">${actions(true)}</div>${share}</div></div></div></div></div>`;
-
+    const hero = `<section class="page-hero"><div class="container studio-detail-grid"><div><nav class="studio-crumbs" aria-label="${esc(t(lang, "services.breadcrumb"))}"><ol><li><a href="${base}index.html">${esc(t(lang, "nav.home"))}</a></li><li><a href="${base}projects.html">${esc(t(lang, "nav.projects"))}</a></li><li><span aria-current="page">${esc(title)}</span></li></ol></nav><span class="eyebrow">${esc(typeLabel)}${p.year ? ' · ' + esc(p.year) : ''}</span><h1>${esc(title)}</h1><p class="studio-detail-intro">${esc(shortDesc)}</p><div class="studio-detail-actions">${actions(false)}${share}</div></div><div class="studio-detail-art">${cover}</div></div></section>`;
     const body = `<section class="section section--tight"><div class="container"><div class="project-detail__grid"><div class="project-detail__body" data-reveal="">${paragraphs}</div><div class="project-detail__aside">${highlights}${tags}</div></div></div></section>`;
     const gallery = p.gallery && p.gallery.length
       ? `<section class="section section--tight project-gallery"><div class="container"><h2>${esc(t(lang, "projectDetail.gallery.galleryTitle"))}</h2><div class="project-gallery__scroll">` +
@@ -323,7 +318,7 @@ ${faqHtml(items)}
     const hasLinks = links.length > 0;
     const dlImg = hasImg ? `<div class="project-download__image" data-reveal=""><img alt="${esc(title)}" draggable="false"${sizeAttrs(p.image)} src="${esc(imgSrc(p.image, rootRel))}"/></div>` : `<div class="project-download__image project-download__image--ph" data-reveal="">${placeholder(p)}</div>`;
     const download = `<section class="section project-download"><div class="container"><div class="project-download__grid"><div class="project-download__content" data-reveal=""><h2>${esc(t(lang, "projectDetail.download.title"))}</h2><p>${esc(t(lang, hasLinks ? "projectDetail.download.desc" : "projectDetail.download.descFallback"))}</p>` +
-      `${hasLinks ? `<div class="project-download__links">${actions(false)}</div>` : ""}<div class="project-download__secondary"><a class="btn btn-primary" href="${base}packages.html#packages" style="color:#fff">${esc(t(lang, "projectDetail.cta.button"))}</a><a href="${base}projects.html">${esc(t(lang, "projectDetail.viewAll"))}</a></div></div>${dlImg}</div></div></section>`;
+      `${hasLinks ? `<div class="project-download__links">${actions(false)}</div>` : ""}<div class="project-download__secondary"><a class="btn btn-primary" href="${base}packages.html#packages">${esc(t(lang, "projectDetail.cta.button"))}</a><a href="${base}projects.html">${esc(t(lang, "projectDetail.viewAll"))}</a></div></div>${dlImg}</div></div></section>`;
     return hero + body + gallery + download;
   }
   const projectMeta = (p, lang) => ({

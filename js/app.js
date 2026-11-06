@@ -26,13 +26,13 @@
 
     function closeMenu() {
       toggle.setAttribute("aria-expanded", "false");
-      links.classList.remove("is-open");
+      links.hidden = true;
       document.body.style.overflow = "";
     }
 
     function openMenu() {
       toggle.setAttribute("aria-expanded", "true");
-      links.classList.add("is-open");
+      links.hidden = false;
       document.body.style.overflow = "hidden";
     }
 
@@ -57,7 +57,7 @@
 
     // If the viewport grows past the mobile breakpoint, reset state.
     window.addEventListener("resize", function () {
-      if (window.innerWidth >= 768) closeMenu();
+      if (window.innerWidth >= 1180) closeMenu();
     });
   }
 

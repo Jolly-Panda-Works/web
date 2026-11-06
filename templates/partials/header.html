@@ -1,25 +1,8 @@
+<svg class="text-outline-filters" xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" focusable="false"><defs><filter id="joined-text-outline" x="-5%" y="-10%" width="110%" height="120%" color-interpolation-filters="sRGB"><feMorphology in="SourceGraphic" operator="dilate" radius="1" result="expanded"/><feComposite in="expanded" in2="SourceAlpha" operator="out"/></filter></defs></svg>
 <a class="skip-link" data-i18n="nav.skip" href="#main">Skip to content</a>
-<header class="site-header" id="siteHeader">
-<div class="container nav">
-<a class="brand" href="{{base}}index.html">
-<img alt="" class="brand__mark" height="42" src="{{root}}assets/logo/logo-nav-96.png" width="42"/>
-<span data-i18n="brand.name">Jolly Panda Web</span>
-</a>
-<button aria-controls="navLinks" aria-expanded="false" class="nav-toggle" data-i18n-attr="aria-label:nav.toggle" id="navToggle" type="button">
-<span></span><span></span><span></span>
-</button>
-<nav class="nav__links" id="navLinks">
-<a class="nav__link{{nav_home}}"{{aria_home}} data-i18n="nav.home" href="{{base}}index.html">Home</a>
-<a class="nav__link{{nav_packages}}"{{aria_packages}} data-i18n="nav.packages" href="{{base}}packages.html">Packages</a>
-<a class="nav__link{{nav_projects}}"{{aria_projects}} data-i18n="nav.projects" href="{{base}}projects.html">Portfolio</a>
-<a class="btn btn-primary nav__mobile-cta" data-i18n="nav.cta" href="{{base}}packages.html#packages">Choose a package</a>
-</nav>
-<div class="nav__actions">
-<div class="lang-switch" data-i18n-attr="aria-label:nav.langSwitch" role="group">
-<button aria-pressed="{{en_pressed}}" class="lang-switch__btn{{en_active}}" data-lang="en" type="button">EN</button>
-<button aria-pressed="{{fa_pressed}}" class="lang-switch__btn{{fa_active}}" data-lang="fa" type="button">فا</button>
-</div>
-<a class="btn btn-primary" data-i18n="nav.cta" href="{{base}}packages.html#packages">Choose a package</a>
-</div>
-</div>
+<header class="studio-header" id="siteHeader">
+<div class="container studio-header__bar"><a class="studio-brand" href="{{base}}index.html" aria-label="{{t:brand.name}}"><img class="studio-brand__mark" src="{{root}}assets/logo/logo-nav-96.png" width="44" height="44" alt="{{t:brand.short}}"/><span class="studio-brand__text"><span class="studio-brand__name" data-i18n="brand.short">Jolly Panda</span><span class="studio-brand__sub" data-i18n="brand.sub">Web studio</span></span></a>
+<nav class="studio-nav" aria-label="{{t:nav.primary}}"><ul class="studio-nav__list"><li><a class="studio-nav__link{{nav_home}}"{{aria_home}} href="{{base}}index.html" data-i18n="nav.home">Home</a></li><li><a class="studio-nav__link{{nav_packages}}"{{aria_packages}} href="{{base}}packages.html" data-i18n="nav.packages">Packages</a></li><li><a class="studio-nav__link{{nav_projects}}"{{aria_projects}} href="{{base}}projects.html" data-i18n="nav.projects">Portfolio</a></li></ul></nav>
+<div class="studio-header__actions"><div class="studio-language--header"><div class="studio-language" role="group" aria-label="{{t:nav.langSwitch}}"><button class="studio-language__opt lang-switch__btn{{en_active}}" data-lang="en" aria-pressed="{{en_pressed}}" lang="en" type="button">EN</button><button class="studio-language__opt lang-switch__btn{{fa_active}}" data-lang="fa" aria-pressed="{{fa_pressed}}" lang="fa" type="button">فا</button></div></div><a class="btn btn-primary studio-header__cta" href="{{base}}packages.html#packages" data-i18n="nav.cta">Choose a package</a><button class="studio-menu-btn" id="navToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="{{t:nav.toggle}}"><span class="studio-menu-btn__bars" aria-hidden="true"><span></span><span></span><span></span></span></button></div></div>
+<div class="studio-mobile-menu" id="navLinks" hidden><div class="container"><ul class="studio-mobile-menu__list"><li><a class="studio-mobile-menu__link{{nav_home}}"{{aria_home}} href="{{base}}index.html" data-i18n="nav.home">Home</a></li><li><a class="studio-mobile-menu__link{{nav_packages}}"{{aria_packages}} href="{{base}}packages.html" data-i18n="nav.packages">Packages</a></li><li><a class="studio-mobile-menu__link{{nav_projects}}"{{aria_projects}} href="{{base}}projects.html" data-i18n="nav.projects">Portfolio</a></li></ul><div class="studio-mobile-menu__foot"><div class="studio-language" role="group" aria-label="{{t:nav.langSwitch}}"><button class="studio-language__opt lang-switch__btn{{en_active}}" data-lang="en" aria-pressed="{{en_pressed}}" lang="en" type="button">EN</button><button class="studio-language__opt lang-switch__btn{{fa_active}}" data-lang="fa" aria-pressed="{{fa_pressed}}" lang="fa" type="button">فا</button></div><a class="btn btn-primary" data-i18n="nav.cta" href="{{base}}packages.html#packages">Choose a package</a></div></div></div>
 </header>

@@ -86,8 +86,10 @@ for (const g of custom.groups) {
   }
 }
 
-// Persian text must use the Latin brand name, never «جولی پاندا»
-const faText = fs.readFileSync(path.join(ROOT, "lang/fa.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/projects.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/plans.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/custom.json"), "utf8");
+// Editorial Persian copy uses the Latin brand. The shared studio wordmark is localized.
+const faCopy = json("lang/fa.json");
+delete faCopy.brand.short; // Header/footer wordmark matches the main studio site.
+const faText = JSON.stringify(faCopy) + fs.readFileSync(path.join(ROOT, "data/projects.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/plans.json"), "utf8") + fs.readFileSync(path.join(ROOT, "data/custom.json"), "utf8");
 if (/جولی[\s\u200c]*پاندا/.test(faText)) err("Persian text contains «جولی پاندا» — write «استودیو Jolly Panda» instead");
 
 // e-mail templates: the English pre-contract must contain no Persian, the Persian one must use the Latin brand name

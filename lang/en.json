@@ -4,7 +4,10 @@
     "code": "en"
   },
   "brand": {
-    "name": "Jolly Panda Web"
+    "name": "Jolly Panda Web",
+    "short": "Jolly Panda",
+    "sub": "Web studio",
+    "heroWord": "WEB"
   },
   "nav": {
     "skip": "Skip to content",
@@ -13,7 +16,8 @@
     "projects": "Portfolio",
     "cta": "Choose a package",
     "toggle": "Toggle menu",
-    "langSwitch": "Language switch"
+    "langSwitch": "Language switch",
+    "primary": "Main navigation"
   },
   "pages": {
     "home": {
@@ -75,7 +79,7 @@
       "bubble1": "Why a website?",
       "bubble2": "Why Jolly Panda?",
       "bubble3": "What if I skip it?",
-      "imageAlt": "Jolly Panda mascot thinking about an idea that turns into a website",
+      "imageAlt": "Jolly Panda, the studio mascot: a smiling panda in an orange hoodie",
       "scroll": "Scroll"
     },
     "q1": {
@@ -332,7 +336,9 @@
       "text": "This is the website-services side of Jolly Panda Studio. Games, software and everything else live on our main site.",
       "cta": "Back to jollypanda.ir"
     },
-    "copyright": "© 2026 Jolly Panda Studio. All rights reserved."
+    "copyright": "© 2026 Jolly Panda Studio. All rights reserved.",
+    "connect": "Connect",
+    "made": "Made with bamboo & care."
   },
   "services": {
     "breadcrumb": "Breadcrumb",

@@ -63,3 +63,9 @@ vercel.json  Vercel build settings
 ```
 
 Copyright © Jolly Panda Studio. All rights reserved.
+
+## Shared studio design
+
+`css/studio-tokens.css` is copied from the main website’s `src/styles/tokens.css` (only font URLs change). `css/variables.css` maps legacy names to those tokens. `css/studio-shell.css` adapts the shared header, footer and hero; `css/studio-content.css` adapts content components. Load these through the shared head partial; avoid adding independent typography values to older stylesheets.
+
+Font roles match the main site: Inter for English body/UI, Bricolage for English headings, Mikhak for Persian body/UI/headings, Rooyin for Persian decorative words, and CS Genista Semipixel for English decorative words. All five exact font files are served locally from `assets/fonts/`.
